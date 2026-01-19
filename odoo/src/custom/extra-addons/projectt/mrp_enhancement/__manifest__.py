@@ -1,0 +1,22 @@
+{
+    "name": "MRP Enhancement",
+    "version": "saas~16.4.1.2.4",
+    "description": "MRP Enhancement",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "mrp"],
+    "data": [
+        'security/ir.model.access.csv',
+        "views/mrp_workcenter_views.xml",
+        "views/mrp_production_views.xml",
+        "report/production_planning.xml",
+        "report/simulation_order.xml",
+        'views/stock_scrap_views.xml',
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

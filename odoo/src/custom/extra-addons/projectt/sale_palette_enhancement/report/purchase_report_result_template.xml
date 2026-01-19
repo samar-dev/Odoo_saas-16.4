@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_partner_pallets">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+
+                    <style>
+                        .pallet-report-title {
+                        text-align: center;
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 15px;
+                        }
+
+                        .summary-block {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
+                        font-size: 13px;
+                        }
+                        .summary-block div {
+                        border: 1px solid #ddd;
+                        padding: 10px;
+                        width: 23%;
+                        text-align: center;
+                        background-color: #f5f5f5;
+                        border-radius: 4px;
+                        }
+                        .summary-block div span.label {
+                        font-weight: bold;
+                        display: block;
+                        margin-bottom: 5px;
+                        }
+
+                        .picking-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-size: 12px;
+                        margin-bottom: 20px;
+                        }
+                        .picking-table th, .picking-table td {
+                        border: 1px solid #ddd;
+                        padding: 5px 8px;
+                        vertical-align: top;
+                        }
+                        .picking-table th {
+                        background-color: #f0f0f0;
+                        text-align: center;
+                        }
+                        .picking-table tbody tr:nth-child(even) {
+                        background-color: #fafafa;
+                        }
+                        .picking-header {
+                        font-weight: bold;
+                        margin: 5px 0;
+                        background-color: #e8f1ff;
+                        padding: 4px 6px;
+                        }
+
+                        .pallet-report-footer {
+                        margin-top: 25px;
+                        text-align: right;
+                        font-size: 10px;
+                        color: #666;
+                        }
+                    </style>
+
+                    <!-- Get all pallet products -->
+                    <t t-set="pallet_product_ids"
+                       t-value="env['product.product'].search([('is_pallet','=',True)]).ids"/>
+
+                    <t t-foreach="docs" t-as="partner">
+                        <h2 class="pallet-report-title">Palettes Report -
+                            <t t-esc="partner.name"/>
+                        </h2>
+
+                        <!-- Summary block -->
+                        <t t-set="delivered_qty" t-value="0.0"/>
+                        <t t-set="returned_qty" t-value="0.0"/>
+
+                        <t t-foreach="env['stock.picking'].search([('partner_id','=',partner.id),('state','=','done')])"
+                           t-as="picking">
+                            <t t-set="delivered_qty"
+                               t-value="delivered_qty + sum(move.quantity_done for move in picking.move_ids.filtered(lambda m: m.product_id.id in pallet_product_ids and picking.picking_type_code=='outgoing'))"/>
+                            <t t-set="returned_qty"
+                               t-value="returned_qty + sum(move.quantity_done for move in picking.move_ids.filtered(lambda m: m.product_id.id in pallet_product_ids and picking.picking_type_code=='incoming'))"/>
+                        </t>
+
+                        <div class="summary-block">
+                            <div>
+                                <span class="label">Solde départ</span>
+                                <span>0</span>
+                            </div>
+                            <div>
+                                <span class="label">Débit (livré)</span>
+                                <span>
+                                    <t t-esc="delivered_qty"/>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="label">Crédit (retourné)</span>
+                                <span>
+                                    <t t-esc="returned_qty"/>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="label">Solde</span>
+                                <span>
+                                    <t t-esc="delivered_qty - returned_qty"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Pickings details -->
+                        <table class="picking-table">
+                            <thead>
+                                <tr>
+                                    <th>Picking</th>
+                                    <th>Produi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="env['stock.picking'].search([('partner_id','=',partner.id),('state','=','done')])"
+                                   t-as="picking">
+                                    <t t-set="pallet_moves"
+                                       t-value="picking.move_ids.filtered(lambda m: m.product_id.id in pallet_product_ids)"/>
+                                    <t t-if="pallet_moves">
+                                        <tr>
+                                            <td>
+                                                <t t-esc="picking.name"/>
+                                                (<t t-esc="picking.picking_type_code"/>)
+                                            </td>
+                                            <td t-foreach="pallet_moves" t-as="move">
+                                                <div>
+                                                    <td t-esc="move.product_id.display_name"/>
+                                                    <td>
+                                                        <t t-if="picking.picking_type_code=='outgoing'">
+                                                            <t t-esc="move.quantity_done"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-if="picking.picking_type_code=='incoming'">
+                                                            <t t-esc="move.quantity_done"/>
+                                                        </t>
+                                                    </td>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+
+                    </t>
+
+                    <div class="pallet-report-footer">
+                        Generated by stca
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

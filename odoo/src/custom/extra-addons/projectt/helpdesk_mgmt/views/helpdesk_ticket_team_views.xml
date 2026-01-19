@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <odoo>
+        <record id="view_helpdesk_team_form_inherit_alias_second" model="ir.ui.view">
+            <field name="name">helpdesk.team.form.inherit.alias.second</field>
+            <field name="model">helpdesk.team</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_team_view_form"/>
+            <field name="arch" type="xml">
+                <!-- Add your field near alias settings inside Settings tab -->
+                <xpath expr="//div[hasclass('oe_edit_only')]" position="after">
+                    <label for="alias_id_seconds"/>
+                    <field name="alias_id_seconds" widget="many2many_tags" options="{'no_open': True}"/>
+                    <group string="SMTP Settings" groups="helpdesk.group_helpdesk_manager">
+                                    <field name="smtp_server" />
+                                    <field name="smtp_port"/>
+                                    <field name="smtp_user"/>
+                                    <field name="smtp_password"/>
+                                </group>
+                </xpath>
+
+
+            </field>
+        </record>
+    </odoo>
+
+</odoo>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_scale_reader_tree" model="ir.ui.view">
+        <field name="name">scale.reader.tree</field>
+        <field name="model">scale.reader</field>
+        <field name="arch" type="xml">
+            <tree string="Scale Readers">
+                <field name="name" readonly="1"/>
+                <field name="weighing_slip" readonly="1"/>
+                <field name="vehicle"/>
+                <field name="vendor_id"/>
+                <field name="transporter_id"/>
+                <field name="weight_full"/>
+                <field name="weight_full_datetime" readonly="1"/>
+                <field name="weight_empty"/>
+                <field name="weight_empty_datetime" readonly="1"/>
+                <field name="net_weight" readonly="1"/>
+                <field name="invoice_id"/>
+                <field name="check_state"
+                       widget="badge"
+                       optional="show"
+                       decoration-success="check_state == 'closed'"
+                       decoration-info="check_state == 'invoice'"
+                       decoration-warning="check_state == 'delivery'"
+                       decoration-danger="check_state == 'wait'"/>
+
+                <field name="scale_settings_id" optional="hide"/>
+                <field name="is_connected" readonly="1" optional="hide"/>
+                <field name="create_uid" readonly="1" optional="hide"/>
+                <field name="write_uid" readonly="1" optional="hide"/>
+                <field name="create_date" readonly="1" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_scale_reader_form" model="ir.ui.view">
+        <field name="name">scale.reader.form</field>
+        <field name="model">scale.reader</field>
+        <field name="arch" type="xml">
+            <form string="Scale Reader">
+                <header>
+                    <field name="check_state" widget="statusbar"/>
+                    <button name="action_get_weight_empty" type="object" string="Get Weight Empty"
+                            class="btn-primary" icon="fa-light fa-truck"
+                            attrs="{'invisible': ['|', ('weight_empty_check', '=', False), ('is_connected', '=', False)]}"/>
+                    <button name="action_get_weight_full" type="object" string="Get Weight Full" class="btn-primary"
+                            attrs="{'invisible': ['|', ('weight_empty_check', '=', False), ('is_connected', '=', False)]}"
+                            icon="fa-solid fa-truck"/>
+                    <button name="action_create_invoice"
+                            string="Create Purchase Invoice"
+                            type="object"
+                            class="btn-primary"
+                            attrs="{'invisible': [('remaining_qty', '=', 0)]}"/>
+                    <button name="action_create_receipt"
+                            string="Create Receipt"
+                            type="object"
+                            class="btn-secondary"
+                            attrs="{'invisible': [('picking_id', '!=', False)]}"/>
+
+                    <button name="make_is_done" string="Cloture" type="object" class="btn-danger"
+                            groups="purchase.group_purchase_manager"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group attrs="{'readonly': [('check_state', '=', 'closed')]}">
+                            <field name="is_connected" readonly="1"/>
+                            <field name="name" readonly="1"/>
+                            <field name="scale_settings_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="weighing_slip"/>
+                            <field name="transporter_id"/>
+                            <field name="vendor_id"/>
+                            <field name="vehicle" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="location_id"/>
+                            <field name="product_id"/>
+                            <field name="lot_number"/>
+                            <field name="split_receipt" widget="boolean_toggle"/>
+
+                        </group>
+                        <group attrs="{'readonly': [('check_state', '=', 'closed')]}">
+                            <field name="ac"/>
+                            <field name="k_two"/>
+                            <field name="k_seven"/>
+                            <field name="pesticides"/>
+                            <field name="numero_adm"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="weight_full" readonly="1"/>
+                            <field name="weight_empty" readonly="1"/>
+                            <field name="net_weight"
+                                   attrs="{'required': [('is_connected', '=', False)],'readonly': ['|', ('is_connected', '=', True), ('check_state', '=', 'closed')]}"/>
+                        </group>
+                        <group>
+                            <field name="weight_full_check" invisible="1"/>
+                            <field name="remaining_qty"/>
+                            <field name="is_done" invisible="1"/>
+                            <field name="weight_empty_check" invisible="1"/>
+                            <field name="weight_empty_datetime" readonly="1"/>
+                            <field name="weight_full_datetime" readonly="1"/>
+                            <field name="invoice_id" readonly="1"/>
+                            <field name="invoice_ids" readonly="1" widget="many2many_tags"/>
+                            <field name="picking_id" readonly="1"/>
+
+                        </group>
+                        <notebook>
+                            <page string="Répartition" attrs="{'invisible': [('split_receipt', '=', False)]}">
+                                <field name="line_ids" editable="bottom">
+                                    <tree editable="bottom">
+                                        <field name="product_id" domain="[('id','=', parent.product_id)]"/>
+                                        <field name="net_weight_qty"/>
+                                        <field name="location_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+
+
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="scale_reader_view_search" model="ir.ui.view">
+        <field name="name">scale.reader.view.search</field>
+        <field name="model">scale.reader</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Sequence"/>
+                <field name="weighing_slip" string="Weighing Slip"/>
+                <field name="vehicle" string="Vehicle"/>
+                <field name="lot_number" string="Lot Number"/>
+                <field name="vendor_id" string="Vendor"/>
+                <field name="product_id" string="Product"/>
+                <field name="net_weight" string="Net Weight"/>
+
+
+                <filter name="has_invoice" string="Invoiced" domain="[('check_state', '=', 'invoice')]"/>
+                <filter name="no_invoice" string="To Deliver" domain="[('check_state', '=', 'delivery')]"/>
+                <filter name="par_invoice" string="Partial Invoice" domain="[('check_state', '=', 'par_invoice')]"/>
+                <filter name="closed" string="Closed" domain="[('check_state', '=', 'closed')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_scale_reader" model="ir.actions.act_window">
+        <field name="name">Scale Readers</field>
+        <field name="res_model">scale.reader</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    <record id="view_scale_settings_form" model="ir.ui.view">
+        <field name="name">scale.settings.form</field>
+        <field name="model">scale.settings</field>
+        <field name="arch" type="xml">
+            <form string="Scale Settings">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="ip_address"/>
+                        <field name="port"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_scale_settings" model="ir.actions.act_window">
+        <field name="name">Scale Settings</field>
+        <field name="res_model">scale.settings</field>
+        <field name="view_mode">form</field>
+    </record>
+    <record id="server_action_generate_invoice" model="ir.actions.server">
+        <field name="name">Generate Invoice</field>
+        <field name="model_id" ref="model_scale_reader"/>
+        <field name="binding_model_id" ref="model_scale_reader"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">records.action_generate_invoice()</field>
+    </record>
+
+
+    <menuitem id="menu_scale" name="Scale Management" sequence="1"
+              web_icon="odoo_scale_integration,static/description/icon.png"/>
+    <menuitem id="menu_scale_reader" name="Scale Readers" parent="menu_scale" action="action_scale_reader"
+              sequence="1"/>
+    <menuitem id="menu_scale_settings" name="Scale Settings" action="action_scale_settings" parent="menu_scale"
+              sequence="2"/>
+
+</odoo>

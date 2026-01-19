@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mrp_routing_view_form" model="ir.ui.view">
+            <field name="name">mrp_routing_view_form</field>
+            <field name="model">mrp.routing</field>
+            <field name="arch" type="xml">
+                <form string="mrp_routing_form">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,under_approval,approved"/>
+                        <button name="action_send_to_approve" groups="mrp.group_mrp_manager" states="draft"
+                                type="object" icon="fa-send" string="Send to Approve"/>
+                        <button name="action_set_approved" groups="quality.group_quality_manager"
+                                states="under_approval" type="object" icon="fa-thumbs-up" class="btn-success"
+                                string="Approve"/>
+                        <button name="action_set_declined" groups="quality.group_quality_manager"
+                                states="under_approval" type="object" icon="fa-thumbs-down" class="btn-danger"
+                                string="Deny"/>
+                        <button name="button_reset_to_draft"
+                                string="Reset to draft" type="object"
+                                attrs="{'invisible': [('state', 'in', ['draft'])]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="number"/>
+                                <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': 1, 'no_edit': 1}"/>
+                                <field name="product_family_ids" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': 1, 'no_edit': 1}" widget="many2many_tags"/>
+                                <field name="raw_material_family_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': 1, 'no_edit': 1}"/>
+                                <field name="attribute_line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': 1, 'no_edit': 1}" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="model" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="season" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="version" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="size" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="model_time" widget="float_time"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Operations">
+                                <field name="mrp_routing_line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="mrp_operation_id" domain="[('is_template', '=', True)]"
+                                               context="{'default_is_template': True}"/>
+                                        <field name="workcenter_id" options="{'no_create': 1, 'no_edit': 1}"/>
+                                        <field name="duration" widget="float_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Components">
+                                <field name="mrp_routing_component_ids"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="product_id" options="{'no_create': 1, 'no_edit': 1}"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom_id" options="{'no_create': 1, 'no_edit': 1}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp_routing_view_tree" model="ir.ui.view">
+            <field name="name">mrp_routing_view_tree</field>
+            <field name="model">mrp.routing</field>
+            <field name="arch" type="xml">
+                <tree string="mrp_routing_tree" sample="1">
+                    <field name="name"/>
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="raw_material_family_id" optional="hide"/>
+                    <field name="product_family_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="model" optional="hide"/>
+                    <field name="season" optional="hide"/>
+                    <field name="version" optional="hide"/>
+                    <field name="size" optional="hide"/>
+                    <field name="model_time" widget="float_time" sum="Total" optional="show"/>
+                    <field name="state"
+                           widget="badge"
+                           decoration-success="state == 'approved'"
+                           decoration-danger="state == 'declined'"
+                           decoration-warning="state == 'under_approval'"
+                           decoration-info="state == 'draft'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mrp_routing_action" model="ir.actions.act_window">
+            <field name="name">Product Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.routing</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="mrp_routing_menu" name="Product Lines" parent="mrp.menu_mrp_configuration"
+                  groups="mrp.group_mrp_manager" action="mrp_routing_action" sequence="999"/>
+        <menuitem id="mrp_routing_quality_menu"
+                  name="Product Lines"
+                  parent="quality_control.menu_quality_configuration"
+                  groups="quality.group_quality_manager"
+                  action="mrp_routing_action"
+                  sequence="999"/>
+
+    </data>
+</odoo>

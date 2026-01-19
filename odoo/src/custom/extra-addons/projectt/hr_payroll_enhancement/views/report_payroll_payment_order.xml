@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_payroll_payment_order">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <h2>Ordre de Virement Paie :
+                                <t t-esc="doc.name"/>
+                            </h2>
+                            <p>Date :
+                                <t t-esc="format_date(doc.date_order)"/>
+                            </p>
+                            <p>Société :
+                                <t t-esc="doc.company_id.name"/>
+                            </p>
+                            <p>Banque :
+                                <t t-esc="doc.bank_id.bank_id.name or 'Non renseignée'"/>
+                            </p>
+                            <p>Montant total :
+                                <t t-esc="doc.total_amount"/>
+                                <t t-esc="doc.currency_id.name"/>
+                            </p>
+
+                            <table class="table table-sm" border="1" style="width:100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th>Employé</th>
+                                        <th>RIB</th>
+                                        <th style="text-align:right;">Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.payment_line_ids" t-as="line">
+                                        <td>
+                                            <t t-esc="line.employee_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="line.rib or 'N/A'"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <t t-esc="line.amount"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="payroll_payment_order_report_action" model="ir.actions.report">
+            <field name="name">Ordre de Virement Paie</field>
+            <field name="model">payroll.payment.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_payroll_enhancement.report_payroll_payment_order</field>
+            <field name="report_file">hr_payroll_enhancement.report_payroll_payment_order</field>
+        </record>
+
+
+        <record id="action_payroll_payment_order" model="ir.actions.act_window">
+            <field name="name">Ordres de Virement</field>
+            <field name="res_model">payroll.payment.order</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_payroll_payment_order_tree" model="ir.ui.view">
+            <field name="name">payroll.payment.order.tree</field>
+            <field name="model">payroll.payment.order</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date_order"/>
+                    <field name="bank_id"/>
+                    <field name="total_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_payroll_payment_order_form" model="ir.ui.view">
+            <field name="name">payroll.payment.order.form</field>
+            <field name="model">payroll.payment.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_generate_lines" string="Générer les lignes" type="object"
+                                class="btn-secondary"/>
+                        <button name="%(payroll_payment_order_report_action)d" string="Imprimer Ordre de Virement"
+                                type="action" class="btn-primary"/>
+                        <button name="action_export_excel" string="Exporter Excel" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date_order"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="bank_id"/>
+                                <field name="currency_id"/>
+                                <field name="excel_file" filename="excel_filename" widget="download" readonly="1"/>
+                            </group>
+                        </group>
+
+
+                        <field name="payment_line_ids">
+                            <tree editable="bottom">
+                                <field name="employee_id"/>
+                                <field name="bank_id"/>
+                                <field name="rib"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="menu_hr_payroll_enhancement_order"
+                  name="Ordres de Virement"
+                  parent="declaration_cnss_menuitem"
+                  action="action_payroll_payment_order"/>
+
+
+    </data>
+</odoo>

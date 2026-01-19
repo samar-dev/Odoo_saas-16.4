@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_payment_method_view_tree_inherit" model="ir.ui.view">
+            <field name="name">account_payment_method_view_tree_inherit</field>
+            <field name="model">account.payment.method</field>
+            <field name="inherit_id" ref="v__payment_methods.account_payment_method_view_tree"/>
+            <field name="arch" type="xml">
+
+                <tree position="inside">
+                    <field name="is_printable" widget="boolean_toggle" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="account_payment_method_view_form_inherit" model="ir.ui.view">
+            <field name="name">account_payment_method_view_form_inherit</field>
+            <field name="model">account.payment.method</field>
+            <field name="inherit_id" ref="v__payment_methods.account_payment_method_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_type']" position="after">
+                    <field name="is_printable" />
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

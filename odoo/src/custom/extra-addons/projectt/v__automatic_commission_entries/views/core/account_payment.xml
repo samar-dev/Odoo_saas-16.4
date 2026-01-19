@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet" position="inside">
+                    <field name="show_commission_page" invisible="1" />
+                    <separator string="Commissions" attrs="{'invisible': [('show_commission_page', '=', False)]}" />
+                    <field name="account_payment_commission_ids"
+                           attrs="{'invisible': [('show_commission_page', '=', False)]}"
+                           readonly="True"
+                           nolabel="1">
+                        <tree open="0">
+                            <field name="name" />
+                            <field name="value_type" />
+                            <field name="value" />
+                        </tree>
+                    </field>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

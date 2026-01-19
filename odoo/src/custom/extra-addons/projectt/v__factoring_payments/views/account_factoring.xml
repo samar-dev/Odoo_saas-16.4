@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_factoring_view_form" model="ir.ui.view">
+            <field name="name">account_factoring_view_form</field>
+            <field name="model">account.factoring</field>
+            <field name="arch" type="xml">
+                <form string="account_factoring_form">
+                    <field name="company_id" invisible="1" />
+                    <header>
+                        <button name="action_add_factoring_payment"
+                                class="btn-primary"
+                                states="pending"
+                                icon="fa-credit-card"
+                                type="object"
+                                string="Factoring Check" />
+                        <button name="action_send_to_factoring"
+                                states="draft"
+                                class="btn-primary"
+                                icon="fa-envelope"
+                                type="object"
+                                confirm="Once you send there is no going back, Do you confirm?"
+                                string="Send" />
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_visible="draft,pending,done" />
+                    </header>
+                    <sheet>
+                        <div class="button_box" name="button_box">
+                            <field name="factoring_move_id" invisible="1" />
+                            <field name="factoring_payments_count" invisible="1" />
+                            <button attrs="{'invisible': [('factoring_move_id', '=', False)]}"
+                                    name="action_open_factoring_move_entry"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-bars">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Factoring JE</span>
+                                </div>
+                            </button>
+                            <button attrs="{'invisible': ['|', ('factoring_payments_count', '=', 0), ('state', '=', 'draft')]}"
+                                    name="action_open_factoring_payments"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-credit-card">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Factoring Checks</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="journal_id"
+                                       options="{'no_create': 1, 'no_edit': 1}" />
+                                <field name="partner_id"
+                                       options="{'no_create': 1, 'no_edit': 1}" />
+                            </group>
+                            <group>
+                                <field name="date"
+                                       options="{'datepicker': {'warn_future': true}}" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Payments">
+                                <field name="payment_ids"
+                                       widget="many2many"
+                                       options="{'no_create': 1}">
+                                    <tree>
+                                        <field name="state" invisible="1" />
+                                        <field name="currency_id" invisible="1" />
+                                        <field name="name" />
+                                        <field name="partner_id" string="Customer" />
+                                        <field name="payment_method_line_id" />
+                                        <field name="transaction_number" />
+                                        <field name="due_date" />
+                                        <field name="journal_id" />
+                                        <field name="date" optional="hide" />
+                                        <field name="amount"
+                                               widget="monetary"
+                                               sum="Total" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Commissions">
+                                <field name="account_factoring_commission_ids">
+                                    <tree editable="bottom" create="0" delete="0">
+                                        <field name="name" force_save="1" />
+                                        <field name="label"
+                                               placeholder="Label to appear in the journal item" />
+                                        <field name="value_type" />
+                                        <field name="value" />
+                                        <field name="account_id" invisible="1" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="activity_ids" />
+                        <field name="message_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_factoring_view_tree" model="ir.ui.view">
+            <field name="name">account_factoring_view_tree</field>
+            <field name="model">account.factoring</field>
+            <field name="arch" type="xml">
+                <tree string="account_factoring_tree" sample="1">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="journal_id" />
+                    <field name="state"
+                           widget="badge"
+                           decoration-info="state == 'pending'"
+                           decoration-success="state == 'done'" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_factoring_action" model="ir.actions.act_window">
+            <field name="name">Factoring</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.factoring</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="account_factoring_menu"
+                  name="Factoring"
+                  parent="account.menu_finance_receivables"
+                  action="account_factoring_action"
+                  sequence="17" />
+
+    </data>
+</odoo>

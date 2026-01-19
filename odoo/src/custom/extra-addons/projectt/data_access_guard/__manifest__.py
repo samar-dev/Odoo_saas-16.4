@@ -1,0 +1,20 @@
+{
+    "name": "Data Access Guard",
+    "version": "saas~16.4.1.0.0",
+    "description": "Data Access Guard",
+    "summary": "Add the ability to add a dynamic domain per user",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "web"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/data_access_guard.xml",
+        "views/menuitems.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

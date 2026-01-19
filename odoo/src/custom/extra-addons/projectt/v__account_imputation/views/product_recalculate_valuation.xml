@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Form view for product.recalculate.valuation -->
+    <record id="view_product_recalculate_valuation_form" model="ir.ui.view">
+        <field name="name">product.recalculate.valuation.view.form</field>
+        <field name="model">product.recalculate.valuation</field>
+        <field name="arch" type="xml">
+            <form string="Product Last Valuation">
+                <header>
+                    <button string="Backup Layers" type="object" name="action_backup_layers"
+                            class="btn-primary"
+                            attrs="{'invisible': [('has_backup', '=', True)]}"/>
+                    <button string="Restore Backup" type="object" name="action_restore_layers"
+                            class="btn-warning"
+                            attrs="{'invisible': [('has_backup', '=', False)]}"/>
+                    <button string="Recompute Costs" type="object" name="action_recompute_costs"
+                            class="btn-success" attrs="{'invisible': [('has_backup', '=', False)]}"/>/>
+                    <button name="action_open_backups" type="object" string="Backups"
+                            icon="fa-database"
+                            attrs="{'invisible': [('has_backup', '=', False)]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="product_id"/>
+                        <field name="date_start"/>
+                        <field name="date_end" readonly="1"/>
+                        <field name="has_backup" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for product.recalculate.valuation -->
+    <record id="view_product_recalculate_valuation_tree" model="ir.ui.view">
+        <field name="name">product.recalculate.valuation.view.tree</field>
+        <field name="model">product.recalculate.valuation</field>
+        <field name="arch" type="xml">
+            <tree string="Product Last Valuation" create="true">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for product.recalculate.backup -->
+    <record id="view_product_recalculate_backup_form" model="ir.ui.view">
+        <field name="name">product.recalculate.backup.form</field>
+        <field name="model">product.recalculate.backup</field>
+        <field name="arch" type="xml">
+            <form string="Valuation Backup">
+                <sheet>
+                    <group>
+                        <field name="product_id" readonly="1"/>
+                        <field name="backup_date" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Backup Data Lines">
+                            <field name="backup_data" readonly="1">
+                                <tree>
+                                    <field name="valuation_layer_id"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_cost"/>
+                                    <field name="value"/>
+                                    <field name="remaining_value"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for product.recalculate.backup -->
+    <record id="view_product_recalculate_backup_tree" model="ir.ui.view">
+        <field name="name">product.recalculate.backup.tree</field>
+        <field name="model">product.recalculate.backup</field>
+        <field name="arch" type="xml">
+            <tree string="Valuation Backups">
+                <field name="product_id"/>
+                <field name="backup_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action window for product.recalculate.valuation -->
+    <record id="action_product_recalculate_valuation_form" model="ir.actions.act_window">
+        <field name="name">Product Recalculate Valuation</field>
+        <field name="res_model">product.recalculate.valuation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action window for product.recalculate.backup -->
+    <record id="action_product_recalculate_backup" model="ir.actions.act_window">
+        <field name="name">Valuation Backups</field>
+        <field name="res_model">product.recalculate.backup</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Menu item for product.recalculate.valuation -->
+    <menuitem id="menu_product_last_valuation_form" name="Last Valuation Date"
+              parent="account.menu_finance_entries_actions"
+              action="action_product_recalculate_valuation_form" sequence="20"/>
+
+</odoo>

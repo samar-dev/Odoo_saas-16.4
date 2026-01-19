@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="assortment_view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">assortment_view_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="mail.res_partner_view_form_inherit_mail"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='sales_purchases']/group" position="inside">
+                    <group string="Assortment">
+                        <field name="assortment_id"/>
+                        <field name="store_ids" widget="many2many_tags"/>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="assortment_view_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">assortment_view_partner_tree_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <tree position="inside">
+                    <header>
+                        <button string="Create assortment" type="object" name="action_create_assortment"/>
+                    </header>
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

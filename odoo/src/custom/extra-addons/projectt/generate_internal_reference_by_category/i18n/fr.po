@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* generate_internal_reference_by_category
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-15 15:13+0000\n"
+"PO-Revision-Date: 2023-12-15 15:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: generate_internal_reference_by_category
+#: model_terms:ir.ui.view,arch_db:generate_internal_reference_by_category.product_template_only_form_view_inherit
+msgid "<span>The internal reference is currently empty</span>"
+msgstr "<span>La référence interne est actuellement vide</span>"
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model.fields,field_description:generate_internal_reference_by_category.field_product_product__default_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model,name:generate_internal_reference_by_category.model_product_template
+msgid "Product"
+msgstr "Produit"
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model,name:generate_internal_reference_by_category.model_product_category
+msgid "Product Category"
+msgstr "Catégorie de produits"
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model,name:generate_internal_reference_by_category.model_product_product
+msgid "Product Variant"
+msgstr "Variante de produit"
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model.fields,field_description:generate_internal_reference_by_category.field_product_product__reference
+#: model:ir.model.fields,field_description:generate_internal_reference_by_category.field_product_template__reference
+msgid "Reference"
+msgstr ""
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model.fields,field_description:generate_internal_reference_by_category.field_product_category__sequence_id
+msgid "Sequence"
+msgstr ""
+
+#. module: generate_internal_reference_by_category
+#: model:ir.model.fields,field_description:generate_internal_reference_by_category.field_product_category__sequence_by_category
+msgid "Sequence by category"
+msgstr "Séquence par catégorie"
+
+#. module: generate_internal_reference_by_category
+#: model_terms:ir.ui.view,arch_db:generate_internal_reference_by_category.product_template_only_form_view_inherit
+msgid ""
+"<span>Don't forget to choose a category for your article or manually create "
+"its reference</span>"
+msgstr ""
+"<span>N'oubliez pas de choisir une catégorie pour votre article ou de "
+"créer manuellement sa référence</span>"
+
+#. module: generate_internal_reference_by_category
+#: model_terms:ir.ui.view,arch_db:generate_internal_reference_by_category.product_template_only_tree_view_inherit
+msgid "Generate references"
+msgstr "Générer les références"
+
+#. module: generate_internal_reference_by_category
+#. odoo-python
+#: code:addons/generate_internal_reference_by_category/models/product_template.py:0
+#, python-format
+msgid "The product %s already has a reference"
+msgstr "Le produit %s a déjà une référence"
+
+#. module: generate_internal_reference_by_category
+#: model:res.groups,name:generate_internal_reference_by_category.group_generate_product_reference
+msgid "Generate product reference"
+msgstr "Générer les références des produits"
+
+#. module: generate_internal_reference_by_category
+#. odoo-python
+#: code:addons/generate_internal_reference_by_category/models/product_template.py:0
+#, python-format
+msgid ""
+"Updating the product reference with a quantity of stock > 0 is not possible"
+msgstr "La mise à jour de la référence produit avec une quantité de stock > 0 n'est pas possible"
+

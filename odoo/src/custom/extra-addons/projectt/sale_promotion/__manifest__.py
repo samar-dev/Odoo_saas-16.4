@@ -1,0 +1,20 @@
+{
+    "name": "Sale Promotion",
+    "version": "saas~16.4.1.0.0",
+    "description": "Sale Promotion",
+    "summary": "Sale Promotion",
+    "category": "External",
+    "author": "VegaNET",
+    "website": "https://vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "sale", "loyalty"],
+    "data": [
+        "views/sale_order.xml",
+        "views/loyalty_program.xml",
+        "views/loyalty_reward.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

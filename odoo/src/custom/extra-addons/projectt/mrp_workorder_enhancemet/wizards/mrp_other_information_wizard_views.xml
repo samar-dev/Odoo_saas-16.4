@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_mrp_other_information_wizard_form" model="ir.ui.view">
+            <field name="name">view.mrp.other.information.wizard.form</field>
+            <field name="model">mrp.other.information.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Other information">
+                    <sheet>
+                        <group>
+                            <field name="operator_employee_ids" options="{'no_create': True}" widget="many2many_tags"/>
+                            <field name="production_planning_reference"/>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_add_information" type="object"
+                                string="Add other information" class="btn-primary" data-hotkey="q"/>
+                        <button string="Discard" class="btn-default btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

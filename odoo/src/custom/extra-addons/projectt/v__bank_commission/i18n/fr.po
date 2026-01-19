@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* v__bank_commission
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-08 10:54+0000\n"
+"PO-Revision-Date: 2024-07-08 10:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: v__bank_commission
+#: code:addons/v__bank_commission/wizards/core/account_payment_register.py:0
+#: model:ir.model.fields,field_description:v__bank_commission.field_account_payment_register__commission_account_id
+#, python-format
+msgid "Commission Account"
+msgstr "Compte de commissions"
+
+#. module: v__bank_commission
+#: code:addons/v__bank_commission/wizards/core/account_payment_register.py:0
+#: model:ir.model.fields,field_description:v__bank_commission.field_account_payment_register__commission_amount
+#, python-format
+msgid "Commission Amount"
+msgstr "Montant de la commission"
+
+#. module: v__bank_commission
+#: code:addons/v__bank_commission/wizards/core/account_payment_register.py:0
+#: model:ir.model.fields,field_description:v__bank_commission.field_account_payment_register__commission_label
+#, python-format
+msgid "Commission Label"
+msgstr "Libellé de commission"
+
+#. module: v__bank_commission
+#: code:addons/v__bank_commission/wizards/core/account_payment_register.py:0
+#, python-format
+msgid "Commission amount can't be negative"
+msgstr "Le montant de la commission ne peut pas être négatif"
+
+#. module: v__bank_commission
+#: model:ir.model,name:v__bank_commission.model_account_payment_register
+msgid "Register Payment"
+msgstr "Enregistrer un paiement"
+
+#. module: v__bank_commission
+#: code:addons/v__bank_commission/wizards/core/account_payment_register.py:0
+#: model:ir.model.fields,field_description:v__bank_commission.field_account_payment_register__with_bank_commission
+#, python-format
+msgid "With Bank Commission"
+msgstr "Avec Commission Bancaire"

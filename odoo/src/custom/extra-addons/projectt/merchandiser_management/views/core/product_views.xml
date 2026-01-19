@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- view used for product.product only -->
+        <record model="ir.ui.view" id="product_normal_form_view_inherit">
+            <field name="name">product_normal_form_view_inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="product_tag_ids" position="after">
+                        <field name="assortment_ids" widget="many2many_tags" context="{'product_variant_id': id}"
+                               options="{'no_open': True, 'no_create': True}"/>
+                        <field name="store_ids" widget="many2many_tags" context="{'product_template_id': id}"
+                               options="{'no_open': True, 'no_create': True}"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="product_product_tree_view_inherit" model="ir.ui.view">
+            <field name="name">product_product_tree_view_inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button string="Add to an assortment" type="object" name="button_add_assortment"/>
+                </header>
+            </field>
+        </record>
+
+    </data>
+</odoo>

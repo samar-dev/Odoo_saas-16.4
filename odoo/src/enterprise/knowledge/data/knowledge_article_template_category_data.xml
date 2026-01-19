@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Categories -->
+    <record model="knowledge.article.template.category" id="knowledge_article_template_category_recommended">
+        <field name="name">Recommended</field>
+        <field name="sequence">0</field>
+    </record>
+
+    <record model="knowledge.article.template.category" id="knowledge_article_template_category_sales_and_marketing">
+        <field name="name">Sales &amp; Marketing</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <record model="knowledge.article.template.category" id="knowledge_article_template_category_company_organization">
+        <field name="name">Company Organization</field>
+        <field name="sequence">200</field>
+    </record>
+</odoo>

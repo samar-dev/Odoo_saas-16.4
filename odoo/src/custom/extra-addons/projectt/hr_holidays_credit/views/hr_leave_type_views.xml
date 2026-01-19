@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hr_leave_type_form_inherit_credit" model="ir.ui.view">
+            <field name="name">hr.leave.type.form.inherit.credit</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="allocation_validation_type" position="after">
+                    <field name="allow_credit" attrs="{'invisible': [('allocation_validation_type', '=', 'no')]}"/>
+                    <field name="creditable_employee_ids" widget="many2many_tags"
+                           attrs="{'invisible': [('allow_credit', '!=', True)]}"/>
+                    <field name="creditable_employee_category_ids" widget="many2many_tags"
+                           attrs="{'invisible': [('allow_credit', '!=', True)]}"/>
+                    <field name="creditable_department_ids" widget="many2many_tags"
+                           attrs="{'invisible': [('allow_credit', '!=', True)]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

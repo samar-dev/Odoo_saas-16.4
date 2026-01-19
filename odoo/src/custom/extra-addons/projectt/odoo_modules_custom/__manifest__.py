@@ -1,0 +1,26 @@
+{
+    "name": "Modules custom",
+    "description": "Customizations added to all modules",
+    "version": "saas~16.4.0.0.3",
+    "author": "Freelancer",
+    "license": "Other proprietary",
+    "depends": [
+        "base",
+        "account",
+        "sale",
+        "purchase",
+        "stock_landed_costs",
+        "stock_account",
+    ],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/sale_order_views.xml",
+        "views/purchase_order_views.xml",
+        "views/res_partner.xml",
+        "views/res_company_views.xml",
+        "views/account_payment_view.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+}

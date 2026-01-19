@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_validator_user,access_res_partner_validator_user,model_res_partner_validator,base.group_user,1,0,0,0
+access_res_partner_validator_purchase_manager,access_res_partner_validator_purchase_manager,model_res_partner_validator,purchase.group_purchase_manager,1,1,1,1
+access_res_partner_validator_sale_manager,access_res_partner_validator_sale_manager,model_res_partner_validator,base.group_user,1,1,1,1
+access_res_partner_validator_list,res_partner_validator_list,model_res_partner_validator_list,base.group_user,1,1,1,1
+

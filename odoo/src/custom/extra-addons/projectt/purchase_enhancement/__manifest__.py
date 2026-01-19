@@ -1,0 +1,21 @@
+{
+    "name": "Purchase Enhancement",
+    "version": "saas~16.4.1.0.2",
+    "description": "Stock Enhancement",
+    "category": "Inventory/Purchase",
+    "author": "VEGANET",
+    "website": "https://vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "purchase", "sale_enhancement"],
+    "data": [
+        "views/purchase_views.xml",
+        "views/product_category_views.xml",
+        "views/product_template_view.xml",
+        "views/mrp_bom_line_views.xml",
+        "data/cron_jobs.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

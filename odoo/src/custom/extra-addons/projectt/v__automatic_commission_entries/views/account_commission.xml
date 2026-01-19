@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_commission_view_form" model="ir.ui.view">
+            <field name="name">account_commission_view_form</field>
+            <field name="model">account.commission</field>
+            <field name="arch" type="xml">
+                <form string="account_commission_form">
+                    <sheet>
+                        <field name="account_commission_line_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle" />
+                                <field name="name" />
+                                <field name="label" />
+                                <field name="value_type" />
+                                <field name="value" />
+                                <field name="account_id"
+                                       options="{'no_create': 1, 'no_edit': 1}" />
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button string="Apply"
+                                special="save"
+                                type="object"
+                                class="btn-primary" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

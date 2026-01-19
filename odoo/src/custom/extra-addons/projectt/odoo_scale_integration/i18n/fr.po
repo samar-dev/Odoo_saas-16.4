@@ -1,0 +1,1030 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* odoo_scale_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 15:01+0000\n"
+"PO-Revision-Date: 2025-06-23 15:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: odoo_scale_integration
+#: model:ir.actions.report,print_report_name:odoo_scale_integration.action_scale_invoice_report
+msgid ""
+"'Scale Invoice - %s - ' % (object.name)+time.strftime('%Y-%m-%d %H:%M:%S')\n"
+"            "
+msgstr ""
+"'Facture de la balance - %s - ' % (object.name)+time.strftime('%Y-%m-%d "
+"%H:%M:%S')\n"
+
+#. module: odoo_scale_integration
+#: model:ir.actions.report,print_report_name:odoo_scale_integration.action_scale_reader_report
+msgid ""
+"'Scale Report - %s - ' % (object.name)+time.strftime('%Y-%m-%d %H:%M:%S')\n"
+"            "
+msgstr ""
+"'Rapport de pesée - %s - ' % (object.name)+time.strftime('%Y-%m-%d "
+"%H:%M:%S')\n"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "- Installment of"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "11.05"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "20.00"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "2021-09-19"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "2023-09-12"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "2023-09-25"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "2023-10-31"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "2024-01-01"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "27.00"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "3.00"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "30.00"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "31.05"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "35"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "9.00"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                            on this account:"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                        <span>\n"
+"                                            <strong>Adresse :</strong>\n"
+"                                        </span>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Addresse :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                        <span>\n"
+"                                            <strong>Email :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                        <span>\n"
+"                                            <strong>Livreur :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                        <span>\n"
+"                                            <strong>MF :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                        <span>\n"
+"                                            <strong>Mobile :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<br/>\n"
+"                                        <span>\n"
+"                                            <strong>Plaque d'immatriculation :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<span>\n"
+"                                            <strong>Fournisseur :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<span>\n"
+"                                            <strong>Raison Social :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<span>\n"
+"                                            <strong>Véhicule :</strong>\n"
+"                                        </span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Description</span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Disc. %</span>"
+msgstr "<span>Rem. %</span>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Quantity</span>"
+msgstr "<span>Quantité</span>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Rem Ex</span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Tax excl.</span>"
+msgstr "<span>Hors taxe</span>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Taxes</span>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>Unit Price</span>"
+msgstr "Prix unitaire"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<span>due on</span>"
+msgstr "<span>échéance le</span>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Sous-total</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<strong>Credit Note Date:</strong>"
+msgstr "<strong>Date avoir ;:</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<strong>Customer Code:</strong>\n"
+"                                        <br/>"
+msgstr ""
+"<strong>Code Client :</strong>\n"
+"                                        <br/>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<strong>Date:</strong>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<strong>Delivery Date:</strong>\n"
+"                                        <br/>"
+msgstr ""
+"<strong>Date de livraison :</strong>\n"
+"                                        <br/>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<strong>Due Date:</strong>\n"
+"                                        <br/>"
+msgstr ""
+"<strong>Date d'échéance :</strong>\n"
+"                                        <br/>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Empty Weight:</strong>"
+msgstr "<strong>Poids à vide :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Full Weight:</strong>"
+msgstr "<strong>Poids total : </strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<strong>Incoterm:</strong>\n"
+"                                        <br/>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Date de facture :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Lot Number:</strong>"
+msgstr "<strong>Numéro de lot :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Net Weight:</strong>"
+msgstr "<strong>Poids net : </strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "<strong>Receipt Date:</strong>"
+msgstr "<strong>Date de réception :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<strong>Reference:</strong>\n"
+"                                        <br/>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Sequence Number:</strong>"
+msgstr "<strong>Numéro de séquence : </strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"<strong>Source:</strong>\n"
+"                                        <br/>"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Transporter:</strong>"
+msgstr "<strong>Transporteur :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Vehicle:</strong>"
+msgstr "<strong>Véhicule :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Vendor:</strong>"
+msgstr "<strong>Fournisseur :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Weighing Slip:</strong>"
+msgstr "<strong>Bon de pesée :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Weight Empty Date:</strong>"
+msgstr "<strong>Poids Date à vide :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "<strong>Weight Full Date:</strong>"
+msgstr "<strong>Poids Date complète :</strong>"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"A\n"
+"                                                                note,\n"
+"                                                                whose\n"
+"                                                                content usually applies to the section or product above."
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"A\n"
+"                                                                section\n"
+"                                                                title"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__ac
+msgid "AC"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_needaction
+msgid "Action Needed"
+msgstr "Action nécessaire"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activités"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_state
+msgid "Activity State"
+msgstr "État d'activité"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: odoo_scale_integration
+#. odoo-python
+#: code:addons/odoo_scale_integration/models/scale_reader.py:0
+#, python-format
+msgid ""
+"All selected scales have already been invoiced:\n"
+"%s"
+msgstr ""
+"Toutes les balances sélectionnées ont déjà été facturées :\n"
+"%s"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "Amount Due"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_attachment_count
+msgid "Attachment Count"
+msgstr "Pièces jointes"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__check_state__closed
+msgid "Closed"
+msgstr "Clôturé"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__company_id
+msgid "Company"
+msgstr "Entreprise"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_form
+msgid "Create Purchase Invoice"
+msgstr "Facture"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_form
+msgid "Create Receipt"
+msgstr "Réception"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__create_uid
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__create_uid
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__create_date
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__create_date
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__check_state__delivery
+msgid "Delivered"
+msgstr "Livré"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "Details"
+msgstr "Détails"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__display_name
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__display_name
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__display_name
+msgid "Display Name"
+msgstr "Bon "
+
+#. module: odoo_scale_integration
+#: model:ir.model,name:odoo_scale_integration.model_scale_reader_line
+msgid "Détail du poids net par localisation"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__line_ids
+msgid "Détails poids net"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__check_state
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__is_invoiced
+msgid "Etat Facture"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "FACTURE :"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__is_invoiced__invoiced
+msgid "Facturé"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.actions.server,name:odoo_scale_integration.server_action_generate_invoice
+msgid "Generate Invoice"
+msgstr "Générer la facture"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "Generated on:"
+msgstr "Généré le :"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_form
+msgid "Get Weight Empty"
+msgstr "poids à vide"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_form
+msgid "Get Weight Full"
+msgstr "Poids Charge"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__id
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__id
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "INV/2023/00001"
+msgstr "INV/2023/0001"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__ip_address
+msgid "IP Address"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_exception_icon
+msgid "Icon"
+msgstr "Adresse IP"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+"Si cette case est cochée, les nouveaux messages nécessitent votre attention."
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__message_has_error
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+"Si cette case est cochée, certains messages présentent une erreur de "
+"livraison."
+
+#. module: odoo_scale_integration
+#. odoo-python
+#: code:addons/odoo_scale_integration/models/scale_reader.py:0
+#, python-format
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_view_search
+msgid "Invoiced"
+msgstr "Facturé"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__is_connected
+msgid "Is Connected"
+msgstr "Est connecté"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model,name:odoo_scale_integration.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__k_two
+msgid "K232"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__k_seven
+msgid "K270"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__write_uid
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__write_uid
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__write_date
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__write_date
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__location_id
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__location_id
+msgid "Location"
+msgstr "Emplacement"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__lot_number
+msgid "Lot Number"
+msgstr "Numéro de lot"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"Merci d'utiliser la communication suivante pour\n"
+"                                        votre\n"
+"                                        paiement:"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de livraison du message"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__net_weight
+msgid "Net Weight"
+msgstr "Poids net"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: odoo_scale_integration
+#. odoo-python
+#: code:addons/odoo_scale_integration/models/scale_reader.py:0
+#, python-format
+msgid "No expense account defined on product %s"
+msgstr "Aucun compte de charge défini pour le produit %s"
+
+#. module: odoo_scale_integration
+#. odoo-python
+#: code:addons/odoo_scale_integration/models/scale_reader.py:0
+#, python-format
+msgid "No remaining quantity to invoice for the selected scales."
+msgstr "Aucune quantité restante à facturer pour les balances sélectionnées."
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__is_invoiced__uninvoiced
+msgid "Non Facturé"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__numero_adm
+msgid "N°ADM"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"Paid\n"
+"                                                                            on"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__check_state__par_invoice
+msgid "Partial Invoice"
+msgstr "Facture partielle"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"Payment\n"
+"                                                within 30\n"
+"                                                calendar day"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__pesticides
+msgid "Pesticides"
+msgstr ""
+
+#. module: odoo_scale_integration
+#. odoo-python
+#: code:addons/odoo_scale_integration/models/scale_reader.py:0
+#, python-format
+msgid "Please select at least one scale to invoice."
+msgstr "Veuillez sélectionner au moins une balance à facturer."
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__net_weight_qty
+msgid "Poids net"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__port
+msgid "Port"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__product_id
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__product_id
+msgid "Product"
+msgstr "Produit"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__rating_ids
+msgid "Ratings"
+msgstr "Évaluations"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader_line__reader_id
+msgid "Reader"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__picking_id
+msgid "Receipt"
+msgstr "Réception"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__remaining_qty
+msgid "Remaining Quantity"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__split_receipt
+msgid "Répartir la réception sur plusieurs localisations"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_form
+msgid "Répartition"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur de livraison de SMS"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "SO123"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_account_move_line__scale_id
+msgid "Scale"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.actions.report,name:odoo_scale_integration.action_scale_invoice_report
+msgid "Scale Invoice Report"
+msgstr "Rapport de facturation des balances"
+
+#. module: odoo_scale_integration
+#: model:ir.ui.menu,name:odoo_scale_integration.menu_scale
+msgid "Scale Management"
+msgstr "Gestion des balances"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_settings__name
+msgid "Scale Name"
+msgstr "Nom de la balance"
+
+#. module: odoo_scale_integration
+#: model:ir.model,name:odoo_scale_integration.model_scale_reader
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_form
+msgid "Scale Reader"
+msgstr "Lecteur de balance"
+
+#. module: odoo_scale_integration
+#: model:ir.actions.report,name:odoo_scale_integration.action_scale_reader_report
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "Scale Reader Report"
+msgstr "Rapport du lecteur de balance"
+
+#. module: odoo_scale_integration
+#: model:ir.actions.act_window,name:odoo_scale_integration.action_scale_reader
+#: model:ir.ui.menu,name:odoo_scale_integration.menu_scale_reader
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_reader_tree
+msgid "Scale Readers"
+msgstr "Lecteur de balances"
+
+#. module: odoo_scale_integration
+#: model:ir.actions.act_window,name:odoo_scale_integration.action_scale_settings
+#: model:ir.model,name:odoo_scale_integration.model_scale_settings
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__scale_settings_id
+#: model:ir.ui.menu,name:odoo_scale_integration.menu_scale_settings
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.view_scale_settings_form
+msgid "Scale Settings"
+msgstr "Paramètres de la balance"
+
+#. module: odoo_scale_integration
+#. odoo-python
+#: code:addons/odoo_scale_integration/models/scale_reader.py:0
+#, python-format
+msgid "Scales to invoice must all have the same Vendor."
+msgstr "Les balances à facturer doivent toutes avoir le même fournisseur."
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "Scan this QR Code to<br/>pay with your mobile"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__name
+msgid "Sequence Number"
+msgstr "Numéro de séquence"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__vendor_id
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "Tax 15%"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "Thank you for using our service!"
+msgstr "Merci d'utiliser notre service !"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "Thirty one dollar and Five cents"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__check_state__wait
+msgid "To Deliver"
+msgstr "À livrer"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields.selection,name:odoo_scale_integration.selection__scale_reader__check_state__invoice
+msgid "To Invoice"
+msgstr "À facturer"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid ""
+"Total amount in words:\n"
+"                                    <br/>"
+msgstr ""
+"Montant total en toutes lettres :\n"
+"                                    <br/>"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__transporter_id
+msgid "Transporter"
+msgstr "Transporteur"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_view_search
+msgid "Uninvoiced"
+msgstr "Non facturé"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__vehicle
+msgid "Vehicle"
+msgstr "Véhicule"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__invoice_id
+msgid "Vendor Bill"
+msgstr "Facture du fournisseur"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__invoice_ids
+msgid "Vendor Bills"
+msgstr "Facture du fournisseurs"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weighing_slip
+msgid "Weighing Slip"
+msgstr "Bon de pesée"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weight_empty
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weight_empty_datetime
+msgid "Weight Empty"
+msgstr "Poids à vide"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weight_empty_check
+msgid "Weight Empty Check"
+msgstr "Vérification du poids à vide"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weight_full
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weight_full_datetime
+msgid "Weight Full"
+msgstr "Poids Charge"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,field_description:odoo_scale_integration.field_scale_reader__weight_full_check
+msgid "Weight Full Check"
+msgstr "Vérification du poids Charge"
+
+#. module: odoo_scale_integration
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__transporter_id
+#: model:ir.model.fields,help:odoo_scale_integration.field_scale_reader__vendor_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Vous pouvez trouver un fournisseur par son nom, son TIN, son e-mail ou sa "
+"référence interne."
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_invoice_report
+msgid "due if paid before"
+msgstr "à payer si payé avant"
+
+#. module: odoo_scale_integration
+#: model_terms:ir.ui.view,arch_db:odoo_scale_integration.scale_reader_report
+msgid "kg"
+msgstr ""

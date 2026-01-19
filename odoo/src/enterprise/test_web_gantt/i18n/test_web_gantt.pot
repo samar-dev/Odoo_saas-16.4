@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* test_web_gantt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-25 11:50+0000\n"
+"PO-Revision-Date: 2023-07-25 11:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__dependency_field
+msgid "De"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__dependency_inverted_field
+msgid "Dependency Inverted Field"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__id
+msgid "ID"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__name
+msgid "Name"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__date_start
+msgid "Start Datetime"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model.fields,field_description:test_web_gantt.field_test_web_gantt_pill__date_stop
+msgid "Stop Datetime"
+msgstr ""
+
+#. module: test_web_gantt
+#: model:ir.model,name:test_web_gantt.model_test_web_gantt_pill
+msgid "Test Web Gantt Pill"
+msgstr ""

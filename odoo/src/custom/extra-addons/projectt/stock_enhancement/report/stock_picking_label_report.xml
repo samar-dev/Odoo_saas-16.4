@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 1. Paper format for product labels -->
+        <record id="paperformat_product_label" model="report.paperformat">
+            <field name="name">Product Label</field>
+            <field name="default" eval="False"/>
+            <field name="format">custom</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- 2. Report action -->
+        <record id="action_stock_picking_label_report" model="ir.actions.report">
+            <field name="name">Imprimer des étiquettes</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">stock_enhancement.stock_picking_label_report</field>
+            <field name="report_file">stock_enhancement.stock_picking_label_report</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="paperformat_id" ref="stock_enhancement.paperformat_product_label"/>
+            <field name="print_report_name">'Label - %s' % (object.name)</field>
+        </record>
+
+        <!-- 3. QWeb template -->
+        <template id="stock_picking_label_report">
+            <t t-call="web.basic_layout">
+                <t t-set="picking" t-value="docs[0]"/>
+                <t t-foreach="picking.move_line_ids" t-as="line">
+                    <div style="width:250px; border:1px solid #000; padding:5px; font-family: Arial, sans-serif; margin-bottom:5px;">
+                        <!-- Product Name -->
+                        <div style="text-align:center; font-weight:bold; font-size:14px; margin-bottom:3px;border:1px solid #000;padding:5px;">
+                            <t t-esc="line.product_id.name"/>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div style="font-size:12px; line-height:1.2; margin-bottom:5px;">
+                            <p>
+                                <strong>Code Produit:</strong>
+                                <t t-esc="line.product_id.default_code"/>
+                            </p>
+                            <p>
+                                <strong>Fournisseur:</strong>
+                                <t t-if="picking.partner_id">
+                                    <t t-esc="picking.partner_id.ref"/>
+                                </t>
+                                <t t-else="">F000431 STE DELTA PACK</t>
+                            </p>
+                            <p>
+                                <strong>Quantité:</strong>
+                                <t t-esc="line.lot_id.product_qty or 'N/A'"/>
+                            </p>
+                            <p>
+                                <strong>Date Livraison:</strong>
+                                <t t-esc="picking.scheduled_date and picking.scheduled_date.strftime('%d/%m/%Y') or '--/--/----'"/>
+                            </p>
+                            <p>
+                                <strong>Réf Livraison:</strong>
+                                <t t-esc="picking.name"/>
+                            </p>
+                            <p>
+                                <strong>Date Expiration:</strong>
+                                <t t-esc="line.lot_id.expiration_date and line.lot_id.expiration_date.strftime('%d/%m/%Y') or '--/--/----'"/>
+                            </p>
+                        </div>
+
+                        <!-- Barcode -->
+                        <div style="text-align:center; font-family: 'Libre Barcode 128', cursive; font-size:40px;">
+                            <t t-if="line.lot_id.name">
+                                <t t-set="barcode_size" t-value="'width:240px; height:50px;'"/>
+                                <div t-out="line.lot_id.name"
+                                     t-options="{'widget': 'barcode', 'quiet': 0, 'symbology': 'auto', 'img_style': barcode_size}"/>
+
+                            </t>
+                            <Span t-out="line.lot_id.name"
+                                  style="text-align:center; font-family: 'Libre Barcode 128', cursive; font-size:14px;"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

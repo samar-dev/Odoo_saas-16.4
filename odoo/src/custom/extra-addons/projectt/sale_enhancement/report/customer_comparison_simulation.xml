@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="comparaisson_paperformat" model="report.paperformat">
+            <field name="name">Blance Report</field>
+            <field name="default" eval="False"/>
+            <field name="format">custom</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">60</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <record id="customer_comparison_simulation" model="ir.actions.report">
+            <field name="name">Export comparison simulation</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sale_enhancement.template_comparison_simulation</field>
+            <field name="report_file">sale_enhancement.template_comparison_simulation</field>
+            <field name="print_report_name">'Export OS - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="sale_enhancement.comparaisson_paperformat"/>
+        </record>
+
+        <template id="report_summary_comparison_simulation">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <style>
+                        body {
+                        font-family: "Segoe UI", Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        color: #333;
+                        }
+
+                        h2 {
+                        font-size: 26px;
+                        text-align: center;
+                        margin: 10px 0;
+                        color: #2c3e50;
+                        }
+
+                        p.subtitle {
+                        font-size: 14px;
+                        text-align: center;
+                        margin: 0 0 20px;
+                        color: #555;
+                        }
+
+                        table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        }
+
+                        table th {
+                        padding: 10px;
+                        text-align: center;
+                        }
+
+                        table th {
+                        background-color: #34495e;
+                        color: #fff;
+                        font-weight: 600;
+                        font-size: 13px;
+                        text-transform: uppercase;
+                        }
+
+                        table td {
+                        padding: 5px;
+                        font-size: 14px;
+                        }
+
+                        tbody tr:nth-child(odd) {
+                        background-color: #f9f9f9;
+                        }
+
+                        tbody tr:hover {
+                        background-color: #f1f7ff;
+                        }
+
+                        .text-right {
+                        text-align: right;
+                        }
+
+                        .badge {
+                        display: inline-block;
+                        background-color: #3498db;
+                        color: white;
+                        padding: 2px 8px;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        }
+
+                        .grand-total {
+                        background-color: #2ecc71 !important;
+                        color: #fff;
+                        font-weight: bold;
+                        }
+
+                        .grand-total td {
+                        border-top: 2px solid #27ae60;
+                        }
+
+                        .trend-up {
+                        color: #27ae60;
+                        font-weight: bold;
+                        margin-left: 4px;
+                        }
+
+                        .trend-down {
+                        color: #e74c3c;
+                        font-weight: bold;
+                        margin-left: 4px;
+                        }
+
+                        .trend-same {
+                        color: #7f8c8d;
+                        margin-left: 4px;
+                        }
+
+                        .trend {
+                        display: inline-block;
+                        width: 0;
+                        height: 0;
+                        margin-left: 4px;
+                        }
+
+                        .trend-up {
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-bottom: 8px solid green;
+                        }
+
+                        .trend-down {
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-top: 8px solid red;
+                        }
+
+                        .trend-same {
+                        width: 8px;
+                        height: 2px;
+                        background-color: gray;
+                        display: inline-block;
+                        }
+                    </style>
+                    <h2>Customer Invoice Totals Comparison</h2>
+                    <p class="subtitle">From
+                        <t t-esc="data['start_date']"/>
+                        to
+                        <t t-esc="data['end_date']"/>
+                        | Clients:
+                        <t t-if="len(data['customers']) &gt; 1">Tous</t>
+                        <t t-else="">| Client:
+                            <t t-esc="data['customers'][0] if data['customers'] else ''"/>
+                        </t>
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <t t-foreach="data['periods'][::-1]" t-as="period">
+                                    <th>Period
+                                        <t t-esc="period['index']"/>
+                                        <div class="badge">
+                                            <t t-esc="period['label']"/>
+                                        </div>
+                                    </th>
+                                    <th/>
+                                </t>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Customer rows with trend icons -->
+                            <t t-foreach="data['report_data']" t-as="customer_row">
+                                <tr>
+                                    <!-- Customer name -->
+                                    <td class="text-start">
+                                        <strong>
+                                            <t t-esc="customer_row['customer']"/>
+                                        </strong>
+                                    </td>
+
+                                    <!-- Initialize variables -->
+                                    <t t-set="last_value" t-value="None"/>
+
+                                    <!-- Loop through periods for this customer -->
+                                    <t t-foreach="data['periods'][::-1]" t-as="period" t-index="i">
+                                        <t t-set="current_value"
+                                           t-value="float(customer_row.get('period_' + str(period['index']) + '_' + str(period['year']), 0.0))"/>
+
+                                        <!-- Display the period value -->
+                                        <td class="text-right">
+                                            <t t-esc="'%.3f' % current_value"/>
+                                        </td>
+
+                                        <!-- Compare with last_value for trend -->
+                                        <t t-if="last_value is not None">
+                                            <td class="text-center">
+                                                <t t-if="last_value &lt; current_value">
+                                                    <span class="trend trend-up"/>
+                                                </t>
+                                                <t t-if="last_value &gt; current_value">
+                                                    <span class="trend trend-down"/>
+                                                </t>
+                                                <t t-if="last_value == current_value">
+                                                    <span class="trend trend-same"/>
+                                                </t>
+                                            </td>
+                                        </t>
+
+                                        <!-- First period: no trend, just set last_value -->
+                                        <t t-if="last_value is None">
+                                            <td class="text-center">
+                                                <span class="trend trend-same"/>
+                                            </td>
+                                        </t>
+
+                                        <!-- Update last_value -->
+                                        <t t-set="last_value" t-value="current_value"/>
+                                    </t>
+                                </tr>
+                            </t>
+
+                            <!-- Grand Total row -->
+                            <tr class="grand-total">
+                                <td>Grand Total</td>
+                                <!-- Initialize last_value for trend comparison -->
+                                <t t-set="last_value" t-value="None"/>
+
+                                <t t-foreach="data['periods'][::-1]" t-as="period">
+                                    <t t-set="current_value"
+                                       t-value="float(data['grand_totals'].get('period_' + str(period['index']) + '_' + str(period['year']), 0.0))"/>
+
+                                    <!-- Display the period value -->
+                                    <td class="text-right">
+                                        <t t-esc="'%.3f' % current_value"/>
+                                    </td>
+                                    <td/>
+                                    <!-- Optional: Add trend column per period -->
+                                    <!-- Uncomment if you want a trend column per period -->
+                                    <!--
+                                    <td class="text-center">
+                                        <t t-if="last_value is None">
+                                            <span class="trend trend-same"/>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-if="last_value &lt; current_value">
+                                                <span class="trend trend-up"/>
+                                            </t>
+                                            <t t-if="last_value &gt; current_value">
+                                                <span class="trend trend-down"/>
+                                            </t>
+                                            <t t-if="last_value == current_value">
+                                                <span class="trend trend-same"/>
+                                            </t>
+                                        </t>
+                                    </td>
+                                    -->
+
+                                    <!-- Update last_value -->
+                                    <t t-set="last_value" t-value="current_value"/>
+                                </t>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="report_order_cycle_time">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <style>
+                        body { font-family: "Segoe UI", Arial, sans-serif; margin:0; padding:0; color:#333; }
+                        h2 { font-size:26px; text-align:center; margin:10px 0; color:#2c3e50; }
+                        p.subtitle { font-size:14px; text-align:center; margin:0 0 20px; color:#555; }
+                        table { width:100%; border-collapse:collapse; margin-top:20px; box-shadow:0 2px 5px
+                        rgba(0,0,0,0.1); }
+                        table th { padding:10px; text-align:center; background-color:#34495e; color:#fff;
+                        font-weight:600; font-size:13px; text-transform:uppercase; }
+                        table td { padding:5px; font-size:14px; }
+                        tbody tr:nth-child(odd) { background-color:#f9f9f9; }
+                        tbody tr:hover { background-color:#f1f7ff; }
+                        .text-right { text-align:right; }
+                        .grand-total { background-color:#2ecc71 !important; color:#fff; font-weight:bold; }
+                        .grand-total td { border-top:2px solid #27ae60; }
+                    </style>
+
+                    <h2>Order Cycle Time Report</h2>
+                    <p class="subtitle">
+                        From
+                        <t t-esc="data['start_date']"/>
+                        to
+                        <t t-esc="data['end_date']"/>
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <t t-foreach="data['periods']" t-as="period">
+                                    <th colspan="2">Period
+                                        <t t-esc="period['index']"/>
+                                        |
+                                        <t t-esc="period['label']"/>
+                                    </th>
+                                </t>
+                            </tr>
+                            <tr>
+                                <th/>
+                                <th/>
+                                <t t-foreach="data['periods']" t-as="period">
+                                    <th>Balance</th>
+                                    <th>Quantity</th>
+                                </t>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <t t-foreach="data['report_data']" t-as="row">
+                                <t t-foreach="row['all_products']" t-as="product_name" t-index="pi">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="row['customer']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="product_name"/>
+                                        </td>
+
+                                        <t t-foreach="data['periods']" t-as="period">
+                                            <t t-set="current"
+                                               t-value="row['period_' + str(period['index']) + '_' + str(period['year'])]['products_data'].get(product_name, {'balance':0.0, 'quantity':0.0})"/>
+                                            <td class="text-right">
+                                                <t t-esc="'%.3f' % current['balance']"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-esc="'%.0f' % current['quantity']"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </t>
+
+                            <!-- Grand Total -->
+                            <tr class="grand-total">
+                                <td colspan="2">Grand Total</td>
+                                <t t-foreach="data['periods']" t-as="period">
+                                    <t t-set="totals"
+                                       t-value="data['grand_totals']['period_' + str(period['index']) + '_' + str(period['year'])]"/>
+                                    <td class="text-right">
+                                        <t t-esc="'%.3f' % totals['balance']"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.0f' % totals['quantity']"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_account_move_region_comparison">
+            <t t-call="web.html_container">
+                <t t-esc="report_account_move_region_comparison"/>
+            </t>
+        </template>
+        <template id="report_cost_reduction">
+            <t t-call="web.html_container">
+                <t t-esc="report_cost_reduction"/>
+            </t>
+        </template>
+        <template id="report_account_ca_global">
+
+            <t t-call="web.html_container">
+                <t t-if="data.get('report_name') == 'account_ca_global'">
+                    <style>
+                        body {
+                        font-family: Arial, sans-serif;
+                        font-size: 12px;
+                        color: #333;
+                        margin: 0;
+                        padding: 0;
+                        }
+                        h2 {
+                        text-align: center;
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                        }
+                        p {
+                        font-size: 12px;
+                        margin-bottom: 15px;
+                        }
+                        table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-size: 12px;
+                        }
+                        table th, table td {
+                        border: 1px solid #ccc;
+                        padding: 4px 6px;
+                        word-wrap: break-word; /* Prevent overflow */
+                        }
+                        table thead tr {
+                        background-color: #f2f2f2;
+                        text-align: center;
+                        }
+                        table tbody tr:nth-child(odd) {
+                        background-color: #fafafa;
+                        }
+                        table tbody tr:hover {
+                        background-color: #f0f8ff;
+                        }
+                        td.text-left {
+                        text-align: left;
+                        }
+                        td.text-right {
+                        text-align: right;
+                        }
+                        .of_corp {
+                        width: 100%;
+                        border-collapse: collapse;
+                        border: 1px solid #828181;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                        margin-bottom: 10px;
+                        }
+                        [class*="col-"] {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        box-sizing: border-box;
+                        }
+                        .col-3 { width: 25%; }
+
+                        .invoice_title {
+                        font-size: 14px;
+                        width: 100%;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                        text-align: center;
+                        background-color: #f2f2f2;
+                        color: black;
+                        padding: 5px;
+                        border: 1px solid #828181;
+                        ;
+                        }
+                    </style>
+                    <div class="page">
+                        <div class="invoice_title">
+                            <h2 style="text-transform: uppercase;">Global Revenue Report</h2>
+                        </div>
+                        <table class="row mt32 mb32 of_corp">
+                            <tr>
+                                <td class="col-3">
+                                    <strong>Date Debut:</strong>
+                                    <br/>
+                                    <t t-esc="data['start_date']"/>
+                                </td>
+                                <td class="col-3">
+                                    <strong>Date Fin:</strong>
+                                    <br/>
+                                    <t t-esc="data['end_date']"/>
+                                </td>
+                                <td class="col-3">
+                                    <strong>Customer(s):</strong>
+                                    <br/>
+                                    <t t-set="customers_str" t-value="' / '.join(data.get('customers', [])) or 'Tous'"/>
+                                    <t t-esc="customers_str"/>
+                                </td>
+                                <td class="col-3">
+                                    <strong>BUYER'S ORDER N° AND DATE :</strong>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Inv #</th>
+                                    <th style="width:15%;">Ref #</th>
+                                    <th>Code A barre</th>
+                                    <th>Produit</th>
+                                    <th>PCB</th>
+                                    <th>NB C</th>
+                                    <th>Qty</th>
+                                    <th>Unit TND</th>
+                                    <th>Unit TND (Disc)</th>
+                                    <th>Disc %</th>
+                                    <th>Total TND</th>
+                                    <th>Total TND (Disc)</th>
+                                    <th>Prod Cat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data['report_data']" t-as="row">
+                                    <tr>
+                                        <td class="text-left">
+                                            <t t-esc="row.get('invoice_date','')"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-esc="row.get('invoice_number','')"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-esc="row.get('ref','')"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['barcode']"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-esc="row['product_id']"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-esc="row['PCB']"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-esc="row['NBC']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['quantity']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['unit_price']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['unit_price_after_discount']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['discount']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['total_before_discount']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="row['total_after_discount']"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <t t-esc="row['product_category']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="template_comparison_simulation">
+            <t t-call="web.html_container">
+                <!-- Global styling for all subreports -->
+                <style>
+                    table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                    font-family: Arial, sans-serif;
+                    font-size: 12px;
+                    color: #333;
+                    }
+                    th, td {
+                    border: 1px solid #ccc;
+                    padding: 6px 8px;
+                    }
+                    thead th {
+                    background-color: #f2f2f2;
+                    font-weight: bold;
+                    }
+                    h2, h3 {
+                    text-align: center;
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    color: #1a1a1a;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    }
+                    tbody tr:nth-child(odd) {
+                    background-color: #fafafa;
+                    }
+                    tbody tr:hover {
+                    background-color: #eaeaea;
+                    }
+                    @media print {
+                    table, th, td {
+                    page-break-inside: avoid;
+                    }
+                    h2, h3 {
+                    page-break-after: avoid;
+                    }
+                    }
+                </style>
+
+                <!-- ROUTE TO CORRECT SUBREPORT -->
+                <t t-if="data.get('report_name') == 'account_move_period_comparison'">
+                    <t t-call="sale_enhancement.report_summary_comparison_simulation"/>
+                </t>
+                <t t-elif="data.get('report_name') == 'order_cycle_time'">
+                    <t t-call="sale_enhancement.report_order_cycle_time"/>
+                </t>
+                <t t-elif="data.get('report_name') == 'account_move_region_comparison'">
+                    <t t-call="sale_enhancement.report_account_move_region_comparison"/>
+                </t>
+                <t t-elif="data.get('report_name') == 'cost_reduction'">
+                    <t t-call="sale_enhancement.report_cost_reduction"/>
+                </t>
+                <t t-elif="data.get('report_name') == 'account_ca_global'">
+                    <t t-call="sale_enhancement.report_account_ca_global"/>
+                </t>
+                <t t-else="">
+                    <h3 style="text-align:center;color:red;">Unknown report type</h3>
+                </t>
+
+            </t>
+        </template>
+    </data>
+</odoo>

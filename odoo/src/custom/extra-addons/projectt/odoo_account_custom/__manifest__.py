@@ -1,0 +1,20 @@
+{
+    "name": "Account custom",
+    "description": "Customizations added to Account module",
+    "version": "saas~16.4.1.1.0",
+    "author": "Freelancer",
+    "license": "Other proprietary",
+    "depends": ["base", "account"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/bank_mouvement_views.xml",
+        "views/bank_statement_views.xml",
+        "views/core/account_move_line.xml",
+        "views/core/account_journal_view.xml",
+        "report/financial_statement_template.xml",
+        "report/ir_actions_report.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+}

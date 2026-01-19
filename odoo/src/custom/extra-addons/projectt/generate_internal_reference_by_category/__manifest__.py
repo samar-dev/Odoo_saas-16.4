@@ -1,0 +1,20 @@
+{
+    "name": "Generate Internal Reference By Category",
+    "version": "saas~16.4.1.2.2",
+    "description": "Generate internal reference by category",
+    "summary": "Generate internal reference by category",
+    "category": "External",
+    "author": "VegaNET",
+    "website": "https://vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "product"],
+    "data": [
+        "security/security.xml",
+        "views/product_category_views.xml",
+        "views/product_template_views.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

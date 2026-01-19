@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="loyalty_reward_view_form_inherit" model="ir.ui.view">
+            <field name="name">loyalty.reward.view.form.inherit</field>
+            <field name="model">loyalty.reward</field>
+            <field name="inherit_id" ref="loyalty.loyalty_reward_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="promotion_quantity" attrs="{'invisible': [('reward_type', '!=', 'product')]}"/>
+                    <field name="product_quantity" invisible ="1"/>
+                    <field name="remaining_promotion_quantity" invisible ="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cnss_declaration_user,access_cnss_declaration_user,model_cnss_declaration,base.group_user,1,1,1,1
+access_cnss_declaration_line_user,access_cnss_declaration_line_user,model_cnss_declaration_line,base.group_user,1,1,1,1
+access_wizard_journal_pay_periodique,wizard_journal_pay_periodique,model_wizard_journal_pay_periodique,base.group_user,1,1,1,1
+access_journal_pay_periodique,journal_pay_periodique,model_journal_pay_periodique,base.group_user,1,1,1,1
+access_payroll_payment_order,payroll_payment_order,model_payroll_payment_order,base.group_user,1,1,1,1
+access_payroll_payment_line,payroll_payment_line,model_payroll_payment_line,base.group_user,1,1,1,1

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="withholding_tax_view_tree" model="ir.ui.view">
+            <field name="name">withholding_tax_view_tree</field>
+            <field name="model">withholding.tax</field>
+            <field name="arch" type="xml">
+                <tree string="withholding_tax_tree" editable="bottom">
+                    <field name="name" />
+                    <field name="type" />
+                    <field name="percentage" widget="percentage" />
+                    <field name="journal_id"
+                           domain="[('x_type', '=', 'withholding')]"
+                           options="{'no_create': 1, 'no_edit': 1}" />
+                    <field name="account_id" options="{'no_create': 1, 'no_edit': 1}" />
+                    <field name="company_id" groups="base.group_multi_company" force_save="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="withholding_tax_action" model="ir.actions.act_window">
+            <field name="name">Retenue à la source</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">withholding.tax</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="withholding_tax_menu"
+                  name="Retenue à la source"
+                  parent="account.account_account_menu"
+                  action="withholding_tax_action"
+                  sequence="2" />
+
+    </data>
+</odoo>

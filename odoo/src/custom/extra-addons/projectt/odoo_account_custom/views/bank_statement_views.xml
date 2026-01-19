@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bank_statement_tree_view" model="ir.ui.view">
+            <field name="name">bank_statement_tree_view</field>
+            <field name="model">bank.statement</field>
+            <field name="arch" type="xml">
+                <tree string="Relevé bancaire" editable="bottom">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="debit"/>
+                    <field name="credit"/>
+                    <button name="action_unlink" type="object" class="btn btn-link" icon="fa-trash" confirm="Êtes-vous sûr de vouloir supprimer cet enregistrement?"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

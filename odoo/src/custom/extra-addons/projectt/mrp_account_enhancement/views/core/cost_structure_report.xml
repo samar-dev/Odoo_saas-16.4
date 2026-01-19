@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mrp_cost_structure_inherit" inherit_id="mrp_account_enterprise.mrp_cost_structure">
+        <xpath expr="//t[@t-if][4]/table/tbody/tr[2]" position="after">
+            <tr>
+                <td colspan="3" class="text-end">
+                    <strong>Cost of Scraps per unit (in <t t-esc="line['product'].uom_id.name"/>)
+                    </strong>
+                </td>
+                <td class="text-end">
+                    <span t-esc="tot_scrap_cost / line['mo_qty'] * -1"
+                          t-options='{"widget": "monetary", "display_currency": currency}' />
+                </td>
+            </tr>
+        </xpath>
+        <xpath expr="//tr[@t-if][2]" position="replace">
+            <td class="text-end">
+                <strong>Total Cost per unit (in <t t-esc="line['product'].uom_id.name"/>)
+                </strong>
+            </td>
+            <td class="text-end">
+                <span t-esc="( line['total_cost'] / line['mo_qty'] ) + ( tot_scrap_cost / line['mo_qty'] * -1 ) "
+                      t-options='{"widget": "monetary", "display_currency": currency}'/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

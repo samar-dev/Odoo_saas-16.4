@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">view_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='sales_purchases']/group[1]"
+                       position="inside">
+                    <group string="Plafond Factures" priority="3" attrs="{'invisible': [('x_show_invoice_limit', '=', False)]}">
+                        <field name="x_show_invoice_limit" invisible="1" />
+                        <field name="x_invoice_limit_readonly" invisible="1" />
+                        <label for="x_use_partner_invoice_limit" />
+                        <div class="o_row"
+                             attrs="{'invisible': [('x_show_invoice_limit', '=', False)]}">
+                            <field name="x_use_partner_invoice_limit"
+                                   attrs="{'readonly': [('x_invoice_limit_readonly', '=', True)]}" />
+                            <field name="x_invoice_limit"
+                                   class="oe_inline"
+                                   attrs="{'readonly': ['|', ('x_invoice_limit_readonly', '=', True), ('x_use_partner_invoice_limit', '=', False)]}" />
+                        </div>
+                        <field name="x_current_invoice_limit" />
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

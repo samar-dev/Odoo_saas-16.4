@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-18 11:29+0000\n"
+"PO-Revision-Date: 2024-01-18 11:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_picking__delivery_person_id
+#, python-format
+msgid "Delivery person"
+msgstr "Livreur"
+
+#. module: stock_enhancement
+#: model:ir.model,name:stock_enhancement.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_picking__vehicle_id
+#, python-format
+msgid "Vehicle"
+msgstr "Véhicule"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_move.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_move__net_weight
+#: model_terms:ir.ui.view,arch_db:stock_enhancement.product_normal_form_inherit
+#: model_terms:ir.ui.view,arch_db:stock_enhancement.product_template_only_form_inherit
+#, python-format
+msgid "Net weight"
+msgstr "Poids net"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_move.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_move__gross_weight
+#: model_terms:ir.ui.view,arch_db:stock_enhancement.stock_package_type_form_form_inherit
+#, python-format
+msgid "Gross weight"
+msgstr "Poids brut"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_picking__sum_gross_weight
+#, python-format
+msgid "Sum Gross weight"
+msgstr "Poids brut total"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_picking__sum_net_weight
+#, python-format
+msgid "Sum Net weight"
+msgstr "Poids net total"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_move.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_move__nbr_pallet
+#, python-format
+msgid "Pallet number"
+msgstr "Nbr palette"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_picking__sum_pallet
+#, python-format
+msgid "Sum Pallet"
+msgstr "Total palette"
+
+#. module: stock_enhancement
+#. odoo-python
+#: code:addons/stock_enhancement/models/stock_picking.py:0
+#: model:ir.model.fields,field_description:stock_enhancement.field_stock_picking__sum_product_packaging_qty
+#, python-format
+msgid "Sum Carton"
+msgstr "Total carton"
+

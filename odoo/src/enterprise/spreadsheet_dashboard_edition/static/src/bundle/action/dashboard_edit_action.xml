@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+
+    <div t-name="spreadsheet_dashboard_edition.DashboardEditAction" class="o_dashboard_edit_action" owl="1">
+        <SpreadsheetControlPanel
+            model="model"
+            spreadsheetName="state.spreadsheetName"
+            isReadonly="isReadonly"
+            onSpreadsheetNameChanged.bind="_onSpreadSheetNameChanged" />
+        <SpreadsheetComponent model="model"/>
+    </div>
+
+</templates>

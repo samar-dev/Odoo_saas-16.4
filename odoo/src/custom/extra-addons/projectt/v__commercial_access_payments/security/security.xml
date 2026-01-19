@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="group_special_access_payment" model="res.groups">
+            <field name="name">Accès spécial au paiement</field>
+        </record>
+
+    </data>
+</odoo>

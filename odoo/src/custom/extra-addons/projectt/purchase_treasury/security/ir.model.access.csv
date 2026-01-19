@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_treasury_user,purchase.treasury user,model_purchase_treasury,,1,1,1,1
+access_purchase_sector_user,purchase.sector user,model_purchase_sector,,1,1,1,1
+access_treasury_template_user,access.treasury.template.user,model_treasury_template,base.group_user,1,1,1,1
+access_treasury_summary,access_treasury_summary,model_treasury_summary,,1,1,1,1
+access_treasury_summary_line,access_treasury_summary_line,model_treasury_summary_line,,1,1,1,1
+access_account_treasury,access_account_treasury,model_account_treasury,,1,1,1,1
+
+

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_merchandise_planning_form" model="ir.ui.view">
+            <field name="name">view.merchandise.planning.form</field>
+            <field name="model">merchandise.planning</field>
+            <field name="arch" type="xml">
+                <form string="Merchandise Planning">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done,cancelled"/>
+                        <button name="button_done" string="Done" type="object"
+                                attrs="{'invisible':[('state','!=','draft')]}"/>
+                        <button name="button_cancel" string="Cancel" type="object"
+                                attrs="{'invisible':[('state','!=','draft')]}"/>
+                        <button name="button_draft" string="Reset to Draft" type="object"
+                                attrs="{'invisible':[('state','!=','done')]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" string="Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="planning_id"/>
+                                <field name="resource_id"/>
+                                <field name="resource_type" invisible="1"/>
+                                <field name="employee_id" invisible="1"/>
+                                <field name="role_id" invisible="1"/>
+                                <field name="company_id"/>
+                                <field name="attachment_ids" widget="many2many_binary"
+                                       options="{'no_edit': True, 'no_open': True}"/>
+                            </group>
+                            <group>
+                                <field name="partner_id"
+                                       widget="res_partner_many2one" options="{'no_edit': True, 'no_open': True}"
+                                       context="{'show_address': 1}" required="1"/>
+                                <field name="assortment_id" required="1" options="{'no_edit': True, 'no_open': True}"/>
+                                <field name="store_id" required="1"
+                                       domain="[('partner_id','=',partner_id)]"
+                                       options="{'no_edit': True, 'no_open': True}"/>
+
+
+                            </group>
+                            <group name="slot_info_right">
+                                <field name="start_datetime" string="Date" widget="daterange"
+                                       options="{'end_date_field': 'end_datetime'}"/>
+                                <field name="end_datetime" invisible="1"/>
+                                <label for="allocated_hours"/>
+                                <div class="o_row">
+                                    <field name="allocated_hours" widget="float_time" class="oe_inline"
+                                           attrs="{'required': [('resource_type','=','material')]}"/>
+                                    <span attrs="{'invisible': [('resource_type','=','material')]}">
+                                        (<field name="allocated_percentage" class="o_field_percentage oe_inline"
+                                                decoration-danger="allocated_percentage &gt; 100"/>%)
+                                    </span>
+                                </div>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Merchandise Planning Line" name="merchandise_planning_line">
+                                <field name="merchandise_planning_line">
+                                    <tree string="Merchandise Planning Line" editable="bottom" create="false"
+                                          delete="false">
+                                        <field name="barcode"/>
+                                        <field name="product_id"/>
+                                        <field name="last_visit_date"/>
+                                        <field name="stock_out"/>
+                                        <field name="rupture_date"
+                                               attrs="{'required': [('stock_out', '=', False)]}"/>
+                                        <field name="quantity"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Concurrent Line" name="concurrent_line">
+                                <field name="concurrent_line">
+                                    <tree string="Concurrent Line" editable="bottom">
+                                        <field name="concurrent_name"/>
+                                        <field name="promo"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Cancellation reason" name="cancellation_reason"
+                                  attrs="{'invisible':[('state','!=','cancelled')]}">
+                                <group>
+                                    <field name="reason" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_merchandise_planning_tree" model="ir.ui.view">
+            <field name="name">view.merchandise.planning.tree</field>
+            <field name="model">merchandise.planning</field>
+            <field name="arch" type="xml">
+                <tree string="Merchandise Planning">
+                    <field name="name"/>
+                    <field name="planning_id"/>
+                    <field name="resource_id"/>
+                    <field name="employee_id"/>
+                    <field name="role_id"/>
+                    <field name="company_id"/>
+                    <field name="assortment_id"/>
+                    <field name="start_datetime" widget="daterange"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_merchandise_planning" model="ir.actions.act_window">
+            <field name="name">Merchandise</field>
+            <field name="res_model">merchandise.planning</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_merchandise_planning_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_merchandise_planning_form')})]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new assortment
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_action_merchandise_planning"
+                  action="action_merchandise_planning"
+                  parent="planning.planning_menu_root"
+                  groups="merchandise_group_user"
+                  sequence="30"/>
+
+    </data>
+</odoo>

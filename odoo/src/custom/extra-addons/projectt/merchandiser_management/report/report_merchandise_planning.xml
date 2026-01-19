@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="paperformat_merchandise_receipt" model="report.paperformat">
+            <field name="name">Merchandise Receipt Format</field>
+            <field name="default" eval="False"/>
+            <field name="format">custom</field>
+            <field name="page_height">200</field>   <!-- 200mm height -->
+            <field name="page_width">110</field>     <!-- 80mm width -->
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">5</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- Report Action -->
+        <record id="action_merchandise_planning_report" model="ir.actions.report">
+            <field name="name">Merchandise Planning Report</field>
+            <field name="model">merchandise.planning</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">merchandiser_management.template_merchandise_planning</field>
+            <field name="report_file">merchandiser_management.template_merchandise_planning</field>
+            <field name="print_report_name">'Merchandise_Planning_%s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_merchandise_planning"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="merchandiser_management.paperformat_merchandise_receipt"/>
+        </record>
+
+        <!-- QWeb Receipt Template -->
+        <template id="template_merchandise_planning">
+    <t t-call="web.html_container">
+        <meta charset="UTF-8"/>
+        <t t-foreach="docs" t-as="o">
+            <div class="page"
+                 style="width:110mm; margin:auto; font-family: 'Courier New', monospace; font-size:12px;">
+
+                <!-- EN-TÊTE -->
+                <div style="text-align:center; border-bottom:1px dashed #000; padding-bottom:5px;">
+                    <h3 style="margin:0; font-size:14px;">Planification des marchandises</h3>
+                    <p style="margin:0;">Magasin :
+                        <t t-esc="o.store_id.name or 'N/A'"/>
+                    </p>
+                    <p style="margin:0;">Partenaire :
+                        <t t-esc="o.partner_id.name or 'N/A'"/>
+                    </p>
+                    <p style="margin:0;">Date :
+                        <t t-esc="o.create_date and o.create_date.strftime('%Y-%m-%d') or ''"/>
+                    </p>
+                </div>
+
+                <!-- CORPS -->
+                <div style="margin-top:5px;">
+                    <p>
+                        <strong>Assortiment :</strong>
+                        <t t-esc="o.assortment_id.name"/>
+                    </p>
+                    <p>
+                        <strong>Statut :</strong>
+                        <t t-esc="o.state.title()"/>
+                    </p>
+                    <p>
+                        <strong>Employé :</strong>
+                        <t t-esc="o.employee_id.name or ''"/>
+                    </p>
+                    <p>
+                        <strong>Dernière visite :</strong>
+                        <t t-esc="o.last_visit_date or ''"/>
+                    </p>
+                </div>
+
+                <!-- EN-TÊTE DU TABLEAU -->
+                <div style="border-top:1px dashed #000; border-bottom:1px dashed #000; margin-top:5px; padding:3px 0;">
+                    <div style="display:flex; justify-content:space-between;">
+                        <span>
+                            <strong>Produit</strong>
+                        </span>
+                        <span>
+                            <strong>Stock</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- LIGNES -->
+                <t t-foreach="o.merchandise_planning_line" t-as="line">
+                    <t t-if="line.stock_out == False">
+                        <div style="display:flex; justify-content:space-between; border-bottom:1px dotted #ddd; padding:2px 0;">
+                            <div style="flex:1;">
+                                <span t-esc="line.product_name"/>
+                                <br/>
+                                <small>
+                                    <t t-esc="line.barcode"/>
+                                    -
+                                    <t t-if="line.stock_out" t-esc="'En Stock'" style="font-weight: bold;"/>
+                                    <t t-else="" t-esc="'Rupture de stock'" style="font-weight: bold;"/>
+                                </small>
+                            </div>
+                            <div style="text-align:right; width:40px;" t-if="line.stock_out">
+                                <span t-esc="line.rupture_date or 0.0"/>
+                            </div>
+
+                            <div style="text-align:right; width:40px;">
+                                <span t-esc="line.quantity or 0.0"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+
+                <!-- PIED DE PAGE -->
+                <div style="text-align:center; border-top:1px dashed #000; margin-top:10px; padding-top:5px;">
+                    <p>Généré par Odoo Planification des marchandises</p>
+                    <p style="font-size:10px;">Imprimé le
+                        <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+                    </p>
+                </div>
+
+            </div>
+        </t>
+    </t>
+</template>
+
+
+    </data>
+</odoo>

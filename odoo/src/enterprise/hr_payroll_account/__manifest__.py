@@ -1,0 +1,26 @@
+#-*- coding:utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+{
+    'name': 'Payroll Accounting',
+    'category': 'Human Resources/Payroll',
+    'description': """
+Generic Payroll system Integrated with Accounting.
+==================================================
+
+    * Expense Encoding
+    * Payment Encoding
+    * Company Contribution Management
+    """,
+    'depends': ['hr_payroll', 'account_accountant'],
+    'data': [
+        'views/hr_payroll_account_views.xml',
+        'report/hr_contract_history_report_views.xml',
+    ],
+    'demo': [
+        'data/hr_payroll_account_demo.xml',
+    ],
+    'pre_init_hook': '_salaries_account_journal_pre_init',
+    'auto_install': True,
+    'post_init_hook': '_hr_payroll_account_post_init',
+    'license': 'OEEL-1',
+}

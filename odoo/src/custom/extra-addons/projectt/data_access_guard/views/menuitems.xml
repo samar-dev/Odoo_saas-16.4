@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="data_access_guard_menu"
+              name="Data Access Guard"
+              groups="base.group_system"
+              parent="v__access_guard.v__access_guard_subroot"
+              action="data_access_guard.data_access_guard_action" />
+
+</odoo>

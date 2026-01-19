@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account.action_account_moves_all" model="ir.actions.act_window">
+            <field name="domain">[('display_type', 'not in', ('line_section',
+                'line_note')), ('parent_state', '!=', 'cancel'),
+                ('hide_stamp_zero_taxed', '=', False)]
+            </field>
+        </record>
+
+        <record id="account.action_move_line_select" model="ir.actions.act_window">
+            <field name="domain">[('hide_stamp_zero_taxed', '=', False)]
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

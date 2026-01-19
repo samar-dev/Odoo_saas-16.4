@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_assortment_form" model="ir.ui.view">
+            <field name="name">view.assortment.form</field>
+            <field name="model">assortment</field>
+            <field name="arch" type="xml">
+                <form string="Assortment">
+                    <header>
+                        <button name="action_open_assortment_product_templates"
+                                string="Open Templates"
+                                type="object"
+                                class="oe_highlight"/>
+                        <button name="action_open_assortment_stores"
+                                string="Open Stores"
+                                type="object"
+                                class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group string="Address">
+                            <field name="street" readonly="1"/>
+                            <field name="street2" readonly="1"/>
+                            <field name="zip" readonly="1"/>
+                            <field name="city" readonly="1"/>
+                            <field name="state_id" readonly="1"/>
+                            <field name="country_id" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <!-- Product Templates -->
+                            <page string="Product Templates">
+                                <field name="product_template_ids">
+                                    <tree editable="bottom">
+                                        <field name="default_code" string="Code"/>
+                                        <field name="name"/>
+                                        <field name="store_ids" widget="many2many_tags"
+                                               domain="[('partner_id','=',parent.partner_id)]"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <!-- Stores -->
+                            <page string="Stores">
+                                <field name="product_store_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="code"/>
+                                        <field name="partner_id"/>
+                                        <field name="address"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_assortment_tree" model="ir.ui.view">
+            <field name="name">view.assortment.tree</field>
+            <field name="model">assortment</field>
+            <field name="arch" type="xml">
+                <tree string="Assortment" create="0">
+                    <field name="name"/>
+                    <field name="assortment_products_count" string="Products count"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_assortment" model="ir.actions.act_window">
+            <field name="name">Assortment</field>
+            <field name="res_model">assortment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_assortment_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_assortment_form')})]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new assortment
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_assortment_config" name="Assortment Management" parent="stock.menu_stock_config_settings"
+                  sequence="3">
+            <menuitem action="action_assortment" id="menu_action_assortment" sequence="1"/>
+        </menuitem>
+
+    </data>
+</odoo>

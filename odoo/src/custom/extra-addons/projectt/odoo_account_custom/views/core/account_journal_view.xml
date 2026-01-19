@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_journal_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_journal_form_inherit</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='237']" position="after">
+                    <button name="action_open_bank_mouvements" type="object" string="Mouvements banque" icon="fa-money"/>
+                    <button name="action_open_bank_statement" type="object" string="Releve bancaire" icon="fa-money"/>
+                </xpath>
+                <xpath expr="//field[@name='account_control_ids']" position="after">
+                    <field name="x_rapp_date" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

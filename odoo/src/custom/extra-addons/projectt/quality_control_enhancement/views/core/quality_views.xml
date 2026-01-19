@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="quality_alert_view_form_inherit" model="ir.ui.view">
+            <field name="name">quality.alert.view.form.inherit</field>
+            <field name="model">quality.alert</field>
+            <field name="inherit_id" ref="quality_control.quality_alert_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_tmpl_id']" position="before">
+                    <field name="picking_product_tmpl_ids" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                    <attribute name="domain">[('id', 'in', picking_product_tmpl_ids)]</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="quality_check_view_search_inherit" model="ir.ui.view">
+            <field name="name">quality.check.view.search.inherit</field>
+            <field name="model">quality.check</field>
+            <field name="inherit_id" ref="quality_control.quality_check_view_search"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='failed']" position="after">
+                    <filter string="Validated by RMQ" name="validated" domain="[('quality_state', '=', 'validated')]"/>
+                    <filter string="Type d'opération" name="group_by_quality_type"
+                            context="{'group_by': 'quality_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="quality_check_view_form_inherit" model="ir.ui.view">
+            <field name="name">quality.check.view.form.inherit</field>
+            <field name="model">quality.check</field>
+            <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='do_fail']" position="after">
+                    <button name="button_validate"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('quality_state', '=', 'validated')]}"
+                            groups="quality.group_quality_manager"
+                            string="Validate"
+                            data-hotkey="w"/>
+
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="related_picking_id"/>
+                    <field name="related_picking_partner"/>
+                    <field name="related_picking_date_done"/>
+                    <field name="checklist_ids"   context="{'default_quality_check_id': active_id}" widget="many2many_tags"/>
+                    <button name="action_generate_checklist" type="object" title="Show Details" icon="fa-plus" />
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id="quality_failed_check_action_team" model="ir.actions.act_window">
+            <field name="name">Quality Checks</field>
+            <field name="res_model">quality.check</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('team_id', '=', active_id)]</field>
+            <field name="context">{
+                'default_team_id': active_id,
+                'search_default_team_id': [active_id],
+                'search_default_failed': "1"}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No quality check found
+                </p>
+                <p>
+                    Define Quality Control Points in order to automatically generate
+                    quality checks at the right logistic operation: transfers, manufacturing orders.
+                </p>
+            </field>
+        </record>
+
+        <record id="quality_success_check_action_team" model="ir.actions.act_window">
+            <field name="name">Quality Checks</field>
+            <field name="res_model">quality.check</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('team_id', '=', active_id)]</field>
+            <field name="context">{
+                'default_team_id': active_id,
+                'search_default_team_id': [active_id],
+                'search_default_passed': "1"}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No quality check found
+                </p>
+                <p>
+                    Define Quality Control Points in order to automatically generate
+                    quality checks at the right logistic operation: transfers, manufacturing orders.
+                </p>
+            </field>
+        </record>
+
+        <record id="quality_validated_check_action_team" model="ir.actions.act_window">
+            <field name="name">Quality Checks</field>
+            <field name="res_model">quality.check</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('team_id', '=', active_id)]</field>
+            <field name="context">{
+                'default_team_id': active_id,
+                'search_default_team_id': [active_id],
+                'search_default_validated': "1"}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No quality check found
+                </p>
+                <p>
+                    Define Quality Control Points in order to automatically generate
+                    quality checks at the right logistic operation: transfers, manufacturing orders.
+                </p>
+            </field>
+        </record>
+
+        <record id="dashboard_view_kanban_inherit" model="ir.ui.view">
+            <field name="name">dashboard.view.kanban.inherit</field>
+            <field name="model">quality.alert.team</field>
+            <field name="inherit_id" ref="quality_control.quality_alert_team_dashboard_view_kanban"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('o_kanban_primary_right')]" position="inside">
+
+                    <a class="oe_kanban_stock_picking_type_list" name="%(quality_success_check_action_team)d"
+                       type="action">
+                        <field name="success_check_count"/>
+                        Success checks
+                    </a>
+                    <a class="oe_kanban_stock_picking_type_list" name="%(quality_validated_check_action_team)d"
+                       type="action">
+                        <field name="validated_check_count"/>
+                        Validated checks
+                    </a>
+                    <a class="oe_kanban_stock_picking_type_list" name="%(quality_failed_check_action_team)d"
+                       type="action">
+                        <field name="failed_check_count"/>
+                        Failed checks
+                    </a>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_quality_check_kanban" model="ir.ui.view">
+            <field name="name">inherit.quality.check.kanban.view</field>
+            <field name="model">quality.check</field>
+            <field name="inherit_id" ref="quality_control.quality_check_view_kanban"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="inside">
+                    <field name="date_done"/>
+                    <field name="picking_partner_display"/>
+                    <field name="picking_name"/>
+                    <field name="lot_producing_id"/>
+                    <field name="expiration_date"/>
+                    <field name="production_date"/>
+                    <field name="production_planning_reference"/>
+                    <field name="origin"/>
+                    <field name="quality_type"/>
+                    <field name="create_date"/>
+                    <field name="related_picking_name"/>
+                    <field name="related_picking_id"/>
+                    <field name="related_picking_date_done"/>
+                    <field name="related_picking_partner"/>
+                    <field name="x_point_id"/>
+                </xpath>
+                <!--<xpath expr="//div[@class='row text-muted']" position="after">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <strong>Type operation:</strong>
+                            <t t-esc="record.quality_type.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Vendor/Customer:</strong>
+                            <t t-esc="record.picking_partner_display.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Picking:</strong>
+                            <t t-esc="record.picking_name.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Date Done:</strong>
+                            <t t-esc="record.date_done.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Lot (Prod.):</strong>
+                            <t t-esc="record.lot_producing_id.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Exp. Date:</strong>
+                            <t t-esc="record.expiration_date.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Prod. Date:</strong>
+                            <t t-esc="record.production_date.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Planning Ref:</strong>
+                            <t t-esc="record.production_planning_reference.value or '—'"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Origin:</strong>
+                            <t t-esc="record.origin.value or '—'"/>
+                        </div>
+                    </div>
+                </xpath>-->
+
+                <xpath expr="//div[@class='row text-muted']" position="replace">
+    <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+
+        <!-- Left Side Image (Optional) -->
+        <t t-if="record.picture.raw_value">
+            <field name="picture" class="o_kanban_image_fill_left d-block" widget="background_image"
+                   options="{'zoom': true, 'zoom_delay': 1000}"/>
+        </t>
+
+        <!-- Main Details -->
+        <div class="oe_kanban_details">
+            <div class="o_kanban_record_top">
+                <div class="o_kanban_record_headings col-6">
+                    <span t-if="record.quality_type.raw_value" class="o_kanban_record_subtitle text-info">
+                        <t t-esc="record.quality_type.value"/>
+                    </span>
+                    <span t-if="record.x_point_id.raw_value" class="o_kanban_record_subtitle text-info">
+                        <t t-esc="record.x_point_id.value"/>
+                    </span>
+                </div>
+                <div class="o_kanban_record_headings col-6">
+                    <span t-if="record.create_date.raw_value" class="o_kanban_record_subtitle text-info">
+                        <t t-esc="record.create_date.value"/>
+                    </span>
+                    <span t-if="record.related_picking_date_done.raw_value" class="o_kanban_record_subtitle text-info">
+                        <t t-esc="record.related_picking_date_done.value"/>
+                    </span>
+                </div>
+            </div>
+
+            <ul>
+                <li t-if="record.product_id.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-product-hunt text-primary" title="Produit"/>
+                    <t t-esc="record.product_id.value"/>
+                </li>
+                <li t-if="record.picking_partner_display.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-user text-primary" title="Partner"/>
+                    <t t-esc="record.picking_partner_display.value"/>
+                </li>
+                <li t-if="record.related_picking_partner.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-user text-primary" title="Partner"/>
+                    <t t-esc="record.related_picking_partner.value"/>
+                </li>
+                <li t-if="record.picking_name.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-truck text-primary" title="Transfer"/>
+                    <t t-esc="record.picking_name.value"/>
+                </li>
+                <li t-if="record.related_picking_name.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-truck text-primary" title="Transfer"/>
+                    <t t-esc="record.related_picking_name.value"/>
+                </li>
+                <li t-if="record.date_done.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-calendar-check-o text-primary" title="Date Done"/>
+                    <t t-esc="record.date_done.value"/>
+                </li>
+                <li t-if="record.lot_producing_id.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-hashtag text-primary" title="Lot"/>
+                    <t t-esc="record.lot_producing_id.value"/>
+                </li>
+                <li t-if="record.expiration_date.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-hourglass-end text-primary" title="Expiration"/>
+                    <t t-esc="record.expiration_date.value"/>
+                </li>
+                <li t-if="record.production_date.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-industry text-primary" title="Production Date"/>
+                    <t t-esc="record.production_date.value"/>
+                </li>
+                <li t-if="record.production_planning_reference.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-list-alt text-primary" title="Planning Reference"/>
+                    <t t-esc="record.production_planning_reference.value"/>
+                </li>
+                <li t-if="record.origin.raw_value" class="o_text_overflow">
+                    <i class="fa fa-fw me-2 fa-compass text-primary" title="Origin"/>
+                    <t t-esc="record.origin.value"/>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Bottom Section (Activities) -->
+        <div class="oe_kanban_content o_hr_employee_kanban_bottom position-absolute bottom-0 start-0 end-0">
+            <div class="o_kanban_record_bottom mt-3">
+                <div class="oe_kanban_bottom_left">
+                    <div class="hr_activity_container mb-1 ms-2 me-n1">
+                        <field name="activity_ids" widget="kanban_activity"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</xpath>
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_line_tree_inherit" model="ir.ui.view">
+            <field name="name">view_move_line_tree_inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_accountant.view_move_line_tree"/>
+            <field name="mode">extension</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='matching_number']" position="after">
+                    <field name="reconciliation_account"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="action_reconciliation_wizard" type="object" string="Ajouter compte lettrage"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="action_delete_reconciliation_account" model="ir.actions.server">
+            <field name="name">Annuler le compte lettrage</field>
+            <field name="model_id" ref="account.model_account_move_line"/>
+            <field name="binding_model_id" ref="account.model_account_move_line"/>
+            <field name="state">code</field>
+            <field name="code">records.action_cancel_reconciliation()</field>
+        </record>
+
+        <record id="action_delete_zero_account" model="ir.actions.server">
+            <field name="name">Supprime Zero</field>
+            <field name="model_id" ref="account.model_account_move_line"/>
+            <field name="binding_model_id" ref="account.model_account_move_line"/>
+            <field name="state">code</field>
+            <field name="code">records.unlink_zero_balance_lines()</field>
+        </record>
+        
+    </data>
+
+</odoo>

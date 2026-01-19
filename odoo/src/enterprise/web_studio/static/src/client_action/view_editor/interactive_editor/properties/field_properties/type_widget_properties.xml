@@ -1,0 +1,74 @@
+<templates>
+
+<t t-name="web_studio.ViewEditor.InteractiveEditorProperties.Field.TypeWidgetProperties" owl="1" >
+    <Property
+        name="'widget'"
+        type="'selection'"
+        value="props.node.attrs.widget || props.node.field.type"
+        onChange.bind="onChangeWidget"
+        childProps="widgetChoices"
+    >
+        Widget
+    </Property>
+
+    <t t-foreach="attributesOfTypeField" t-as="attribute" t-key="attribute.name">
+        <Property
+            name="attribute.name"
+            type="'selection'"
+            value="getSelectValue(attribute.value)"
+            childProps="{choices:attribute.choices}"
+            onChange.bind="onChangeProperty"
+            tooltip="attribute.help"
+        >
+            <t t-esc="attribute.label"/>
+        </Property>
+    </t>
+    <t t-foreach="attributesOfTypeSelection" t-as="attribute" t-key="attribute.name">
+        <Property
+            name="attribute.name"
+            type="attribute.type"
+            value="getSelectValue(attribute.value)"
+            childProps="{choices:attribute.choices}"
+            onChange.bind="onChangeProperty"
+            tooltip="attribute.help"
+        >
+            <t t-esc="attribute.label"/>
+        </Property>
+    </t>
+    <t t-foreach="attributesOfTypeBoolean" t-as="attribute" t-key="attribute.name">
+        <Property
+            name="attribute.name"
+            type="attribute.type"
+            value="attribute.value"
+            onChange.bind="onChangeProperty"
+            tooltip="attribute.help"
+        >
+            <t t-esc="attribute.label"/>
+        </Property>
+    </t>
+    <t t-foreach="attributesOfTypeDomain" t-as="attribute" t-key="attribute.name">
+        <Property
+            name="attribute.name"
+            type="attribute.type"
+            value="attribute.value.domain"
+            onChange.bind="onChangeProperty"
+            childProps="{relation: attribute.value.relation}"
+            tooltip="attribute.help"
+        >
+            <t t-esc="attribute.label"/>
+        </Property>
+    </t>
+    <t t-foreach="attributesOfTypeString" t-as="attribute" t-key="attribute.name">
+        <Property
+            name="attribute.name"
+            type="attribute.type"
+            value="attribute.value"
+            onChange.bind="onChangeProperty"
+            tooltip="attribute.help"
+        >
+            <t t-esc="attribute.label"/>
+        </Property>
+    </t>
+</t>
+
+</templates>

@@ -1,0 +1,17 @@
+{
+    "name": "Journal entries domain",
+    "version": "saas~16.4.1.0.0",
+    "description": "Journal entries domain",
+    "summary": "Modify the journal domain in Journal entries",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "account"],
+    "data": [],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+    "images": ["static/description/icon.jpg"],
+}

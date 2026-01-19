@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_purchase_treasury_root" name="Purchase Treasury" sequence="10"
+              web_icon="purchase_treasury,static/description/icon.png"/>
+
+    <menuitem id="menu_inputs" name="Inputs" parent="menu_purchase_treasury_root" sequence="20"/>
+
+    <record id="action_treasury_template_summary" model="ir.actions.act_window">
+        <field name="name">Treasury Template Monthly Summary</field>
+        <field name="res_model">treasury.summary</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_reports" name="Reports" parent="menu_purchase_treasury_root" sequence="30"
+              action="action_treasury_template_summary"/>
+
+
+    <menuitem id="menu_configuration" name="Configuration" parent="menu_purchase_treasury_root" sequence="40"/>
+
+    <record id="action_treasury" model="ir.actions.act_window">
+        <field name="name">Treasury Entries</field>
+        <field name="res_model">purchase.treasury</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_treasury" name="Treasury Entries" parent="menu_inputs" action="action_treasury"/>
+
+    <record id="action_sector" model="ir.actions.act_window">
+        <field name="name">Sectors</field>
+        <field name="res_model">purchase.sector</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sector" name="Sectors" parent="menu_configuration" action="action_sector"/>
+
+    <record id="action_treasury_template" model="ir.actions.act_window">
+        <field name="name">Treasury Templates</field>
+        <field name="res_model">treasury.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Treasury Template.
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_treasury_template" name="Templates" parent="menu_configuration"
+              action="action_treasury_template" sequence="45"/>
+
+</odoo>

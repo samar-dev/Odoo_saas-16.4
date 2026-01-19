@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="reconciliation_account_wizard_form" model="ir.ui.view">
+            <field name="name">reconciliation_account_wizard_form</field>
+            <field name="model">reconciliation.account.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="reconciliation_account"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Confirmer" name="action_confirm" type="object" class="btn btn-primary"/>
+                        <button string="Annuler" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_account_forced_wizard" model="ir.ui.view">
+            <field name="name">account.forced.reconcile.wizard.form</field>
+            <field name="model">account.reconcile.wizard</field>
+            <field name="inherit_id" ref="account_accountant.view_account_reconcile_wizard"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='allow_partials']" position="after">
+                    <field name="forced_reconcile"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

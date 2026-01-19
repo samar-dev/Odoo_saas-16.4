@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_scale_reader_report" model="ir.actions.report">
+            <field name="name">Scale Reader Report</field>
+            <field name="model">scale.reader</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">odoo_scale_integration.scale_reader_report</field>
+            <field name="report_file">odoo_scale_integration.scale_reader_report</field>
+            <field name="binding_model_id" ref="model_scale_reader"/>
+            <field name="print_report_name">'Scale Report - %s - ' % (object.name)+time.strftime('%Y-%m-%d %H:%M:%S')
+            </field>
+        </record>
+
+        <template id="scale_reader_report">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="report-header" style="text-align: center;">
+                        <h1>Scale Reader Report</h1>
+                        <p>Generated on:
+                            <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                        </p>
+                    </div>
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="report-section" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+                            <h2 style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">Details</h2>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Sequence Number:</strong>
+                                        <span t-esc="doc.name"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Vehicle:</strong>
+                                        <span t-esc="doc.vehicle"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Empty Weight:</strong>
+                                        <span t-esc="'{:.3f}'.format(doc.weight_empty)"/>
+                                        kg
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Full Weight:</strong>
+                                        <span t-esc="'{:.3f}'.format(doc.weight_full)"/>
+                                        kg
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Net Weight:</strong>
+                                        <span t-esc="'{:.3f}'.format(doc.net_weight)"/>
+                                        kg
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Weight Empty Date:</strong>
+                                        <span t-esc="doc.weight_empty_datetime"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Weight Full Date:</strong>
+                                        <span t-esc="doc.weight_full_datetime"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Lot Number:</strong>
+                                        <span t-esc="doc.lot_number"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Transporter:</strong>
+                                        <span t-esc="doc.transporter_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Vendor:</strong>
+                                        <span t-esc="doc.vendor_id.name"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <strong>Weighing Slip:</strong>
+                                        <span t-esc="doc.weighing_slip"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+
+                    <div class="footer" style="text-align: center; margin-top: 30px;">
+                        <p>Thank you for using our service!</p>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

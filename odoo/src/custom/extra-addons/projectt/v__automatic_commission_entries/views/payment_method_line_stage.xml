@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_method_line_stage_view_form_inherit" model="ir.ui.view">
+            <field name="name">payment_method_line_stage_view_form_inherit</field>
+            <field name="model">payment.method.line.stage</field>
+            <field name="inherit_id" ref="v__payment_methods_tracking.payment_method_line_stage_view_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_method_line_stage_line_ids']/tree"
+                       position="inside">
+                    <button name="action_display_commissions"
+                            type="object"
+                            icon="fa-percent"
+                            string="Commission"
+                            class="btn-outline-primary" />
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

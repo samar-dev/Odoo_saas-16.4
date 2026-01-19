@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_kpi_report_paperformat" model="report.paperformat">
+        <field name="name">Blance Report</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">60</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Report action (only one that handles all three reports via report_template) -->
+    <record id="purchase_kpi_report_action" model="ir.actions.report">
+        <field name="name">Purchase Report</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_custom_reports.purchase_kpi_report_template</field>
+        <field name="report_file">purchase_custom_reports.purchase_kpi_report_template</field>
+        <field name="paperformat_id" ref="purchase_custom_reports.purchase_kpi_report_paperformat"/>
+    </record>
+
+    <template id="report_supplier_compliance_template">
+        <t t-call="web.html_container">
+            <div class="report-wrap">
+                <h2 class="report-title">Rapport de conformité fournisseur</h2>
+
+                <!-- KPI Summary -->
+                <table class="kpi-blocks styled-table">
+                    <tbody>
+                        <tr>
+                            <td class="kpi">
+                                <strong>Total commandes</strong>
+                                <br/>
+                                <t t-esc="data.get('total_orders', 0)"/>
+                            </td>
+                            <td class="kpi">
+                                <strong>Total contrôles qualité</strong>
+                                <br/>
+                                <t t-esc="data.get('total_quality_checks', 0)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="kpi">
+                                <strong>Commandes conformes</strong>
+                                <br/>
+                                <t t-esc="data.get('conforming_orders', 0)"/>
+                            </td>
+                            <td class="kpi">
+                                <strong>Contrôles non conformes</strong>
+                                <br/>
+                                <t t-esc="data.get('non_conforming_quality_checks', 0)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="kpi">
+                                <strong>Taux global de conformité</strong>
+                                <br/>
+                                <t t-esc="data.get('overall_compliance_rate', 0)"/>%
+                            </td>
+                            <td class="kpi">
+                                <strong>Taux global conformité qualité</strong>
+                                <br/>
+                                <t t-esc="data.get('overall_quality_compliance_rate', 0)"/>%
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Detailed PO Table: split into chunks -->
+                <t t-set="chunk_size" t-value="14"/>
+                <t t-foreach="range(0, len(data.get('po_summary', [])), chunk_size)" t-as="i">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Commande</th>
+                                <th>Date</th>
+                                <th>Fournisseur</th>
+                                <th>Qté commandée</th>
+                                <th>Qté reçue</th>
+                                <th>Qté conforme</th>
+                                <th>% Conformité qualité</th>
+                                <th>Qualité conforme</th>
+                                <th>Statut</th>
+                                <th>% Conformité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data.get('po_summary', [])[i:i+chunk_size]" t-as="po">
+                                <tr>
+                                    <td>
+                                        <t t-esc="po.get('order_name', '')"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="po.get('order_date', '')[:10].replace('-', '/')"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="po.get('partner_name', 'AUCUN')"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="po.get('qty_ordered', 0)"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="po.get('qty_received', 0)"/>
+                                    </td>
+                                    <td>
+                                        <span t-if="po.get('quantity_ok')" class="badge badge-success">Oui</span>
+                                        <span t-elif="po.get('quantity_ok') == False" class="badge badge-fail">Non
+                                        </span>
+                                        <span t-else="" class="badge badge-info">N/A</span>
+                                    </td>
+                                    <td>
+                                        <t t-if="po.get('quality_compliance_rate') is not None">
+                                            <span class="badge badge-success">
+                                                <t t-esc="po.get('quality_compliance_rate')"/>%
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="badge badge-info">N/A</span>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span t-if="po.get('quality_ok') == True" class="badge badge-success">Oui</span>
+                                        <span t-elif="po.get('quality_ok') == False" class="badge badge-fail">Non</span>
+                                        <span t-else="" class="badge badge-info">N/A</span>
+                                    </td>
+                                    <td>
+                                        <span t-if="po.get('status_abbrev')" class="badge badge-info">
+                                            <t t-esc="po.get('status_abbrev')"/>
+                                        </span>
+                                        <span t-else="" class="badge badge-fail">
+                                            Non conforme générale
+                                        </span>
+                                    </td>
+                                    <td><t t-esc="po.get('compliance_rate', 0)"/>%
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div style="height:20px;"></div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="report_order_cycle_time_template">
+        <t t-call="web.html_container">
+            <h2 class="report-title">Rapport Cycle Temps de Commande</h2>
+
+            <!-- Summary -->
+            <div class="summary-info">
+                <strong>Nombre de commandes :</strong>
+                <t t-esc="data.get('num_orders', 0)"/>
+                <br/>
+                <strong>Durée moyenne (jours) :</strong>
+                <t t-esc="data.get('average_cycle_days', 0)"/>
+                J
+            </div>
+
+            <!-- Table -->
+            <t t-set="chunk_size" t-value="14"/>
+            <t t-foreach="range(0, len(data.get('po_summary', [])), chunk_size)" t-as="i">
+                <table class="cycle-report">
+                    <thead>
+                        <tr>
+                            <th>Commande</th>
+                            <th>Fournisseur</th>
+                            <th>D de début</th>
+                            <th>D planifiée</th>
+                            <th>D Réalisée</th>
+                            <th>NbJ planifiée</th>
+                            <th>NbJ Réalisée</th>
+                            <th>Résultat</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data.get('po_summary', [])[i:i+chunk_size]" t-as="order">
+                            <tr>
+                                <td>
+                                    <t t-esc="order.get('order_name', '-')"/>
+                                </td>
+                                <td>
+                                    <t t-esc="order.get('partner_name', '-')"/>
+                                </td>
+                                <td>
+                                    <t t-esc="order.get('date_start') or 'N/A'"/>
+                                </td>
+                                <td>
+                                    <t t-esc="order.get('scheduled_date') or 'N/A'"/>
+                                </td>
+                                <td>
+                                    <t t-esc="order.get('done_date') or 'N/A'"/>
+                                </td>
+                                <td>
+                                    <t t-if="order.get('delta_scheduled_vs_start') is not None">
+                                        <t t-esc="order.get('delta_scheduled_vs_start')"/>
+                                        J
+                                    </t>
+                                    <t t-else="">N/A</t>
+                                </td>
+                                <td class="center-text">
+                                    <t t-if="order.get('delta_done_vs_start') is not None">
+                                        <t t-esc="order.get('delta_done_vs_start')"/>
+                                        J
+                                    </t>
+                                    <t t-else="">N/A</t>
+                                </td>
+
+                                <td class="center-text">
+                                    <t t-set="color" t-value="order.get('color_status')"/>
+
+                                    <t t-if="color == 'red'">
+                                        <span style="color: white; background-color: red; padding: 2px 6px; border-radius: 4px;">
+                                            <t t-esc="order.get('delta_done_vs_scheduled')"/>
+                                            J (Retard)
+                                        </span>
+                                    </t>
+
+                                    <t t-elif="color == 'green'">
+                                        <span style="color: white; background-color: green; padding: 2px 6px; border-radius: 4px;">
+                                            <t t-esc="order.get('delta_done_vs_scheduled')"/>
+                                            J (À temps)
+                                        </span>
+                                    </t>
+
+                                    <t t-elif="color == 'yellow'">
+                                        <span style="color: black; background-color: gold; padding: 2px 6px; border-radius: 4px;">
+                                            <t t-esc="order.get('delta_done_vs_scheduled')"/>
+                                            J (Avance)
+                                        </span>
+                                    </t>
+
+                                    <t t-else="">
+                                        <span class="badge badge-info">N/A</span>
+                                    </t>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div style="height:20px;"></div>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="report_cost_reduction_template">
+    <t t-call="web.html_container">
+        <h2 class="report-title text-center">Rapport de réduction des coûts</h2>
+
+        <!-- Report Info -->
+        <p style="font-size:13px;">
+            <strong>Nom du rapport :</strong>
+            <t t-esc="data.get('report_name', '-')"/>
+            <br/>
+            <strong>Modèle de rapport :</strong>
+            <t t-esc="data.get('report_template', '-')"/>
+        </p>
+
+        <!-- Cost Reduction Table -->
+        <t t-set="chunk_size" t-value="14"/> <!-- rows per table for PDF splitting -->
+        <t t-foreach="range(0, len(data.get('po_summary', [])), chunk_size)" t-as="i">
+            <table class="table table-sm table-bordered" style="width:100%; border-collapse: collapse; font-size:12px; margin-top: 20px;">
+                <thead style="background-color: #f2f2f2;">
+                    <tr>
+                        <th style="border: 1px solid #000;">Produit</th>
+                        <th style="border: 1px solid #000; text-align:right;">Prix initial moyen</th>
+                        <th style="border: 1px solid #000; text-align:right;">Prix négocié moyen</th>
+                        <th style="border: 1px solid #000; text-align:right;">Réduction moyenne (%)</th>
+                        <th style="border: 1px solid #000; text-align:right;">Nombre de commandes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="data.get('po_summary', [])[i:i+chunk_size]" t-as="line">
+                        <tr>
+                            <td style="border: 1px solid #000;">
+                                <t t-esc="line.get('product_name', '-')"/>
+                            </td>
+                            <td style="border: 1px solid #000; text-align:center;">
+                                <t t-esc="'{:,.2f}'.format(line.get('avg_initial_price', 0))"/>
+                            </td>
+                            <td style="border: 1px solid #000; text-align:center;">
+                                <t t-esc="'{:,.2f}'.format(line.get('avg_negocie_price', 0))"/>
+                            </td>
+                            <td style="border: 1px solid #000; text-align:center;">
+                                <t t-set="reduc" t-value="line.get('avg_reduction_percent', 0)"/>
+                                <span t-if="reduc >= 0" class="badge badge-success">
+                                    <t t-esc="'{:.2f}'.format(reduc)"/>%
+                                </span>
+                                <span t-else="" class="badge badge-fail">
+                                    <t t-esc="'{:.2f}'.format(reduc)"/>%
+                                </span>
+                            </td>
+                            <td style="border: 1px solid #000; text-align:center;">
+                                <t t-esc="line.get('num_orders', 0)"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <div style="height:20px;"></div> <!-- spacing between tables/pages -->
+        </t>
+
+        <!-- Footer Summary -->
+        <table class="table table-sm table-bordered" style="width:100%; border-collapse: collapse; font-size:12px; margin-top: 20px;">
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="border: 1px solid #000; text-align:right; font-weight:bold;">Réduction moyenne globale (%) :</td>
+                    <td style="border: 1px solid #000; text-align:right; font-weight:bold;">
+                        <t t-esc="data.get('average_cost_reduction_percent', 0)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="border: 1px solid #000; text-align:right; font-weight:bold;">Nombre de produits :</td>
+                    <td style="border: 1px solid #000; text-align:right; font-weight:bold;">
+                        <t t-esc="data.get('num_products', 0)"/>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </t>
+</template>
+
+
+
+    <template id="report_stock_turnover_template">
+        <t t-call="web.html_container">
+            <h2 style="text-align: center;">Rapport : Taux de rotation des stocks</h2>
+
+            <!-- Report Info -->
+            <p>
+                <strong>Nom du rapport :</strong>
+                <t t-esc="data.get('report_name', '-')"/>
+            </p>
+            <p>
+                <strong>Taux de rotation moyen :</strong>
+                <t t-esc="data.get('average_stock_turnover', '-')"/>
+            </p>
+            <p>
+                <strong>Nombre de produits :</strong>
+                <t t-esc="data.get('num_lines', 0)"/>
+            </p>
+
+            <!-- Stock Turnover Table (PDF-safe using chunking) -->
+            <t t-set="chunk_size" t-value="14"/> <!-- rows per table/page -->
+            <t t-foreach="range(0, len(data.get('po_summary', [])), chunk_size)" t-as="i">
+                <table class="table table-sm table-bordered mt-4">
+                    <thead style="background-color:#f0f0f0;">
+                        <tr style="background-color:#f2f2f2;">
+                            <th style="padding: 6px;">#</th>
+                            <th style="padding: 6px;">Produit</th>
+                            <th style="padding: 6px; text-align:right;">Qté consommée</th>
+                            <th style="padding: 6px; text-align:right;">Stock moyen</th>
+                            <th style="padding: 6px; text-align:right;">Rotation</th>
+                            <th style="padding: 6px;">Statut</th>
+                            <th style="padding: 6px; text-align:right;">Stock sécurité</th>
+                            <th style="padding: 6px; text-align:right;">Qté à renouveler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data.get('po_summary', [])[i:i+chunk_size]" t-as="line"
+                           t-key="line.get('product_name')">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <t t-esc="line.get('product_name', '-')"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.get('total_qty_moved', 0)"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.get('average_stock', 0)"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.get('rotation', 0)"/>
+                                </td>
+                                <td>
+                                    <span t-if="line.get('movement_status') == 'Fast rotation'"
+                                          class="badge badge-success">Fast rotation
+                                    </span>
+                                    <span t-if="line.get('movement_status') == 'No movement'" class="badge badge-fail">
+                                        No movement
+                                    </span>
+                                    <span t-if="line.get('movement_status') == 'Has rotation'" class="badge badge-info">
+                                        Has rotation
+                                    </span>
+                                    <span t-if="line.get('movement_status') not in ['Fast rotation','No movement','Has rotation']"
+                                          class="badge badge-info">N/A
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.get('safety_stock', 0)"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.get('qty_to_reorder', 0)"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div style="height:20px;"></div> <!-- spacing between tables/pages -->
+            </t>
+
+            <p class="mt-4" style="font-size: 11px; color: #888;">
+                Formule utilisée : Taux de rotation = Coût de production des sorties / Stock moyen
+            </p>
+        </t>
+    </template>
+
+    <template id="report_urgent_purchases_template">
+        <t t-call="web.html_container">
+            <t t-set="o" t-value="data"/>
+
+            <div class="page">
+                <h2 style="text-align:center; color:#2a2a2a;">
+                    Rapport Achats en Urgence
+                </h2>
+                <p>
+                    <strong>Nom du rapport :</strong>
+                    <t t-esc="o.get('report_name', '-')"/>
+                    <br/>
+                    <strong>Modèle :</strong>
+                    <t t-esc="o.get('report_template', '-')"/>
+                    <br/>
+                    <strong>Total lignes :</strong>
+                    <t t-esc="o.get('total_lines', 0)"/>
+                    <br/>
+                    <strong>Lignes urgentes :</strong>
+                    <t t-esc="o.get('urgent_count', 0)"/>
+                    <br/>
+                    <strong>Taux d'urgence :</strong>
+                    <t t-esc="o.get('urgent_rate', 0)"/>%
+                </p>
+
+                <!-- Table with chunking to prevent PDF row cutting -->
+                <t t-set="chunk_size" t-value="14"/>
+                <t t-foreach="range(0, len(o.get('po_summary', [])), chunk_size)" t-as="i">
+                    <table class="table table-sm table-bordered"
+                           style="width:100%; border-collapse: collapse; font-size:12px;">
+                        <thead style="background-color: #f2f2f2;">
+                            <tr>
+                                <th style="border: 1px solid #000;">Commande</th>
+                                <th style="border: 1px solid #000;">Fournisseur</th>
+                                <th style="border: 1px solid #000;">Produit</th>
+                                <th style="border: 1px solid #000;">Date commande</th>
+                                <th style="border: 1px solid #000;">Date prévue</th>
+                                <th style="border: 1px solid #000;">Écart (j)</th>
+                                <th style="border: 1px solid #000;">Urgent ?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.get('po_summary', [])[i:i+chunk_size]" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-esc="line.get('order_name', '-')"/>
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-esc="line.get('partner_name', '-')"/>
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-esc="line.get('product_name', '-')"/>
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-esc="line.get('date_order', '-')"/>
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <t t-esc="line.get('date_planned', '-')"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; text-align: center;">
+                                        <t t-esc="line.get('delta_days', 0)"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; text-align: center;">
+                                        <t t-if="line.get('is_urgent')">OUI</t>
+                                        <t t-else="">NON</t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div style="height:20px;"></div> <!-- spacing between tables/pages -->
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_spending_control_template">
+        <t t-call="web.html_container">
+            <h2 style="text-align:center; color:#2a2a2a; margin-bottom: 20px;">
+                Rapport Dépenses Sous Contrôle - Achats
+            </h2>
+
+            <!-- Report Info -->
+            <p style="font-size:13px;">
+                <strong>Nom du rapport :</strong>
+                <t t-esc="data.get('report_name', '-')"/>
+                <br/>
+                <strong>Modèle :</strong>
+                <t t-esc="data.get('report_template', '-')"/>
+                <br/>
+                <strong>Période :</strong>
+                du
+                <t t-esc="data.get('start_date', '-')"/>
+                au
+                <t t-esc="data.get('end_date', '-')"/>
+            </p>
+
+            <!-- Table with chunking to prevent PDF row cutting -->
+            <t t-set="chunk_size" t-value="14"/>
+            <t t-foreach="range(0, len(data.get('po_summary', [])), chunk_size)" t-as="i">
+                <table class="table table-sm table-bordered"
+                       style="width:100%; border-collapse: collapse; font-size:12px; margin-top: 20px;">
+                    <thead style="background-color: #f2f2f2;">
+                        <tr>
+                            <th style="border: 1px solid #000;">Centre Analytique</th>
+                            <th style="border: 1px solid #000; text-align:right;">Budget (DT)</th>
+                            <th style="border: 1px solid #000; text-align:right;">Dépense Réelle (DT)</th>
+                            <th style="border: 1px solid #000; text-align:right;">Écart (DT)</th>
+                            <th style="border: 1px solid #000; text-align:right;">% Utilisé</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data.get('po_summary', [])[i:i+chunk_size]" t-as="line">
+                            <tr>
+                                <td style="border: 1px solid #000;">
+                                    <t t-esc="line.get('analytic_name', '-')"/>
+                                </td>
+                                <td style="border: 1px solid #000; text-align:right;">
+                                    <t t-esc="line.get('budget', 0)"/>
+                                </td>
+                                <td style="border: 1px solid #000; text-align:right;">
+                                    <t t-esc="line.get('real_spent', 0)"/>
+                                </td>
+                                <td style="border: 1px solid #000; text-align:right;">
+                                    <t t-esc="line.get('variance', 0)"/>
+                                </td>
+                                <td style="border: 1px solid #000; text-align:right;"><t
+                                        t-esc="line.get('usage_rate', 0)"/>%
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div style="height:20px;"></div> <!-- spacing between tables/pages -->
+            </t>
+        </t>
+    </template>
+
+    <template id="report_styles" name="Purchase Reports Styles">
+        <style>
+            .styled-table, .kpi-blocks {
+            page-break-inside: auto;
+            }
+            /* Centralize all text in tables */
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #333;
+            }
+            th, td {
+            border: 1px solid #ccc;
+            }
+            thead th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            }
+
+            /* Headings styling */
+            h2, h3 {
+            text-align: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            }
+
+            /* Alternate row shading for readability */
+            tbody tr:nth-child(odd) {
+            background-color: #fafafa;
+            }
+            tbody tr:hover {
+            background-color: #eaeaea;
+            }
+
+            /* Responsive design for smaller pages */
+            @media print {
+            table, th, td {
+            page-break-inside: avoid;
+            }
+            h2, h3 {
+            page-break-after: avoid;
+            }
+            }
+            .report-wrap {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            color: #222;
+            padding: 20px;
+            }
+            .report-title {
+            text-align: center;
+            color: #1a237e;
+            font-size: 22px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 5px;
+            }
+            .kpi-blocks {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            }
+            .kpi {
+            background: #f0f4ff;
+            padding: 10px 15px;
+            border: 1px solid #c5cae9;
+            border-radius: 6px;
+            text-align: center;
+            width: 30%;
+            }
+            .kpi strong {
+            display: block;
+            color: #3f51b5;
+            margin-bottom: 5px;
+            }
+            .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 11.5px;
+            }
+            .styled-table th, .styled-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            }
+            .styled-table thead {
+            background-color: #e8eaf6;
+            color: #1a237e;
+            }
+            .styled-table tbody tr:nth-child(even) {
+            background-color: #f5f5f5;
+            }
+            .badge {
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+            }
+            .badge-success {
+            background-color: #43a047;
+            color: white;
+            }
+            .badge-fail {
+            background-color: #e53935;
+            color: white;
+            }
+            .badge-info {
+            background-color: #FF7F50;
+            color: white;
+            }
+
+        </style>
+    </template>
+
+    <!-- Main wrapper template to dispatch based on report_template -->
+    <template id="purchase_kpi_report_template">
+        <t t-call="web.html_container">
+            <style>
+
+                body, .report-wrap {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 12px;
+                color: #222;
+                padding: 20px;
+                }
+
+                /* Titles */
+                h2, h3, .report-title {
+                text-align: center;
+                color: #2c3e50;
+                margin-top: 20px;
+                margin-bottom: 15px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+
+                .report-title {
+                font-size: 22px;
+                border-bottom: 2px solid #1a237e;
+                padding-bottom: 5px;
+                }
+
+                /* KPI blocks */
+                .kpi-blocks {
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 30px;
+                }
+                .kpi {
+                background: #f0f4ff;
+                padding: 10px 15px;
+                border: 1px solid #c5cae9;
+                border-radius: 6px;
+                text-align: center;
+                width: 30%;
+                }
+                .kpi strong {
+                display: block;
+                color: #3f51b5;
+                margin-bottom: 5px;
+                }
+
+                /* General tables */
+                table, .styled-table, table.cycle-report {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+                font-size: 12px;
+                color: #333;
+                }
+
+                th, td, .styled-table th, .styled-table td, table.cycle-report th, table.cycle-report td {
+                border: 1px solid #ccc;
+                padding: 6px 8px;
+                }
+
+                /* Styled Table specifics */
+                .styled-table {
+                font-size: 11.5px;
+                }
+                .styled-table th, .styled-table td {
+                text-align: center;
+                padding: 8px;
+                }
+                .styled-table thead {
+                background-color: #e8eaf6;
+                color: #1a237e;
+                }
+                .styled-table tbody tr:nth-child(even) {
+                background-color: #f5f5f5;
+                }
+
+                /* Cycle report table specifics */
+                table.cycle-report {
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                color: #2c3e50;
+                }
+                table.cycle-report thead tr {
+                background-color: #2980b9;
+                color: white;
+                }
+                table.cycle-report th, table.cycle-report td {
+                padding: 10px 12px;
+                border: 1px solid #ddd;
+                text-align: left;
+                }
+                table.cycle-report tbody tr:nth-child(even) {
+                background-color: #f7f9fb;
+                }
+                table.cycle-report tbody tr:hover {
+                background-color: #d6e9f8;
+                }
+
+                /* Table row striping and hover */
+                tbody tr:nth-child(odd):not(.styled-table tbody tr) {
+                background-color: #fafafa;
+                }
+                tbody tr:hover:not(.styled-table tbody tr):not(table.cycle-report tbody tr) {
+                background-color: #eaeaea;
+                }
+
+                /* Badges */
+                .badge {
+                padding: 3px 6px;
+                border-radius: 4px;
+                font-size: 11px;
+                font-weight: bold;
+                display: inline-block;
+                }
+                .badge-success {
+                background-color: #43a047;
+                color: white;
+                }
+                .badge-fail {
+                background-color: #e53935;
+                color: white;
+                }
+
+                .badge-info {
+                background-color: #FF7F50;
+                color: white;
+                }
+
+                /* Misc */
+                .center-text {
+                text-align: center;
+                }
+                .summary-info {
+                font-size: 14px;
+                margin-bottom: 20px;
+                color: #34495e;
+                }
+
+                /* Print optimization */
+                @media print {
+                table, th, td {
+                page-break-inside: avoid;
+                }
+                h2, h3 {
+                page-break-after: avoid;
+                }
+                }
+            </style>
+            <t t-if="data.get('report_template') == 'supplier_compliance'">
+                <t t-call="purchase_custom_reports.report_supplier_compliance_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'order_cycle_time'">
+                <t t-call="purchase_custom_reports.report_order_cycle_time_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'cost_reduction'">
+                <t t-call="purchase_custom_reports.report_cost_reduction_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'stock_turnover'">
+                <t t-call="purchase_custom_reports.report_stock_turnover_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'urgent_purchases'">
+                <t t-call="purchase_custom_reports.report_urgent_purchases_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'spending_control'">
+                <t t-call="purchase_custom_reports.report_spending_control_template"/>
+            </t>
+
+        </t>
+    </template>
+</odoo>
+
+
+

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_account_budget_post,purchase.budget.post,model_purchase_budget_post,account.group_account_user,1,1,1,1
+access_budget_component_line,budget.component.line,model_budget_component_line,account.group_account_user,1,1,1,1
+access_purchasecrossovered_budget_accountant,purchase.crossovered.budget ,model_purchase_crossovered_budget,account.group_account_user,1,1,1,1
+access_purchase_crossovered_budget_lines_accountant,purchase.crossovered.budget.lines,model_purchase_crossovered_budget_lines,account.group_account_user,1,1,1,1
+

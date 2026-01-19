@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_inherit_palettes" model="ir.ui.view">
+            <field name="name">res.partner.form.palettes</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Palettes Consignées">
+                        <group>
+                            <field name="is_printable" />
+                            <field name="initial_pallets" />
+                            <field name="delivered_pallets" readonly="1"/>
+                            <field name="returned_pallets" readonly="1"/>
+                            <field name="pallet_balance" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="action_recompute_pallets_server" model="ir.actions.server">
+            <field name="name">Recalculer Palettes</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                for partner in records:
+                partner.action_recompute_pallets()
+            </field>
+        </record>
+
+        <record id="view_partner_tree_inherit_palettes" model="ir.ui.view">
+            <field name="name">res.partner.tree.palettes</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="initial_pallets" optional="hide"/>
+                    <field name="pallet_balance" optional="hide"/>
+                    <field name="delivered_pallets" optional="hide"/>
+                    <field name="returned_pallets" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_stock_picking_form_pallet" model="ir.ui.view">
+            <field name="name">stock.picking.form.pallet</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Palettes Consignées">
+                        <group>
+                            <group string="Palettes">
+                                <field name="delivered_pallets"/>
+                                <field name="returned_pallets"/>
+                                <field name="pallet_balance"/>
+                            </group>
+                            <group string=" historical Palettes">
+                                <field name="historical_delivered_pallets"/>
+                                <field name="historical_returned_pallets"/>
+                                <field name="historical_pallet_balance"/>
+                            </group>
+                        </group>
+
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

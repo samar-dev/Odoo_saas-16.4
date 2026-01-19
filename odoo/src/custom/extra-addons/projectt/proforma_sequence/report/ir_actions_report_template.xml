@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[hasclass('page')]/h2" position="replace">
+            <h2 class="mt-4">
+                <span t-if="env.context.get('proforma', False) or is_pro_forma">
+                    <span t-field="doc.x_seq_proforma_invoice"/>
+                </span>
+                <span t-elif="doc.state in ['draft','sent']">Quotation #
+                    <span t-field="doc.name">SO0000</span>
+                </span>
+                <span t-else="">Order #
+                    <span t-field="doc.name">SO0000</span>
+                </span>
+            </h2>
+        </xpath>
+    </template>
+</odoo>

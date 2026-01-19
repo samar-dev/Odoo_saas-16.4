@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_recompute_capacity" model="ir.cron">
+            <field name="name">Compute Location capacity</field>
+            <field name="model_id" ref="stock.model_stock_location"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_recompute_capacity()</field>
+            <field name="interval_number">5</field> <!-- every 1 hour -->
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field> <!-- unlimited -->
+            <field name="active">True</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

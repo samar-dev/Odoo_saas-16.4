@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_form_treasury" model="ir.ui.view">
+        <field name="name">purchase.treasury.form</field>
+        <field name="model">purchase.treasury</field>
+        <field name="arch" type="xml">
+            <form string="Treasury">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="sector_id"/>
+                        <field name="category"/>
+                    </group>
+                    <group>
+                        <field name="amount"/>
+                        <field name="account_ids" widget="many2many_tags" invisible="1"/>
+                        <field name="date"/>
+                    </group>
+                    <group>
+                        <field name="account_treasury_ids" widget="many2many_tags"/>
+                    </group>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_treasury" model="ir.ui.view">
+        <field name="name">purchase.treasury.tree</field>
+        <field name="model">purchase.treasury</field>
+        <field name="arch" type="xml">
+            <tree string="Treasury">
+                <field name="name"/>
+                <field name="sector_id"/>
+                <field name="category"/>
+                <field name="amount"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

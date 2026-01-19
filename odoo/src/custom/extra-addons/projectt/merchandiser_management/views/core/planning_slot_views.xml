@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="planning_slot_view_form_inherit_merchandiser" model="ir.ui.view">
+        <field name="name">planning.slot.form.inherit.merchandiser</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <field name="role_id" position="after">
+                <field name="partner_id" readonly="0"/>
+                <field name="assortment_id" options="{'no_create': True}"/>
+                <field name="store_id" options="{'no_create': True}"/>
+                <field name="merchandise_planning_id" readonly="1" options="{'no_create': True}"/>
+                <field name="merchandise_state"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="planning_view_form_in_inherit" model="ir.ui.view">
+        <field name="name">planning.slot.form.gantt.inherit</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_form_in_gantt"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='action_send']" position="after">
+                <button string="Create merchandise" type="object" name="button_create_merchandise"
+                        class="btn btn-primary"
+                        attrs="{'invisible': [('merchandise_planning_id', '!=', False)]}"
+                        groups="planning.group_planning_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="planning_slot_view_calendar_inherit_merchandiser" model="ir.ui.view">
+        <field name="name">planning.slot.calendar.inherit.merchandiser</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_calendar"/>
+        <field name="arch" type="xml">
+            <field name="role_id" position="after">
+                <field name="assortment_id" attrs="{'invisible': [('assortment_id', '=', False)]}"
+                       options="{'no_create': True}"/>
+                <field name="merchandise_planning_id" readonly="1" options="{'no_create': True}"
+                       attrs="{'invisible': [('merchandise_planning_id', '=', False)]}"/>
+                <field name="merchandise_state" attrs="{'invisible': [('merchandise_planning_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="planning_slot_view_tree_inherit_merchandiser" model="ir.ui.view">
+        <field name="name">planning.slot.tree.inherit.merchandiser</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="assortment_id" options="{'no_create': True}"/>
+                <field name="merchandise_planning_id" readonly="1" options="{'no_create': True}"/>
+                <field name="merchandise_state"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="planning_slot_view_kanban_inherit_merchandiser" model="ir.ui.view">
+        <field name="name">planning.slot.kanban.inherit.merchandiser</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_kanban"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//t[@name='role']" position="after">
+                <div>
+                    <field name="assortment_id"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

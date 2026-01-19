@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="knowledge.EmbeddedViewManager" owl="1">
+        <BehaviorToolbar buttonsGroupClass="'bg-white rounded-top border border-bottom-0'">
+            <t t-set-slot="buttons">
+                <BehaviorToolbarButton
+                    t-if="props.additionalViewProps"
+                    icon="'fa-pencil'"
+                    label="env._t('Edit')"
+                    onClick.bind="_onEditBtnClick"
+                />
+                <BehaviorToolbarButton
+                    t-else=""
+                    hidden="props.readonly"
+                    icon="'fa-pencil'"
+                    label="env._t('Rename')"
+                    onClick.bind="_onRenameBtnClick"
+                />
+                <BehaviorToolbarButton
+                    icon="'fa-external-link'"
+                    label="env._t('Open')"
+                    onClick.bind="_onOpenBtnClick"
+                />
+            </t>
+        </BehaviorToolbar>
+        <div class="o_knowledge_embedded_view d-flex flex-column flex-grow-1 border-top border-bottom"
+            data-oe-transient-content="true">
+            <t t-component="EmbeddedView" t-props="allEmbeddedViewProps"/>
+        </div>
+    </t>
+</templates>

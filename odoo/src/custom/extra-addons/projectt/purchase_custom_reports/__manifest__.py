@@ -1,0 +1,22 @@
+{
+    "name": "Odoo Purchase Custom Qweb reports",
+    "version": "saas~16.4.1.0.0",
+    "category": "External",
+    "author": "Odoo",
+    "website": "",
+    "license": "Other proprietary",
+    "depends": ["base", "sale", "purchase"],
+    "data": [
+        "security/ir.model.access.csv",
+        # "data/purchase_report_action.xml",
+        "views/purchase_report_wizard_view.xml",
+        "views/purchase_kpi_report_wizard_view.xml",
+        "views/purchase_views.xml",
+        "report/purchase_report_template.xml",
+        "report/purchase_kpi_report_template.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">view_order_form_inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='partner_details']" position="inside">
+                    <field name="x_show_credit_limit" invisible="1" />
+                    <field name="x_credit_limit" attrs="{'invisible': [('x_show_credit_limit', '=', False)]}" />
+                    <field name="x_current_outstanding_amount" attrs="{'invisible': [('x_show_credit_limit', '=', False)]}" />
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

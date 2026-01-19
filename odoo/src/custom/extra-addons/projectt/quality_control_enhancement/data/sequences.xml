@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_quality_check" model="ir.sequence">
+        <field name="name">Checklist Emballage Sequence</field>
+        <field name="code">checklist.emballage.sequence</field>
+        <field name="padding">5</field>
+        <field name="prefix">CLE-</field>
+    </record>
+</odoo>

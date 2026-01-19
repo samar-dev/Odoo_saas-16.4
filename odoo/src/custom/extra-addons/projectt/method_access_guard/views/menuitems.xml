@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="method_access_guard_menu"
+              name="Method Access Guard"
+              groups="base.group_system"
+              parent="v__access_guard.v__access_guard_subroot"
+              action="method_access_guard.method_access_guard_action" />
+
+</odoo>

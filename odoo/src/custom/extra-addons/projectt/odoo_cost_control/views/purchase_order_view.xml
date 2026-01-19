@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_form_inherit_price_check" model="ir.ui.view">
+        <field name="name">purchase.order.form.price.check</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+
+                <button name="admin_confirm" string="Confirm (Admin)" type="object"
+                        attrs="{'invisible': [('price_blocked', '=', False)]}"
+                        class="btn-danger"/>
+            </header>
+
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="price_blocked" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

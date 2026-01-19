@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_template_only_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="product_template_code" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('product_variant_count', '>', 1)], 'readonly':
+                        [('product_template_code', '!=', False)]}
+                    </attribute>
+                </xpath>
+                <xpath expr="//sheet" position="before">
+                    <div class="alert alert-warning mb-0" role="alert"
+                         attrs="{'invisible': ['|',('product_template_code', '!=', False),('default_code','!=',False)]}">
+                        <span>Don't forget to choose a category for your article or manually create its reference</span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_template_only_tree_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_open_label_layout']" position="after">
+                    <button name="action_generate_default_code"
+                            string="Generate references"
+                            type="object"
+                            groups="generate_internal_reference_by_category.group_generate_product_reference"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

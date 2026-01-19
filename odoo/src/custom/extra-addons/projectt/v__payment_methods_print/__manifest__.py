@@ -1,0 +1,22 @@
+{
+    "name": "Print Payment Methods",
+    "version": "saas~16.4.1.0.0",
+    "description": "Print Payment Methods",
+    "summary": "Add reports to print for account_payment",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "account", "v__payment_methods"],
+    "data": [
+        "data/vega_check_paperformat.xml",
+        "views/core/account_payment_method.xml",
+        "views/core/account_journal.xml",
+        "views/core/account_payment.xml",
+        "report/account_payment_vega_check.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

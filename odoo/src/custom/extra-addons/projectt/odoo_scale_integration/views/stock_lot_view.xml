@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_lot_form_inherit" model="ir.ui.view">
+            <field name="name">stock.lot.form.inherit</field>
+            <field name="model">stock.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <!-- Inherit after the lot name field -->
+                <xpath expr="//page[@name='description']" position="after">
+                    <page string="Analyse" name="analyse_infos">
+                        <group>
+                            <group>
+                                <field name="numero_adm"/>
+                                <field name="ac"/>
+                                <field name="k_two"/>
+                            </group>
+                            <group>
+                                <field name="k_seven"/>
+                                <field name="pesticides"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

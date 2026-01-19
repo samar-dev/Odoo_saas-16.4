@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="group_edit_invoice_limit" model="res.groups">
+            <field name="name">Modifier Plafond Factures</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        </record>
+
+    </data>
+</odoo>

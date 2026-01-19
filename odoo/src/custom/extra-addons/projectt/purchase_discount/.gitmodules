@@ -1,0 +1,8 @@
+[submodule "vega-accounting"]
+	path = vega-accounting
+	url = git@www.gitlab.veganet.com.tn:internal-modules/vega-accounting.git
+	branch = 16.4
+[submodule "product_variant_solo"]
+	path = product_variant_solo
+	url = git@www.gitlab.veganet.com.tn:internal-modules/product_variant_solo.git
+	branch = 16.4

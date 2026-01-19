@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">view_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="1" />
+            <field name="arch" type="xml">
+
+                <div class="oe_button_box" position="inside">
+                    <field name="create_date" invisible="1" />
+                    <field name="x_show_block_unpaid_customer" invisible="1" />
+                    <field name="x_customer_blocked" invisible="1" />
+                    <button name="action_toggle_x_customer_blocked"
+                            attrs="{'invisible': ['|', ('x_customer_blocked', '=', True), '|', ('x_show_block_unpaid_customer', '=', False), ('create_date', '=', False)]}"
+                            class="oe_stat_button text-success"
+                            type="object"
+                            icon="fa-user">
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-success">Vente autorisé</span>
+                        </div>
+                    </button>
+                    <button name="action_toggle_x_customer_blocked"
+                            attrs="{'invisible': ['|', ('x_customer_blocked', '=', False), '|', ('x_show_block_unpaid_customer', '=', False), ('create_date', '=', False)]}"
+                            class="oe_stat_button text-danger"
+                            type="object"
+                            icon="fa-user">
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-danger">Vente <br/>non autorisé</span>
+                        </div>
+                    </button>
+                </div>
+
+                <notebook position="inside">
+                    <page string="Historique de blocage/déblocage"
+                          attrs="{'invisible': ['|', ('x_show_block_unpaid_customer', '=', False), ('create_date', '=', False)]}">
+                        <field name="partner_block_history_ids"
+                               readonly="1"
+                               force_save="1">
+                            <tree decoration-success="state == 'unblocked'"
+                                  decoration-danger="state == 'blocked'">
+                                <field name="company_id" invisible="1" />
+                                <field name="state" invisible="1" />
+                                <field name="date" />
+                                <field name="description" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,707 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_payroll_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-30 07:59+0000\n"
+"PO-Revision-Date: 2025-07-30 07:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__month__10
+msgid "10"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__month__11
+msgid "11"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__month__12
+msgid "12"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2020
+msgid "2020"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2021
+msgid "2021"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2022
+msgid "2022"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2023
+msgid "2023"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2024
+msgid "2024"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2025
+msgid "2025"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2026
+msgid "2026"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2027
+msgid "2027"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2028
+msgid "2028"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2029
+msgid "2029"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__wizard_journal_pay_periodique__year__2030
+msgid "2030"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "<strong>Imprimé le :</strong>"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__amount_avance
+msgid "Amount Avance"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.view_wizard_journal_pay_periodique_form
+msgid "Annuler"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__year
+msgid "Année"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__date_to
+msgid "Au"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Avances et prêts"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__bank_id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__bank_id
+msgid "Banque"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Banque :"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__base
+msgid "Base"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_cnss_declaration
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_form
+msgid "CNSS Declaration"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_cnss_declaration_line
+msgid "CNSS Declaration Line"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_tree
+msgid "CNSS Declarations"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "CSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Catégorie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__conge
+msgid "Conge"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__cotisation_employee
+msgid "Cotisation Employee"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__cp_value
+msgid "Cp Value"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.actions.act_window,help:hr_payroll_enhancement.declaration_cnss_action
+msgid ""
+"Create a new CNSS Declaration for a trimester period and generate\n"
+"                    lines."
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__create_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__create_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__create_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__create_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__create_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__create_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__create_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__create_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__create_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__create_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__date_order
+msgid "Date"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Date :"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__declaration_id
+msgid "Declaration"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.actions.act_window,name:hr_payroll_enhancement.declaration_cnss_action
+#: model:ir.ui.menu,name:hr_payroll_enhancement.repport_menuitem
+msgid "Declaration CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__line_ids
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_form
+msgid "Declaration Lines"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__currency_id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__currency_id
+msgid "Devise"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__display_name
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__display_name
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__display_name
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__display_name
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__display_name
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__cnss_declaration__state__done
+msgid "Done"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__cnss_declaration__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__date_from
+msgid "Du"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__employee_id
+msgid "Employee"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__employee_cnss
+msgid "Employee CNSS Contribution"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__employee_matricule
+msgid "Employee Matricule"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__employee_name
+msgid "Employee Name"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__employer_cnss
+msgid "Employer CNSS Contribution"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Employé"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__date_to
+msgid "End Date"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__excel_file
+msgid "Excel Export"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__excel_filename
+msgid "Excel Filename"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.view_payroll_payment_order_form
+msgid "Exporter Excel"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__data
+msgid "Fichier CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__active_file
+msgid "Fichier généré"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_form
+msgid "Generate Lines"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_form
+msgid "Générer fichier CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.view_payroll_payment_order_form
+msgid "Générer les lignes"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__hr_salary_rule__rule_type__hours
+msgid "Hours"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "IRPP"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__impo
+msgid "Impo"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__impo_css
+msgid "Impo Css"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.view_wizard_journal_pay_periodique_form
+msgid "Imprimer"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.view_payroll_payment_order_form
+msgid "Imprimer Ordre de Virement"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__indemnite_dif
+msgid "Indemnite Dif"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__indemnite_pr
+msgid "Indemnite Pr"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__indemnite_tr
+msgid "Indemnite Tr"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Indemnité de présence"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Indemnité de transport"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Indemnité différentielle"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.actions.act_window,name:hr_payroll_enhancement.action_wizard_journal_pay_periodique
+#: model:ir.actions.report,name:hr_payroll_enhancement.journal_pay_periodique_report_action
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.view_wizard_journal_pay_periodique_form
+msgid "Journal Paie Périodique"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_journal_pay_periodique
+msgid "Journal Paie Périodique Résultats"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Journal de paie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__write_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__write_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__write_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__write_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__write_uid
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__write_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__write_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__write_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__write_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__write_date
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_payroll_payment_line
+msgid "Ligne de Virement Paie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__payment_line_ids
+msgid "Lignes de paiement"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.ui.menu,name:hr_payroll_enhancement.menu_journal_pay_periodique_wizard_action
+msgid "Livre de paie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Matricule"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__month
+msgid "Mois"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields.selection,name:hr_payroll_enhancement.selection__hr_salary_rule__rule_type__money
+msgid "Money"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__amount
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Montant"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__total_amount
+msgid "Montant Total"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Montant total :"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "NBRE J Conge annuel"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Net à payer"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_wizard_journal_pay_periodique__motif
+msgid "Nom de la période"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__file_name
+msgid "Nom du fichier"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__num_trimester
+msgid "Numéro du trimestre"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__order_id
+msgid "Ordre"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.actions.report,name:hr_payroll_enhancement.payroll_payment_order_report_action
+#: model:ir.model,name:hr_payroll_enhancement.model_payroll_payment_order
+msgid "Ordre de Virement Paie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Ordre de Virement Paie :"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.actions.act_window,name:hr_payroll_enhancement.action_payroll_payment_order
+#: model:ir.ui.menu,name:hr_payroll_enhancement.menu_hr_payroll_enhancement_order
+msgid "Ordres de Virement"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__rib
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "RIB"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.ui.menu,name:hr_payroll_enhancement.declaration_cnss_menuitem
+msgid "Rappots"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__name
+msgid "Reference"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_report_journal_pay_periodique_journal_pay_periodique_template
+msgid "Report Journal Paie Périodique"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_report_hr_payroll_enhancement_report_payroll_payment_order
+msgid "Report Ordre de Virement Paie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:res.groups,name:hr_payroll_enhancement.group_responsable_paie
+msgid "Responsable paie"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Retenue CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_hr_salary_rule__rule_type
+msgid "Rule Type"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__name
+msgid "Référence"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__remuneration_1
+msgid "Rémunération Mois 1"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__remuneration_2
+msgid "Rémunération Mois 2"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__remuneration_3
+msgid "Rémunération Mois 3"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Salaire Brut"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__salaire_brut_imposable
+msgid "Salaire Brut Imposable"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Salaire Imposable"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__salaire_net
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Salaire Net"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__salaire_net_to_pay
+msgid "Salaire Net To Pay"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Salaire base"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_line__employee_id
+msgid "Salarié"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr "Règle salariale"
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__company_id
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_payroll_payment_order__company_id
+msgid "Société"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.report_payroll_payment_order
+msgid "Société :"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__date_from
+msgid "Start Date"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__state
+msgid "State"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration_line__total
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Total"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__total_employee_cnss
+msgid "Total Employee CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_cnss_declaration__total_employer_cnss
+msgid "Total Employer CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Total général"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_form
+msgid "Totals"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.declaration_cnss_form
+msgid "Télécharger fichier CNSS"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model_terms:ir.ui.view,arch_db:hr_payroll_enhancement.journal_pay_periodique_template
+msgid "Valeur Conge Annuel"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model.fields,field_description:hr_payroll_enhancement.field_journal_pay_periodique__wage
+msgid "Wage"
+msgstr ""
+
+#. module: hr_payroll_enhancement
+#: model:ir.model,name:hr_payroll_enhancement.model_wizard_journal_pay_periodique
+msgid "Wizard Journal Paie Périodique"
+msgstr ""

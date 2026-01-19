@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="template_facture_client_pro_forma">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="row">
+                        <img src="https://i.imgur.com/gmdz0XW.png" style=" height:100px;width:1000px ;padding-top:0px; margin-bottom: 0%;margin-left:40px;"/>
+                    </div>
+                    <h4 style="text-align:center;">PRO FORMA INVOICE</h4>
+                    <table style="text-align:left; padding-left: 2%; border: 1px solid black; width:100%;">
+                        <tr style="width:100%; height:25px; padding-left: 2%; padding-top: 1%;">
+                            <td style="width:15%;padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>PRO FORMA INVOICE N°:</b></td>
+                            <td style="width:25%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_seq_proforma_invoice"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%;border: 1px solid black;"><b>PRO FORMA INVOICE DATE:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-esc="o.date_order.strftime('%Y/%m/%d')"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>COUNTRY OF ORIGIN:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.company_id.country_id"/></td>
+                        </tr>
+                        <tr style="width:100%; height:10px; padding-left: 2%; padding-top: 1%;">
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>BUYER'S ORDER N° AND DATE:</b></td>
+                            <td style="width:25%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_order_number"/>  <span t-field="o.x_order_date"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>CONTRACT NUMBER AND DATE:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_contract_number"/>  <span t-field="o.x_contract_date"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>FINAL DESTINATION:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.partner_id.country_id"/></td>
+                        </tr>
+                        <tr style="width:100%; height:10px; padding-left: 2%; padding-top: 1%;">
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>PORT OF LOADING:</b></td>
+                            <td style="width:25%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_loading_port"/> </td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>PORT OF DISCHARGING:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_unloading_port"/> </td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>TRANSPORT BY:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_transport_by"/></td>
+                        </tr>
+                        <tr style="width:100%; height:10px;padding-left: 2%; padding-top: 1%; ">
+                            <td style="width:40%; padding-left: 2%; padding-top: 1%; border: 1px solid black;" colspan="2"><b>SHIPPER/EXPORTER/MANUFACTURER:</b></td>
+                            <td style="width:30%; padding-left: 2%; padding-top: 1%; border: 1px solid black;" colspan="2"><span t-field="o.x_exporter_manufacturer"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>SEAL N°:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_plan_number"/></td>
+                        </tr>
+                        <tr style="width:100%; height:10px; padding-left: 2%; padding-top: 1%;">
+                            <td style="width:40%; padding-left: 2%; padding-top: 1%; border: 1px solid black;" colspan="2" rowspan="2"><b>CUSTOMER INVOICE /CONSIGNEE:</b></td>
+                            <td style="width:30%; padding-left: 2%; padding-top: 1%; border: 1px solid black;" colspan="2" rowspan="2"><span t-field="o.x_customer_invoice_recipient"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>FLEXITANK NUMBER:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_flexitank_number"/></td>
+                        </tr>
+                        <tr style="width:100%; height:10px; padding-left: 2%; padding-top: 1%;">
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>CONTAINER SIZE:</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"> <span t-field="o.x_container_size"/> </td>
+                        </tr>
+                        <tr style="width:100%; height:20px; padding-left: 2%; padding-top: 2%;">
+                            <td style="width:40%; padding-left: 2%; padding-top: 1%; border: 1px solid black;" colspan="2" rowspan="2"><b>BUYER (if other than consignee)/NOTIFY PARTY/PAYER/BROKER:</b></td>
+                            <td style="width:30%; padding-left: 2%; padding-top: 1%; border: 1px solid black;" colspan="2" rowspan="2"><span t-field="o.x_party_to_inform"/></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><b>VESSEL NAME</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 1%; border: 1px solid black;"><span t-field="o.x_ship_name"/></td>
+                        </tr>
+                        <tr style="width:100%; height:15px; padding-left: 2%; padding-top: 0%;">
+                            <td style="width:15%; padding-left: 2%; padding-top: 0%; border: 1px solid black;"><b>INCOTERM</b></td>
+                            <td style="width:15%; padding-left: 2%; padding-top: 0%; border: 1px solid black;"><span t-field="o.incoterm"/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table style="text-align:center; padding-left: 2%; border: 1px solid black; width:100%;">
+                        <tr style="width:100%; border: 1px solid black; background-color: #D3D3D3; height: 50px;">
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">CONTAINER(S)N°</th>
+                            <th style="width:10%;text-align:center; padding-top: 2%; border: 1px solid black;">BAR CODE</th>
+                            <th style="width:27%;text-align:center; padding-top: 2%; border: 1px solid black;">GOODS DESCRIPTION</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">UNIT/CRT</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">UNIT QTY</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">UNIT PRICE</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">CRT QTY</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">CRT PRICE</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">TOTAL</th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">GROSS WEIGHT IN KG </th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">NET WEIGHT IN KG </th>
+                            <th style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;">NUM OF PALLET</th>
+                        </tr>
+                        <tr t-foreach="o.order_line" t-as="tbl" style="width:100%; height:15pt ; text-align: center; border: 1px solid black;">
+                             <t t-set="product_packaging_id_qty" t-value="tbl.product_packaging_id.qty"/>
+                             <td style="width:14%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.x_container_number"/></td>
+                             <td style="width:10%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.product_id.barcode"/></td>
+                             <td style="width:20%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.product_id"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.product_packaging_qty"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.product_uom_qty"/> <span t-field="tbl.product_uom"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.price_unit"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-esc="product_packaging_id_qty"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-esc="product_packaging_id_qty* tbl.price_unit"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.price_subtotal"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.net_weight"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.gross_weight"/></td>
+                             <td style="width:7%;text-align:center; padding-top: 2%; border: 1px solid black;"><span t-field="tbl.nbr_pallet"/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <t t-if="o.company_id.partner_id.bank_ids.filtered(lambda b: b.currency_id.name == o.currency_id.name)">
+                        <t t-set="banks" t-value="o.company_id.partner_id.bank_ids.filtered(lambda b: b.currency_id.name == o.currency_id.name)"/>
+                        <table style="text-align:left; padding-left: 2%; border: 1px solid black; width:100%;">
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>TOTAL AMOUNT IN LETTERS: </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <strong><t t-esc="o.currency_id.amount_to_text(o.amount_total)"/></strong></td>
+                            </tr>
+                            <t t-foreach="banks" t-as="bank">
+                                <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                    <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>METHOD OF PAYMENT: </b></td>
+                                    <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <span t-field="o.invoice_payment_term_id"/> </td>
+                                </tr>
+                                <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                    <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BANK DETAILS: </b></td>
+                                    <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"><t t-esc="bank.bank_id.street"/> </td>
+                                </tr>
+                                <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                    <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BANK NAME:  </b></td>
+                                    <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <t t-esc="bank.bank_id.name"/></td>
+                                </tr>
+                                <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                    <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BRANCH:</b></td>
+                                    <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <t t-esc="bank.bank_id.street2"/></td>
+                                </tr>
+                                <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                    <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>IBAN: </b></td>
+                                    <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"><t t-esc="bank.acc_number"/> </td>
+                                </tr>
+                                <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                    <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BIC OR SWIFT CODE:  </b></td>
+                                    <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <t t-esc="bank.bank_id.bic"/></td>
+                                </tr>
+                            </t>
+                        </table>
+                    </t>
+                    <t t-else="">
+                        <table style="text-align:left; padding-left: 2%; border: 1px solid black; width:100%;">
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>TOTAL AMOUNT IN LETTERS: </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <strong><t t-esc="o.currency_id.amount_to_text(o.amount_total)"/></strong></td>
+                            </tr>
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>METHOD OF PAYMENT: </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> <span t-field="o.payment_term_id"/> </td>
+                            </tr>
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BANK DETAILS: </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> </td>
+                            </tr>
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BANK NAME:  </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> </td>
+                            </tr>
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BRANCH:</b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> </td>
+                            </tr>
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>IBAN: </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> </td>
+                            </tr>
+                            <tr style="width:100%; border: 1px solid black; height: 20px; ">
+                                <td style="width:30%;text-align:left; padding-left: 2%; border: 1px solid black;"><b>BIC OR SWIFT CODE:  </b></td>
+                                <td style="width:70%;text-align:left; padding-left: 2%; border: 1px solid black;"> </td>
+                            </tr>
+                        </table>
+                    </t>
+                    <div class="footer" style="height:250px;">
+                        <div class="row">
+                            <div style="width: 20%;">
+                                <h6 style="text-align:left; color:red; padding-top:50px; "><span t-field="o.company_id.website"/></h6>
+                            </div>
+                            <div style="width: 80%; border-radius: 40px 10px ;border-right:15px solid #DAA520; border-bottom:10px solid #DAA520; border-top:1px solid white; border-left:1px solid white;">
+                                <table style="border:white; width:100%; color:#808080;">
+                                    <tr style="border:white; width:100%;height:20px;text-align:center;">
+                                        <td style="border:white; width:100%;">SOCIETE TUNISIENNE DE CONDITIONNEMENT DE PRODUIT ALIMENTAIRES</td>
+                                    </tr>
+                                    <tr style="border:white; width:100%;height:20px;text-align:center;">
+                                        <td style="border:white; width:100%;">STCA AL JAZIRA S.A.R.L - Zone industrielle Mornag BP 81 - Tunisie</td>
+                                    </tr>
+                                    <tr style="border:white; width:100%;height:20px; text-align:center;">
+                                        <td style="border:white; width:100%;"><b>Tél :</b> <span t-field="o.company_id.phone"/> <b>Fax :</b>  <b>Email :</b> <span t-field="o.company_id.email"/></td>
+                                    </tr>
+                                    <tr style="border:white; width:100%; height:20px; text-align:center;">
+                                        <td style="border:white; width:100%;"><b>Code TVA :</b> <span t-field="o.company_id.vat"/> <b>RC :</b> <span t-field="o.company_id.company_registry"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='group2']" position="inside">
+                    <field name="is_withholding" invisible="1" />
+                    <field name="with_withholding"
+                           attrs="{'invisible': [('is_withholding', '=', True)], 'readonly': [('state', '!=', 'draft')]}" />
+                    <field name="subtract_tax_stamp"
+                           attrs="{'invisible': [('with_withholding', '=', False)], 'readonly': [('state', '!=', 'draft')]}" />
+                    <field name="withholding_tax_id"
+                           options="{'no_create': 1, 'no_edit': 1}"
+                           domain="[('company_id', '=', company_id), ('type', '=', payment_type)]"
+                           attrs="{'invisible': [('with_withholding', '=', False), ('is_withholding', '=', False)], 'required': ['|', ('with_withholding', '=', True), ('is_withholding', '=', True)], 'readonly': [('state', '!=', 'draft')]}" />
+                    <field name="withholding_amount"
+                           force_save="1"
+                           widget="monetary"
+                           attrs="{'invisible': [('with_withholding', '=', False)]}" />
+                    <field name="withholding_payment_id"
+                           attrs="{'invisible': [('with_withholding', '=', False)]}" />
+
+                </xpath>
+
+                <header position="inside">
+                    <button name="action_print_withholding_certificate"
+                            class="btn-info"
+                            type="object"
+                            string="Imprimer certificat RAS"
+                            attrs="{'invisible': ['|', ('state', '=', 'draft'), ('withholding_tax_id', '=', False)]}"
+                            icon="fa-print" />
+                </header>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

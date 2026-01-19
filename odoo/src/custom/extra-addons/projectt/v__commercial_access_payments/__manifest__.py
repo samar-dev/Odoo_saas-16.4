@@ -1,0 +1,21 @@
+{
+    "name": "Commercial Access Payments",
+    "version": "saas~16.4.1.1.1",
+    "description": "Commercial Access Payments",
+    "summary": "Summary",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "account"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "security/record_rules.xml",
+        "views/core/account_move.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

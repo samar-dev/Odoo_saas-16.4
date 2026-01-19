@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_company_blocked_year_admin,res.company.blocked.year admin,model_res_company_blocked_year,base.group_system,1,1,1,1
+access_company_blocked_year_read,res.company.blocked.year read,model_res_company_blocked_year,base.group_user,1,1,1,1

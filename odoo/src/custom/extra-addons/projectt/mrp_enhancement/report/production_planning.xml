@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_production_planning" model="ir.actions.report">
+            <field name="name">Production Planning</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mrp_enhancement.template_production_planning</field>
+            <field name="report_file">mrp_enhancement.template_production_planning</field>
+            <field name="print_report_name">'PP - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="template_production_planning">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .of_corp {
+                        width: 100%;
+                        border-collapse: collapse;
+                        border: 1px solid #000;
+                        texAt-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                        padding: 5px;
+                        }
+
+                        .of_corp_left {
+                        width: 100%;
+                        border-collapse: collapse;
+                        border: 1px solid #000;
+                        text-align: left;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                        }
+
+                        .text {
+                        padding: 10px;
+                        padding: 30px 0;
+                        text-align: center;
+                        }
+
+                        .text_visa {
+                        padding: 10px 5px 80px 5px;
+                        text-align: center;
+                        }
+
+                        .of_table__name {
+                        font-weight: bold;
+                        text-align: center;
+                        }
+
+                        .page {
+                        margin-top: 0px;
+                        }
+                    </style>
+                    <t t-set="o" t-value="docs[0]"/>
+                    <div class="page">
+                        <div class="row mt32 mb32 of_corp">
+                            <div class="col-3">
+                                <img src="https://i.imgur.com/jxwE2b3.jpg" style="height:120px;width:210px;"/>
+                            </div>
+                            <div class="col-5 text">
+                                <strong>DATE CREATION :
+                                    <t t-esc="datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')"/>
+                                </strong>
+                                <br/>
+                                <strong>REFERENCE :
+                                    <span t-field="o.production_planning_reference"/>
+                                </strong>
+                            </div>
+                            <div class="col-4 text">
+                                <span class="text-end">
+                                    <div t-field="o.production_planning_reference"
+                                         t-options="{'widget': 'barcode', 'width': 600, 'height': 100, 'img_style': 'width:350px;height:60px'}"/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="oe_structure"/>
+                        <div class="row mt32 mb32 of_corp">
+                            <div class="col-4" t-if="o.origin">
+                                <strong>CLT et DOC Origine :</strong>
+                                <br/>
+                                <span t-field="o.origin"/>
+                            </div>
+                            <div class="col-4" t-if="o.origin">
+                                <strong>Marque :</strong>
+                                <br/>
+                                <span t-field="o.note"/>
+                            </div>
+                            <div class="col-4" t-if="o.user_id">
+                                <strong>Date Planification :</strong>
+                                <br/>
+                                <span t-field="o.date_start"/>
+                            </div>
+                        </div>
+                        <table class="table table-sm of_corp">
+                            <tr>
+                                <th>
+                                    <strong>Réf OF</strong>
+                                </th>
+                                <th>
+                                    <strong>Produit</strong>
+                                </th>
+                                <th>
+                                    <strong>Qté à produire</strong>
+                                </th>
+                                <th>
+                                    <strong>Nb Palette</strong>
+                                </th>
+                                <th>
+                                    <strong>Ligne</strong>
+                                </th>
+                                <th>
+                                    <strong>Date de production</strong>
+                                </th>
+                                <th>
+                                    <strong>DLC</strong>
+                                </th>
+                                <th>
+                                    <strong>Lot/Série</strong>
+                                </th>
+                                <th>
+                                    <strong>Planification</strong>
+                                </th>
+                            </tr>
+                            <t t-set="tot_qty" t-value="0"/>
+                            <t t-set="tot_nb_pal" t-value="0"/>
+                            <t t-set="tot_oil_weight" t-value="0"/>
+                            <tr t-foreach="docs" t-as="o">
+                                <td>
+                                    <span t-esc="o.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.product_id.name"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="'%.0f' % (o.product_qty / o.bom_id.product_qty)"/>
+                                    <t t-set="tot_qty" t-value="(o.product_qty / o.bom_id.product_qty)+tot_qty"/>
+                                </td>
+                                <t t-set="nb_pal"
+                                   t-value="o.product_id.packaging_ids.filtered(lambda p: p.name and p.name.startswith('P'))"/>
+                                <t t-set="oil_weight"
+                                   t-value="o.move_raw_ids.filtered(lambda p: p.product_id.name and p.product_id.name.startswith('H'))"/>
+                                <t t-set="tot_oil_weight"
+                                   t-value="sum(p.product_uom_qty for p in oil_weight)+tot_oil_weight"/>
+                                <td class="text-center">
+                                    <t t-if="nb_pal">
+                                        <span t-esc="'%.2f' % (o.product_qty / nb_pal.qty)"/>
+                                        <t t-set="tot_nb_pal" t-value="(o.product_qty / nb_pal.qty)+tot_nb_pal"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-esc="o.workorder_ids[0].workcenter_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-if="o.lot_producing_id.production_date"
+                                          t-esc="o.lot_producing_id.production_date.strftime('%d/%m/%Y')"/>
+                                </td>
+                                <td>
+                                    <span t-if="o.lot_producing_id.expiration_date"
+                                          t-esc="o.lot_producing_id.expiration_date.strftime('%d/%m/%Y')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="o.lot_producing_id.name"/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr style="background-color: #f2f2f2;font-weight: bold;">
+                                <td>TOTAL</td>
+                                <td/>
+                                <td class="text-center">
+                                    <span t-esc="'%.0f' % tot_qty"/>
+                                </td>
+                                <td class="text-center">
+                                    <t t-set="my_number" t-value="tot_nb_pal"/>
+                                    <!-- Replace with your actual number -->
+                                    <t t-set="my_number_safe" t-value="my_number or 0"/>
+                                    <!-- Use 0 if my_number is None -->
+                                    <t t-set="integer_part" t-value="int(my_number_safe)"/>
+                                    <t t-set="decimal_part" t-value="my_number_safe - integer_part"/>
+                                    <t t-set="rounded_number"
+                                       t-value="integer_part + (1 if decimal_part &gt; 0 else 0)"/>
+                                    <span t-esc="rounded_number"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td>
+                                    <span t-esc="'%.3f' % tot_oil_weight"/>
+                                    KG
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-sm of_corp">
+                            <tr>
+                                <th style="text-align:left; padding-bottom: 8px;" colspan="2">Exigences client :</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="msg">
+                                    <t t-set="notes"
+                                       t-value="msg.message_ids.filtered(lambda m: m.message_type == 'comment')"/>
+                                    <t t-if="len(notes) &gt; 0 and notes[0].body">
+                                        <td>
+                                            <span>
+                                                <t t-esc="msg.name" style="font-weight: bold;"/>
+                                                :
+                                                <t t-esc="notes[0].body"/>
+                                            </span>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm of_corp">
+                            <tr style="page-break-before: avoid;width:100%;">
+                                <td class="text_visa" style="width:33%;height:60px;">Directeur Usine
+                                    <br/>
+                                </td>
+                                <td class="text_visa" style="width:33%;height:60px;">Responsable Qualité
+                                    <br/>
+                                </td>
+                                <td class="text_visa" style="width:33%;height:60px;">Responsable Magasin
+                                    <br/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

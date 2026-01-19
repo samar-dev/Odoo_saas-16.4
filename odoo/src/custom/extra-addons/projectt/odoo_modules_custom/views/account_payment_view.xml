@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_payment_form_inherit_original_currency" model="ir.ui.view">
+            <field name="name">account.payment.form.original.currency</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Place fields after the 'with_withholding' field -->
+                <xpath expr="//field[@name='with_withholding']" position="after">
+
+                    <!-- Hidden helper field -->
+                    <field name="partner_customer_type" invisible="1"/>
+                    <field name="is_company_currency" invisible="1"/>
+
+                    <!-- Original Money Field -->
+                    <field name="original_money"
+                           attrs="{
+           'required': [
+               ('partner_customer_type', 'in', ['import_supplier']),
+               ('is_company_currency', '=', True)
+           ],
+           'invisible': [
+               ('partner_customer_type', 'not in', ['import_supplier'])
+           ]
+       }"/>
+
+                    <field name="original_currency"
+                           attrs="{
+           'required': [
+               ('partner_customer_type', 'in', ['import_supplier']),
+               ('is_company_currency', '=', True)
+           ],
+           'invisible': [
+               ('partner_customer_type', 'not in', ['import_supplier'])
+           ]
+       }"/>
+
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

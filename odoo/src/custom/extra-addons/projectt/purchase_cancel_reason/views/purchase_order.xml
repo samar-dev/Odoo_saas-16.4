@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='button_cancel']" position="before">
+                <button
+                        name="%(action_purchase_order_cancel)d"
+                        string="Cloturer"
+                        type="action"
+                        icon="fa-solid fa-lock" class="btn-warning"
+                        groups="purchase.group_purchase_manager"
+                        attrs="{'invisible': [('is_forced_closed', '=', True)]}"
+                />
+                <button
+                        name="reset_cancel_uegent"
+                        string="De-cloturer"
+                        type="object"
+                        icon="fa-solid fa-lock" class="btn-warning"
+                        groups="purchase.group_purchase_manager"
+                        attrs="{'invisible': [('is_forced_closed', '=', False)]}"
+                />
+            </xpath>
+            <xpath expr="//sheet" position="before">
+                <field name="is_forced_closed" invisible="1"/>
+                <div class="alert alert-danger mb-0" role="alert"
+                     attrs="{'invisible': [('is_forced_closed', '=', False)]}">
+                    <strong>Attention:</strong>
+                    This bill has been <b>forcefully Closed</b> due to a cancellation reason.
+                    <br/>
+                    Reason:
+                    <field
+                            name="cancel_reason_id"
+                            class="oe_inline"
+                            readonly="1"
+                            options="{'no_open': True, 'no_create': True}"
+                    />
+                    <field
+                            name="cancel_reason_description"
+                            class="oe_inline"
+                            readonly="1"
+                    />:
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_tree_inherit_cancel_reason" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherit.cancel.reason</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="cancel_reason_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_purchase_order_cmd_tree_inherit_cancel_reason" model="ir.ui.view">
+        <field name="name">purchase.order.cmd.tree.inherit.cancel.reason</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="cancel_reason_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="group_block_unpaid_customers" model="res.groups">
+            <field name="name">Modifier blocage client</field>
+        </record>
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,294 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-13 10:12+0000\n"
+"PO-Revision-Date: 2024-03-13 10:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__sale_order__x_transport_by__air
+msgid "Air"
+msgstr "Transport aérien"
+
+#. module: sale_enhancement
+#: model:ir.model,name:sale_enhancement.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_container_number
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order_line__x_container_number
+msgid "Container number"
+msgstr "N° de conteneur"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_container_size
+msgid "Container size"
+msgstr "Taille du conteneur"
+
+#. module: sale_enhancement
+#: model_terms:ir.ui.view,arch_db:sale_enhancement.view_order_form_inherit
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_contract_date
+msgid "Contract date"
+msgstr "Date du contrat"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_contract_number
+msgid "Contract number"
+msgstr "N° de contrat"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_customer_invoice_recipient
+msgid "Customer invoice / Recipient"
+msgstr "Facture client / Destinataire"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_customer_type
+msgid "Customer type"
+msgstr "Type du client"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_exporter_manufacturer
+msgid "Exporter / Manufacturer"
+msgstr "Exportateur / Fabricant"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#, python-format
+msgid "Extra line with %s"
+msgstr "Ligne supplémentaire avec %s"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_flexitank_number
+msgid "Flexitank number"
+msgstr "Numéro de flexitank"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order_line__gross_weight
+#, python-format
+msgid "Gross weight"
+msgstr "Poids brut"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__sale_order__x_transport_by__land
+msgid "Land"
+msgstr "Transport terrestre"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_loading_port
+msgid "Loading port"
+msgstr "Port de chargement"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order_line__net_weight
+#, python-format
+msgid "Net weight"
+msgstr "Poids net"
+
+#. module: sale_enhancement
+#: model_terms:ir.ui.view,arch_db:sale_enhancement.view_order_form_inherit
+msgid "Order"
+msgstr "Commande"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_order_date
+msgid "Order date"
+msgstr "Date de la commande"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_order_number
+msgid "Order number"
+msgstr "N° bon du commande"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_other_reference
+msgid "Other reference"
+msgstr "Autre référence"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/product_packaging.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_product_packaging__pallet
+#, python-format
+msgid "Pallet"
+msgstr ""
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order_line__nbr_pallet
+#, python-format
+msgid "Pallet number"
+msgstr "Nbr palette"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_party_to_inform
+msgid "Party to inform (if other than the recipient)"
+msgstr "Partie à informer (si autre que le destinataire)"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_plan_number
+msgid "Plan number"
+msgstr "N° du plan"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#, python-format
+msgid "Price unit: %(old_qty)s -> %(new_qty)s"
+msgstr "Prix unitaire: %(old_qty)s -> %(new_qty)s"
+
+#. module: sale_enhancement
+#: model:ir.model,name:sale_enhancement.model_product_packaging
+msgid "Product Packaging"
+msgstr "Conditionnement des produits"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#, python-format
+msgid "Removed line with %s"
+msgstr "Ligne supprimée avec %s"
+
+#. module: sale_enhancement
+#: model:ir.model,name:sale_enhancement.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_enhancement
+#: model:ir.model,name:sale_enhancement.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__sale_order__x_transport_by__sea
+msgid "Sea"
+msgstr "Transport maritime"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_ship_name
+msgid "Ship name"
+msgstr "Nom du navire"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__sum_product_packaging_qty
+#, python-format
+msgid "Sum Carton"
+msgstr "Total carton"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__sum_gross_weight
+#, python-format
+msgid "Sum Gross weight"
+msgstr "Poids brut total"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__sum_net_weight
+#, python-format
+msgid "Sum Net weight"
+msgstr "Poids net total"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order.py:0
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__sum_pallet
+#, python-format
+msgid "Sum Pallet"
+msgstr "Total palette"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order_line.py:0
+#, python-format
+msgid "The unit price has been updated."
+msgstr "Le prix unitaire a été mis à jour."
+
+#. module: sale_enhancement
+#: model_terms:ir.ui.view,arch_db:sale_enhancement.view_order_form_inherit
+msgid "Transport"
+msgstr ""
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_transport_by
+msgid "Transport by"
+msgstr "Transport par"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_sale_order__x_unloading_port
+msgid "Unloading port"
+msgstr "Port de déchargement"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_res_partner__x_customer_type
+#: model:ir.model.fields,field_description:sale_enhancement.field_res_users__x_customer_type
+msgid "Type"
+msgstr "Type"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__res_partner__x_customer_type__local
+msgid "Local customer"
+msgstr "Client local"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__res_partner__x_customer_type__export
+msgid "Export customer"
+msgstr "Client export"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__res_partner__x_customer_type__local_supplier
+msgid "Local supplier"
+msgstr "Fournisseur local"
+
+#. module: sale_enhancement
+#: model:ir.model.fields.selection,name:sale_enhancement.selection__res_partner__x_customer_type__import_supplier
+msgid "Import supplier"
+msgstr "Fournisseur import"
+
+#. module: sale_enhancement
+#. odoo-python
+#: code:addons/sale_enhancement/models/core/sale_order.py:0
+#, python-format
+msgid "Article duplication detected! Please check your entry"
+msgstr "Duplication d'article détectée !  Veuillez vérifier votre saisie"
+
+#. module: sale_enhancement
+#: model_terms:ir.ui.view,arch_db:sale_enhancement.res_config_settings_view_form_inherit
+msgid "Define the pallet weight to calculate total gross weight in sale order"
+msgstr "Définir le poids du palette pour calculer le poids brut total dans la commande / livraison"
+
+#. module: sale_enhancement
+#: model:ir.model.fields,field_description:sale_enhancement.field_res_company__pallet_weight
+#: model:ir.model.fields,field_description:sale_enhancement.field_res_config_settings__pallet_weight
+msgid "Pallet weight"
+msgstr "Poids du palette"
+
+#. module: sale_enhancement
+#: model:ir.actions.report,name:sale_enhancement.action_export_order_simulation
+msgid "Export order simulation"
+msgstr "Simulation des commandes export"
+

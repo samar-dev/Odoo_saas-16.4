@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_package_type_form_form_inherit" model="ir.ui.view">
+            <field name="name">stock.package.type.form</field>
+            <field name="model">stock.package.type</field>
+            <field name="inherit_id" ref="stock.stock_package_type_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='base_weight']" position="attributes">
+                    <attribute name="string">Gross weight</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

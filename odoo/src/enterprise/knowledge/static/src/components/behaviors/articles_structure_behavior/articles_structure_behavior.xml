@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <!-- /index and /outline template -->
+    <t t-name="knowledge.ArticlesStructureBehavior" owl="1">
+        <BehaviorToolbar>
+            <t t-set-slot="buttons">
+                <BehaviorToolbarButton
+                    hidden="props.readonly"
+                    icon="state.showAllChildren ? 'fa-eye-slash' : 'fa-eye'"
+                    label="state.showAllChildren ? env._t('Show Less') : env._t('Show All')"
+                    onClick.bind="_onSwitchMode"
+                    title="env._t('Switch Mode')"
+                />
+                <BehaviorToolbarButton
+                    hidden="props.readonly"
+                    icon="['fa-refresh', this.state.refreshing || this.state.changeContent ? 'fa-spin' : ''].join(' ')"
+                    label="env._t('Refresh')"
+                    onClick.bind="_onRefreshBtnClick"
+                    title="env._t('Update')"
+                />
+            </t>
+        </BehaviorToolbar>
+        <div class="o_knowledge_articles_structure_content" data-oe-protected="false"
+            data-prop-name="content" t-ref="articlesStructureContent"/>
+    </t>
+</templates>

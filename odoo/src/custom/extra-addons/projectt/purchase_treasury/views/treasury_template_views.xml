@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_form_treasury_template" model="ir.ui.view">
+            <field name="name">treasury.template.form</field>
+            <field name="model">treasury.template</field>
+            <field name="arch" type="xml">
+                <form string="Treasury Template">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="Sectors">
+                                <field name="treasury_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="sector_id"/>
+                                        <field name="account_treasury_ids"/>
+                                        <field name="date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_treasury_template" model="ir.ui.view">
+            <field name="name">treasury.template.tree</field>
+            <field name="model">treasury.template</field>
+            <field name="arch" type="xml">
+                <tree string="Treasury Templates">
+                    <field name="name"/>
+                    <field name="treasury_line_ids"/>
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

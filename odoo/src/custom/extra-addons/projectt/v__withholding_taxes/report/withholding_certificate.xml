@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="account_payment_withholding_certificate_report"
+                  name="Certificat RAS">
+            <t t-call="web.html_container">
+                <meta charset="UTF-8" />
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="doc"
+                       t-value="o.with_context({'lang':o.partner_id.lang})" />
+                    <div class="page">
+                        <t t-if="o.partner_type == 'customer' or 'supplier'">
+                            <t t-if="o.state != 'draft'">
+                                <div class="row">
+                                    <div class="col-xs-5" style="color:black">
+                                        <center>REPUBLIQUE TUNISIENNE<br />MINISTERE DU
+                                            PLAN ET DES FINANANCES
+                                            <br />
+                                            DIRECTION GENERALE DU CONTRÔLE FISCAL
+                                        </center>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7 col-xs-offset-5" style="">
+                                        <center>
+                                            <h3>
+                                                <b>CERTIFICAT DE RETENUE D'IMPOT<br />
+                                                    SUR LE REVENU<br />OU IMPOT SUR LES
+                                                    SOCIETES
+                                                </b>
+                                            </h3>
+                                        </center>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="row">
+                                    <h3>
+                                        <b>A . - PERSONNE OU ORGANISME PAYEUR:</b>
+                                    </h3>
+                                    <br />
+                                    <t t-call="v__withholding_taxes.withholding_certificate_report_payer">
+                                        <t t-if="o.payment_type == 'inbound'">
+                                            <t t-set="doc" t-value="o.partner_id" />
+                                        </t>
+                                        <t t-else="">
+                                            <t t-set="doc" t-value="o.company_id.partner_id" />
+                                        </t>
+                                    </t>
+                                    <br />
+                                    <h3>
+                                        <b>B . - RETENUES EFFECTUEES:</b>
+                                    </h3>
+                                    <br />
+                                    <table style="width: 100%;border: 1px solid #000;">
+                                        <tr>
+                                            <td>
+                                                <b>Retenue Effectue sur</b>
+                                            </td>
+                                            <td t-if="not o.is_withholding">
+                                                <b>Montant Brut</b>
+                                            </td>
+                                            <td>
+                                                <b>Taux en %</b>
+                                            </td>
+                                            <td>
+                                                <b>Retenue</b>
+                                            </td>
+                                            <td t-if="not o.is_withholding">
+                                                <b>Montant NET</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span t-esc="o.withholding_payment_id.name or o.name" />
+                                            </td>
+                                            <td t-if="not o.is_withholding">
+                                                <t t-set="brut"
+                                                   t-value="o.amount+ ( o.withholding_payment_id.amount or o.withholding_amount)" />
+                                                <span t-esc="brut" />
+                                            </td>
+                                            <td>
+                                                <span t-field="o.withholding_tax_id.name" />
+                                            </td>
+                                            <td>
+                                                <t t-if="o.is_withholding">
+                                                    <span t-esc="o.amount"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-esc="o.withholding_payment_id.amount or o.withholding_amount"/>
+                                                </t>
+                                            </td>
+                                            <td t-if="not o.is_withholding">
+                                                <t t-set="net" t-value="o.amount" />
+                                                <span t-esc="net" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <h3>
+                                        <b>C . - BENEFICIAIRE:</b>
+                                    </h3>
+                                    <br />
+                                    <t t-call="v__withholding_taxes.withholding_certificate_report_payee">
+                                        <t t-if="o.payment_type == 'inbound'">
+                                            <t t-set="doc" t-value="o.company_id.partner_id" />
+                                        </t>
+                                        <t t-else="">
+                                            <t t-set="doc" t-value="o.partner_id" />
+                                        </t>
+                                    </t>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="row">
+                                    <center>
+                                        <b>Je sousigne, certifie que exacts les
+                                            renseignements figurant sur le présent
+                                            <br />certificat et m'expose aux sanctions
+                                            prévues par la loi pour toute inexactitudes
+                                            <br />
+                                            <br />
+                                            <br />
+                                            A Tunis, le
+                                            <span t-field="o.write_date"
+                                                  t-field-options="{&quot;format&quot;: &quot;dd-MM-yyyy&quot;}" />
+                                            <br />
+                                            <br />Cachet et signature du payeur
+                                        </b>
+                                    </center>
+                                </div>
+                                <!-- Add view format of report here -->
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="withholding_certificate_report_payer" name="Payeur RAS">
+            <table class="table table-border"
+                   style="border:0 !important">
+                <tr>
+                    <td>Matricule Fiscale:</td>
+                    <td>
+                        <b>
+                            <span t-field="doc.vat" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dénomination de la personne ou de
+                        l'organisme payeur:
+                    </td>
+                    <td>
+                        <b>
+                            <span t-field="doc.name" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adresse:</td>
+                    <td>
+                        <b>
+                            <span t-field="doc.street" />
+                            <span t-field="doc.zip" />
+                            <span t-field="doc.city" />
+                        </b>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <template id="withholding_certificate_report_payee" name="Beneficiaire RAS">
+            <table class="table table-condensed"
+                   style="border:0">
+                <tr>
+                    <td>CIN / Matricule Fiscale:</td>
+                    <td>
+                        <b>
+                            <span t-field="doc.vat" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nom , Prénom ou raison sociale:</td>
+                    <td>
+                        <b>
+                            <span t-field="doc.name" />
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adresse Professionnelle:</td>
+                    <td>
+                        <b>
+                            <span t-field="doc.street" />
+                            <span t-field="doc.zip" />
+                            <span t-field="doc.city" />
+                        </b>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <record id="account_payment_withholding_certificate_action"
+                model="ir.actions.report">
+            <field name="name">Certificat RAS</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">v__withholding_taxes.account_payment_withholding_certificate_report</field>
+            <field name="report_file">v__withholding_taxes.account_payment_withholding_certificate_report</field>
+            <field name="print_report_name">'RAS %s' % (object.name).replace('/', '')
+            </field>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

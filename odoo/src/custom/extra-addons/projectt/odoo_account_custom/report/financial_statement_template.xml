@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <template id="template_financial_statement">
+    <t t-call="web.html_container">
+      <t t-call="web.external_layout">
+        <style>
+          .of_corp {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #000;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            padding: 5px;
+            height: 100px;
+          }
+
+          .invoice_name {
+            font-size: 14px;
+            width: 100%;
+            margin-bottom: 5px;
+            font-weight: bold;
+            background-color: #f2f2f2;
+            color: #675fb3;
+            text-align: center;
+          }
+
+          .head_type {
+            background-color: #f2f2f2;
+            /* Light gray background for headers */
+            border: 1px solid #ddd;
+            /* Add a border to header cells */
+            padding: 8px;
+            /* Add padding to header cells */
+            text-align: left;
+            border: 1px;
+          }
+
+          .of_corp_left {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #000;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+          }
+
+          .text {
+            padding: 10px;
+            text-align: center;
+          }
+
+          .text_visa {
+            padding: 10px 5px 80px 5px;
+            text-align: center;
+          }
+
+          .of_table__name {
+            font-weight: bold;
+            text-align: center;
+          }
+
+          .page {
+            margin-top: 0px;
+          }
+
+          .page-break {
+            page-break-before: avoid;
+          }
+
+          h3 {
+            text-align: center;
+            text-transform: uppercase;
+            color: #675fb3;
+          }
+        </style>
+        <t t-foreach="docs" t-as="data">
+          <t t-set="account_mvts" t-value="request.env['account.move.line'].search([('journal_id', '=', data.id), ('account_id', '=', data.default_account_id.code), ('date', '&lt;=', data.x_rapp_date)])" />
+          <t t-set="records" t-value="docs" />
+          <t t-set="bnk_mvts" t-value="request.env['bank.movement'].search([('journal_id', '=', data.id), ('date', '&lt;=', data.x_rapp_date)])" />
+          <t t-set="sum_exist_deb" t-value="sum(r.debit for r in account_mvts)" />
+          <t t-set="sum_exist_credit" t-value="sum(r.credit for r in account_mvts)" />
+          <t t-set="sum_not_deb" t-value="sum(r.debit for r in bnk_mvts)" />
+          <t t-set="sum_not_cred" t-value="sum(r.credit for r in bnk_mvts)" />
+          <t t-set="solde_compta" t-value="sum_exist_deb-sum_exist_credit" />
+          <t t-set="solde_bank" t-value="1" />
+          <div class="oe_structure" />
+          <div class="row mt32 mb32 of_corp_left text">
+            <div class="col-5 text-center">
+              <h3>ETAT DE RAPPROCHEMENT
+                <t t-esc="data.name" /> AU
+                <t t-esc="data.x_rapp_date" />
+              </h3>
+              <br />
+            </div>
+            <div class="col-7" style="text-align:right;">
+              <strong>Date d'impression : </strong>
+              <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')" />
+              <br />
+              <strong>Imprimé par : </strong>
+              <span t-esc="user.name" />
+            </div>
+          </div>
+          <table class="table table-sm">
+            <tr>
+              <td style="width:50%;">
+                <p class="invoice_name"> -&gt; <strong>
+                    <span t-esc="data.name" />
+                  </strong> CHEZ <strong>
+                    <span t-esc="data.company_id.name" />
+                  </strong>
+                </p>
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Libellé</th>
+                      <th>Date</th>
+                      <th>Débit</th>
+                      <th>Credit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="font-weight: bolder;background-color: #f2f2f2;color: #675fb3;">
+                      <td class="text-left" style="width:45%">SOLDE COMPTABLE AU
+                        <t t-esc="data.x_rapp_date" />
+                      </td>
+                      <td class="text-center" style="width:15%">
+                        <t t-esc="data.x_rapp_date" />
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_compta &gt; 0">
+                          <t t-esc="solde_compta" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_compta &lt; 0">
+                          <t t-esc="solde_compta * -1" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                    </tr>
+                    <tr t-foreach="bnk_mvts" t-as="obj">
+                      <td class="text-left" style="width:45%">
+                        <t t-esc="obj.name" />
+                      </td>
+                      <td class="text-center" style="width:15%">
+                        <t t-esc="obj.date" />
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="obj.debit &gt; 0">
+                          <t t-esc="obj.debit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="obj.credit &gt; 0">
+                          <t t-esc="obj.credit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                    </tr>
+                    <tr style="font-weight: bolder;background-color: #f2f2f2;color: #675fb3;">
+                      <td class="text-left" style="width:45%" colspan="2">TOTAL </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_compta &gt; 0">
+                          <t t-esc="sum_not_deb + solde_compta" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                        <t t-else="">
+                          <t t-esc="sum_not_deb" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_compta &lt; 0">
+                          <t t-esc="sum_not_cred +(solde_compta * -1)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                        <t t-else="">
+                          <t t-esc="sum_not_cred" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td style="width:50%;">
+                <p class="invoice_name"> -&gt; <strong>
+                    <span t-esc="data.company_id.name" />
+                  </strong> CHEZ <strong>
+                    <span t-esc="data.name" />
+                  </strong>
+                </p>
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Libellé</th>
+                      <th>Date</th>
+                      <th>Débit</th>
+                      <th>Credit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="font-weight: bolder;background-color: #f2f2f2;color: #d93218;">
+                      <td class="text-left" style="width:45%">SOLDE BANK AU
+                        <t t-esc="data.x_rapp_date" />
+                      </td>
+                      <td class="text-center" style="width:15%">
+                        <t t-esc="data.x_rapp_date" />
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_bank &gt; 0">
+                          <t t-esc="solde_bank" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_bank &lt; 0">
+                          <t t-esc="solde_bank * -1" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                    </tr>
+                    <tr t-foreach="account_mvts" t-as="obj">
+                      <td class="text-left" style="width:45%">
+                        <t t-esc="obj.name" />
+                      </td>
+                      <td class="text-center" style="width:15%">
+                        <t t-esc="obj.date" />
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="obj.credit &gt; 0">
+                          <t t-esc="obj.credit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="obj.debit &gt; 0">
+                          <t t-esc="obj.debit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                    </tr>
+                    <tr style="font-weight: bolder;background-color: #f2f2f2;color: #675fb3;">
+                      <td class="text-left" style="width:45%" colspan="2">TOTAL </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_bank &gt; 0">
+                          <t t-esc="sum_exist_credit + solde_bank" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                        <t t-else="">
+                          <t t-esc="sum_exist_credit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                      <td style="text-align: right;width:20%">
+                        <t t-if="solde_bank &lt; 0">
+                          <t t-esc="sum_exist_deb +(solde_bank * -1)" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                        <t t-else="">
+                          <t t-esc="sum_exist_deb" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+                        </t>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <div class="oe_structure" />
+          <div class="row mt32 mb32 of_corp page-break">
+            <div class="col-5">
+              <strong>SOLDE <span t-esc="data.name" />
+              </strong> CHEZ <strong>
+                <span t-esc="data.company_id.name" />
+              </strong>
+              <span> :
+                <t t-esc="sum_not_deb + solde_compta - sum_not_cred" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+              </span>
+              <br />
+              <strong>SOLDE <span t-esc="data.company_id.name" />
+              </strong> CHEZ <strong>
+                <span t-esc="data.name" />
+              </strong>
+              <span> :
+                <t t-esc="sum_exist_deb + solde_bank - sum_exist_credit" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+              </span>
+              <br />
+              <strong>Ecart : </strong>
+              <span>
+                <t t-set="sum_exist" t-value="sum_exist_deb + solde_bank - sum_exist_credit" />
+                <t t-set="sum_not" t-value="sum_not_deb + solde_compta - sum_not_cred" />
+                <t t-esc="sum_exist-sum_not" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 3}" />
+              </span>
+              <br />
+              <br />
+              <br />
+            </div>
+            <div class="col-4">
+              <strong>VISA RESPONSABLE 1 :</strong>
+            </div>
+            <div class="col-4">
+              <strong>VISA RESPONSABLE 2 :</strong>
+            </div>
+          </div>
+        </t>
+        <!--<t t-call="account.report_payment_receipt_document" t-lang="lang"/>-->
+      </t>
+    </t>
+  </template>
+</odoo>

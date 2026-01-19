@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_workorder_enhancemet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-25 06:12+0000\n"
+"PO-Revision-Date: 2024-04-25 06:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_workorder_enhancemet
+#. odoo-python
+#: code:addons/mrp_workorder_enhancemet/models/mrp_production.py:0
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_enhancemet.view_mrp_other_information_wizard_form
+#, python-format
+msgid "Add other information"
+msgstr "Ajouter d'autres informations"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_enhancemet.view_mrp_other_information_wizard_form
+msgid "Discard"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model,name:mrp_workorder_enhancemet.model_hr_employee
+msgid "Employee"
+msgstr "Employé"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: mrp_workorder_enhancemet
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_enhancemet.view_employee_form_workorder
+msgid "Manufacturing"
+msgstr "Fabrication"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__production_id
+msgid "Manufacturing Order"
+msgstr "Ordre de fabrication"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__note
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_production__note
+msgid "Note"
+msgstr "Note"
+
+#. module: mrp_workorder_enhancemet
+#. odoo-javascript
+#: code:addons/mrp_workorder_enhancemet/static/src/mrp_display/dialog/mrp_menu_dialog.xml:0
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_enhancemet.mrp_production_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:mrp_workorder_enhancemet.view_mrp_other_information_wizard_form
+#, python-format
+msgid "Other information"
+msgstr "Autres informations"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model,name:mrp_workorder_enhancemet.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de production"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__production_planning_reference
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_production__production_planning_reference
+msgid "Production planning reference"
+msgstr "Référence du planning de production"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_hr_employee__workcenter_manufacturing
+msgid "Work center manufacturing"
+msgstr "Poste de travail de fabrication"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_other_information_wizard__operator_employee_ids
+#: model:ir.model.fields,field_description:mrp_workorder_enhancemet.field_mrp_production__operator_employee_ids
+msgid "employees with access"
+msgstr "employés avec accès"
+
+#. module: mrp_workorder_enhancemet
+#: model:ir.model,name:mrp_workorder_enhancemet.model_mrp_other_information_wizard
+msgid "mrp.other.information.wizard"
+msgstr ""

@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_scale_reader" model="ir.sequence">
+        <field name="name">Scale Reader Sequence</field>
+        <field name="code">scale.reader.sequence</field>
+        <field name="padding">5</field>
+        <field name="prefix">SR-</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

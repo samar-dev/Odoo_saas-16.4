@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="v__access_guard_root"
+              name="Access Guard"
+              groups="base.group_system"
+              web_icon="v__access_guard,static/description/icon.png"
+              sequence="499">
+        <menuitem id="v__access_guard_subroot" name="Access Guard" />
+    </menuitem>
+
+</odoo>

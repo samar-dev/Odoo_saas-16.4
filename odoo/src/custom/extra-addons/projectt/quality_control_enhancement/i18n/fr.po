@@ -1,0 +1,936 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* quality_control_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-18 08:02+0000\n"
+"PO-Revision-Date: 2025-08-18 08:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_alert__picking_product_tmpl_ids
+msgid " product_tmpl_ids"
+msgstr " product_tmpl_ids"  # Note: This seems like a technical field name and may not need translation.
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_alert_team__failed_check_count
+msgid "# Failed Checks"
+msgstr "# Contrôles échoués"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_alert_team__success_check_count
+msgid "# Success Checks"
+msgstr "# Contrôles réussis"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_alert_team__validated_check_count
+msgid "# Validated Checks"
+msgstr "# Contrôles validés"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid ""
+"<i class=\"fa fa-fw me-2 fa-calendar-check-o text-primary\" title=\"Date "
+"Done\"/>"
+msgstr ""
+"<i class=\"fa fa-fw me-2 fa-calendar-check-o text-primary\" title=\"Date effectuée\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid "<i class=\"fa fa-fw me-2 fa-compass text-primary\" title=\"Origin\"/>"
+msgstr "<i class=\"fa fa-fw me-2 fa-compass text-primary\" title=\"Origine\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid "<i class=\"fa fa-fw me-2 fa-hashtag text-primary\" title=\"Lot\"/>"
+msgstr "<i class=\"fa fa-fw me-2 fa-hashtag text-primary\" title=\"Lot\"/>"
+
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid ""
+"<i class=\"fa fa-fw me-2 fa-hourglass-end text-primary\" "
+"title=\"Expiration\"/>"
+msgstr ""
+"<i class=\"fa fa-fw me-2 fa-hourglass-end text-primary\" title=\"Expiration\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid ""
+"<i class=\"fa fa-fw me-2 fa-industry text-primary\" title=\"Production "
+"Date\"/>"
+msgstr ""
+"<i class=\"fa fa-fw me-2 fa-industry text-primary\" title=\"Date de production\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid ""
+"<i class=\"fa fa-fw me-2 fa-list-alt text-primary\" title=\"Planning "
+"Reference\"/>"
+msgstr ""
+"<i class=\"fa fa-fw me-2 fa-list-alt text-primary\" title=\"Référence de planification\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid "<i class=\"fa fa-fw me-2 fa-product-hunt text-primary\" title=\"Produit\"/>"
+msgstr "<i class=\"fa fa-fw me-2 fa-product-hunt text-primary\" title=\"Produit\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid "<i class=\"fa fa-fw me-2 fa-truck text-primary\" title=\"Transfer\"/>"
+msgstr "<i class=\"fa fa-fw me-2 fa-truck text-primary\" title=\"Transfert\"/>"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.inherit_quality_check_kanban
+msgid "<i class=\"fa fa-fw me-2 fa-user text-primary\" title=\"Partner\"/>"
+msgstr "<i class=\"fa fa-fw me-2 fa-user text-primary\" title=\"Partenaire\"/>"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__no_dust_or_humidity
+msgid "Absence de poussière, humidité"
+msgstr "Absence de poussière, humidité"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__decision__accepted
+msgid "Acceptée"
+msgstr "Acceptée"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__decision__accepted_with_derogation
+msgid "Acceptée avec dérogation"
+msgstr "Acceptée avec dérogation"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__acidite
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__acidite
+msgid "Acidité"
+msgstr "Acidité"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Arome / Vinaigre"
+msgstr "Arôme / Vinaigre"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__aroma
+msgid "Arôme / vinaigre"
+msgstr "Arôme / vinaigre"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__aspect
+msgid "Aspect"
+msgstr "Aspect"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Bidon / Bouteille"
+msgstr "Bidon / Bouteille"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_bottles_nc
+msgid "Bouteilles lavées NC"
+msgstr "Bouteilles lavées NC"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_bottles_clean
+msgid "Bouteilles lavées propre"
+msgstr "Bouteilles lavées propre"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__storage__conf
+msgid "CONFORME"
+msgstr "CONFORME"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__iso_capsule
+msgid "Capsule intacte"
+msgstr "Capsule intacte"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Carton / Séparation"
+msgstr "Carton / Séparation"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__certificate_present
+msgid "Certificat d'alimentarité ou de conformité présent"
+msgstr "Certificat d'alimentarité ou de conformité présent"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__checklist_id
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__checklist_id
+msgid "Checklist"
+msgstr "Checklist"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Checklist Réception Emballage"
+msgstr "Checklist Réception Emballage"
+
+#. module: quality_control_enhancement
+#: model:ir.model,name:quality_control_enhancement.model_quality_checklist_emballage
+msgid "Checklist de Contrôle à la Réception (Emballage)"
+msgstr "Checklist de Contrôle à la Réception (Emballage)"
+
+#. module: quality_control_enhancement
+#: model:ir.actions.act_window,name:quality_control_enhancement.action_quality_checklist
+#: model:ir.ui.menu,name:quality_control_enhancement.menu_quality_checklist
+msgid "Checklists Réception"
+msgstr "Check liste Réception"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__citerne_vide
+msgid "Citerne Vide"
+msgstr "Citerne Vide"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__comments
+msgid "Commentaire"
+msgstr "Commentaire"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__conformity__conforme
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__proprete_camion__c
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__proprete_citerne__c
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__proprete_conduites__c
+msgid "Conforme"
+msgstr "Conforme"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__label_bat
+msgid "Conforme au BAT"
+msgstr "Conforme au BAT"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__conformity
+msgid "Conformité générale"
+msgstr "Conformité générale"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Contrôle Magasin"
+msgstr "Contrôle Magasin"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Contrôle à la Réception"
+msgstr "Contrôle à la Réception"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__cmd_delivery_match
+msgid "Correspondance commande – livraison"
+msgstr "Correspondance commande – livraison"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__color
+msgid "Couleur"
+msgstr "Couleur"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__bottle_color
+msgid "Couleur et cristallisation"
+msgstr "Couleur et cristallisation"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__create_uid
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__create_uid
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__create_date
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__create_date
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__lot
+msgid "DF/ DLC/ LOT"
+msgstr "DF/ DLC/ LOT"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__dlc
+msgid "DLC"
+msgstr "DLC"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__date_done
+msgid "Date Done"
+msgstr "Date réalisée"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__date_ret
+msgid "Date de retour"
+msgstr "Date de retour"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__reception_date
+msgid "Date de réception"
+msgstr "Date de réception"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_wash_date
+msgid "Date lavage"
+msgstr "Date de lavage"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__iso_date
+msgid "Date limite consommation valide"
+msgstr "Date limite de consommation valide"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.actions.act_window,help:quality_control_enhancement.quality_failed_check_action_team
+#: model_terms:ir.actions.act_window,help:quality_control_enhancement.quality_success_check_action_team
+#: model_terms:ir.actions.act_window,help:quality_control_enhancement.quality_validated_check_action_team
+msgid ""
+"Define Quality Control Points in order to automatically generate\n"
+"                    quality checks at the right logistic operation: transfers, manufacturing orders."
+msgstr ""
+"Définissez les points de contrôle qualité afin de générer automatiquement\n"
+"                    les contrôles qualité lors des opérations logistiques appropriées : transferts, ordres de fabrication."
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_destr
+msgid "Destruction"
+msgstr "Destruction"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__label_dimensions
+msgid "Dimension / forme de découpe"
+msgstr "Dimension / forme de découpe"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__carton_dimensions
+msgid "Dimension correcte"
+msgstr "Dimension correcte"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__sleeve_dimensions
+msgid "Dimensions"
+msgstr "Dimensions"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__display_name
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__display_name
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__decision
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Décision"
+msgstr "Décision"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Décision et destination"
+msgstr "Décision et destination"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__degustation
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__degustation
+msgid "Dégustation"
+msgstr "Dégustation"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__article
+msgid "Désignation article"
+msgstr "Désignation article"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Emballage / MP"
+msgstr "Emballage / MP"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__unopened_clean_packaging
+msgid "Emballages non entamés, exempts de souillures"
+msgstr "Emballages non entamés, exempts de souillures"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__emplacement
+msgid "Emplacement"
+msgstr "Emplacement"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__iso_propre
+msgid "Etat propre (pas trace huile/poussière)"
+msgstr "État propre (pas de traces d'huile/poussière)"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__iso_etiquette
+msgid "Etiquette intacte"
+msgstr "Étiquette intacte"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__iso_etui
+msgid "Etui intact"
+msgstr "Étui intact"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Exigences isolement"
+msgstr "Exigences d'isolement"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__expiration_date
+msgid "Expiration Date"
+msgstr "Date d'expiration"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.dashboard_view_kanban_inherit
+msgid "Failed checks"
+msgstr "Contrôles échoués"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Fiche Réception Huile"
+msgstr "Fiche Réception Huile"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__carton_shape
+msgid "Forme de découpe"
+msgstr "Forme de découpe"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__supplier
+msgid "Fournisseur"
+msgstr "Fournisseur"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__citerne_humide
+msgid "Humidité"
+msgstr "Humidité"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__id
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__id
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__id
+msgid "ID"
+msgstr "ID"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_tank_id_c
+msgid "Id citerne C"
+msgstr "Id citerne C"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_tank_id_nc
+msgid "Id citerne NC"
+msgstr "Id citerne NC"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__sleeve_print
+msgid "Impression"
+msgstr "Impression"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__carton_print_quality
+msgid "Impression lisible"
+msgstr "Impression lisible"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__label_print_quality
+msgid "Impression lisible et ajustée"
+msgstr "Impression lisible et ajustée"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Informations Générales"
+msgstr "Informations Générales"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Informations generale"
+msgstr "Informations générales"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Infromation Generale"
+msgstr "Information Générale"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__k232
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__k232
+msgid "K232"
+msgstr "K232"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__k270
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__k270
+msgid "K270"
+msgstr "K270"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Laboratoire - Échantillon Réception"
+msgstr "Laboratoire - Échantillon Réception"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Laboratoire - Échantillon de Référence"
+msgstr "Laboratoire - Échantillon de Référence"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__write_uid
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__write_uid
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__write_date
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__write_date
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__delivered_on_time
+msgid "Livraison dans les délais"
+msgstr "Livraison dans les délais"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__lot_producing_id
+msgid "Lot"
+msgstr "Lot"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Manchon"
+msgstr "Manchon"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__protected_merchandise
+msgid "Marchandises protégées et emballées"
+msgstr "Marchandises protégées et emballées"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__packaging_marking_correct
+msgid "Marquage correct de l'emballage"
+msgstr "Marquage correct de l'emballage"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__matricule_camion
+msgid "Matricule Camion"
+msgstr "Matricule Camion"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__storage__nonconf
+msgid "NON CONFORME"
+msgstr "NON CONFORME"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_pack_type
+msgid "Nature emballage"
+msgstr "Nature emballage"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.actions.act_window,help:quality_control_enhancement.quality_failed_check_action_team
+#: model_terms:ir.actions.act_window,help:quality_control_enhancement.quality_success_check_action_team
+#: model_terms:ir.actions.act_window,help:quality_control_enhancement.quality_validated_check_action_team
+msgid "No quality check found"
+msgstr "Aucun contrôle qualité trouvé"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__picking_name
+msgid "Nom"
+msgstr "Nom"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__client
+msgid "Nom client"
+msgstr "Nom client"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_op
+msgid "Nom opérateur"
+msgstr "Nom opérateur"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__conformity__non_conforme
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__proprete_camion__nc
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__proprete_citerne__nc
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__proprete_conduites__nc
+msgid "Non Conforme"
+msgstr "Non Conforme"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__document_number
+msgid "Numéro document"
+msgstr "Numéro document"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__reference_admin
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__numero_admin
+msgid "N° Administratif"
+msgstr "N° Administratif"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__numero_bon_pesage
+msgid "N° Bon de Pesage"
+msgstr "N° Bon de Pesage"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__numero_facture
+msgid "N° Facture"
+msgstr "N° Facture"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__numero_lot
+msgid "N° Lot"
+msgstr "N° Lot"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__numero_rapport_analyse
+msgid "N° Rapport d’Analyse"
+msgstr "N° Rapport d’Analyse"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__odor
+msgid "Odeur"
+msgstr "Odeur"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__no_smell_or_soiling
+msgid "Odeur, aspect extérieur, souillures"
+msgstr "Odeur, aspect extérieur, souillures"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_wash_resp
+msgid "Opérateur lavage"
+msgstr "Opérateur lavage"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Opération destruction"
+msgstr "Opération destruction"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__origin
+msgid "Origin"
+msgstr "Origine"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__iso_bosselure
+msgid "Pas bosselure/rouille sur boites"
+msgstr "Pas de bosselure/rouille sur boîtes"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__sleeve_perforation
+msgid "Perforation complète"
+msgstr "Perforation complète"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reception__pesticides
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__pesticides
+msgid "Pesticides"
+msgstr "Pesticides"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__production_planning_reference
+msgid "Planning Ref"
+msgstr "Référence planning"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__producteur
+msgid "Producteur"
+msgstr "Producteur"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__production_date
+msgid "Production Date"
+msgstr "Date de production"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__articles
+msgid "Produit"
+msgstr "Produit"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_prod_used
+msgid "Produit utilisé"
+msgstr "Produit utilisé"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__proprete_camion
+msgid "Propreté Camion"
+msgstr "Propreté Camion"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__proprete_citerne
+msgid "Propreté Citerne Stockage"
+msgstr "Propreté Citerne Stockage"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__proprete_conduites
+msgid "Propreté Conduites"
+msgstr "Propreté Conduites"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__proper_transport
+msgid "Propreté du moyen de transport"
+msgstr "Propreté du moyen de transport"
+
+#. module: quality_control_enhancement
+#: model:ir.model,name:quality_control_enhancement.model_quality_alert
+msgid "Quality Alert"
+msgstr "Alerte qualité"
+
+#. module: quality_control_enhancement
+#: model:ir.model,name:quality_control_enhancement.model_quality_alert_team
+msgid "Quality Alert Team"
+msgstr "Équipe d'alerte qualité"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__quantity
+msgid "Quantité"
+msgstr "Quantité"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields.selection,name:quality_control_enhancement.selection__quality_checklist_emballage__decision__refused
+msgid "Refusée"
+msgstr "Refusée"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__remarque
+msgid "Remarques"
+msgstr "Remarques"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__resp_acc
+msgid "Resp acceptation"
+msgstr "Resp acceptation"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__resp_treat
+msgid "Resp traitement"
+msgstr "Resp traitement"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_sep_c
+msgid "Respect principe séparation C"
+msgstr "Respect principe séparation C"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_sep_nc
+msgid "Respect principe séparation NC"
+msgstr "Respect principe séparation NC"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_hyg_c
+msgid "Respect règles hygiène C"
+msgstr "Respect règles hygiène C"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_hyg_nc
+msgid "Respect règles hygiène NC"
+msgstr "Respect règles hygiène NC"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_step_c
+msgid "Respect étapes destruction C"
+msgstr "Respect étapes destruction C"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_step_nc
+msgid "Respect étapes destruction NC"
+msgstr "Respect étapes destruction NC"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Retour marchandise"
+msgstr "Retour marchandise"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_lab_sample_reference__reference
+msgid "Référence"
+msgstr "Référence"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__bottle_repair
+msgid "Réparation du soufflage"
+msgstr "Réparation du soufflage"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__dec_reten_return
+msgid "Rétention et retour magasin échantillons"
+msgstr "Rétention et retour magasin échantillons"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__sleeve_shrink
+msgid "Rétraction / qualité support"
+msgstr "Rétraction / qualité support"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_reuse_glass
+msgid "Réutilisation verre"
+msgstr "Réutilisation verre"
+
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__dec_else_isol
+msgid "SINON isolement et destruction"
+msgstr "SINON isolement et destruction"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__citerne_sans_odeur
+msgid "Sans Odeur"
+msgstr "Sans Odeur"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__name
+msgid "Sequence Number"
+msgstr "Numéro de séquence"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__bottle_sealing
+msgid "Sertissage et soudure"
+msgstr "Sertissage et soudure"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.quality_check_view_form_inherit
+msgid "Show Details"
+msgstr "Afficher les détails"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__dec_sign
+msgid "Signature magasinier acceptation"
+msgstr "Signature magasinier acceptation"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Signatures"
+msgstr "Signatures"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__solubility
+msgid "Solubilité"
+msgstr "Solubilité"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__dec_all_ok
+msgid "Toutes exigences accomplies"
+msgstr "Toutes exigences accomplies"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Traitement emballages"
+msgstr "Traitement emballages"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__quality_type
+msgid "Type Opération"
+msgstr "Type Opération"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.quality_check_view_search_inherit
+msgid "Type d'opération"
+msgstr "Type d'opération"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_check__picking_partner_display
+msgid "Vendor/Customer (Display)"
+msgstr "Fournisseur/Client (Affichage)"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__visa_responsable
+msgid "Visa Responsable Contrôle Qualité"
+msgstr "Visa Responsable Contrôle Qualité"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__visa_quality
+msgid "Visa responsable qualité"
+msgstr "Visa responsable qualité"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__visa_stock
+msgid "Visa responsable stock"
+msgstr "Visa responsable stock"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__bottle_volume
+msgid "Volume / dimensions"
+msgstr "Volume / dimensions"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__storage
+msgid "Zone stockage"
+msgstr "Zone stockage"
+
+#. module: quality_control_enhancement
+#: model:ir.model,name:quality_control_enhancement.model_lab_sample_reception
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__reception_sample_ids
+msgid "Échantillon Réception"
+msgstr "Échantillon Réception"
+
+#. module: quality_control_enhancement
+#: model:ir.model,name:quality_control_enhancement.model_lab_sample_reference
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__reference_sample_ids
+msgid "Échantillon de Référence"
+msgstr "Échantillon de Référence"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_disposal
+msgid "Élimination benne déchets"
+msgstr "Élimination benne déchets"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__label_bobine
+msgid "État bobine (sens, diamètre)"
+msgstr "État bobine (sens, diamètre)"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_tank_nc
+msgid "État citerne NC"
+msgstr "État citerne NC"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__destr_tank_clean
+msgid "État citerne propre"
+msgstr "État citerne propre"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__carton_material_state
+msgid "État de la matière"
+msgstr "État de la matière"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__bottle_material_state
+msgid "État de la matière (Résistance de la Bouteille)"
+msgstr "État de la matière (Résistance de la Bouteille)"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_prot_c
+msgid "État protection C"
+msgstr "État protection C"
+
+#. module: quality_control_enhancement
+#: model:ir.model.fields,field_description:quality_control_enhancement.field_quality_checklist_emballage__treat_prot_nc
+msgid "État protection NC"
+msgstr "État protection NC"
+
+#. module: quality_control_enhancement
+#: model_terms:ir.ui.view,arch_db:quality_control_enhancement.view_quality_checklist_form
+msgid "Étiquette"
+msgstr "Étiquette"
+

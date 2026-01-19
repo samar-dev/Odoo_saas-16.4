@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="email_template_data_contract_expiry" model="mail.template">
+        <field name="name">Contract: Expiry</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="subject">Alerte d'expiration d'un contrat de travail</field>
+        <field name="email_to">ants@ants.com.tn</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                   style="background-color: white; border-collapse: collapse; margin-left: 20px;">
+                <tr>
+                    <td valign="top" style="padding: 0px 10px;">
+                        <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                            Bonjour,
+                            <br/>
+                            Prière de noter que le contrat ci-dessous arrivera bientôt à échéances:
+                            <br/>
+                            <b>Employée:</b>
+                            ${object.employee_id.name}
+                            <br/>
+                            <b>Date début du contrat:</b>
+                            ${object.date_start}
+                            <br/>
+                            <b>Date Fin du contrat:</b>
+                            ${object.date_end}
+                            <br/>
+                            <b>Type de contrat:</b>
+                            ${object.contract_type}
+                            <br/>
+                            <br/>
+                            <br/>
+                            Cordialement,
+                            <br/>
+                            Equipe RH
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </field>
+    </record>
+
+    <!--<record id="email_template_data_attestation" model="mail.template">
+        <field name="name">Attestation: Nouvelle demande</field>
+        <field name="model_id" ref="odoo_hr.model_hr_attestation"/>
+        <field name="subject">Nouvelle demande d'attestation de travail N° ${object.name}</field>
+        <field name="email_to">ants@ants.com.tn</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                   style="background-color: white; border-collapse: collapse; margin-left: 20px;">
+                <tr>
+                    <td valign="top" style="padding: 0px 10px;">
+                        <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                            Bonjour,
+                            <br/>
+                            Une nouvelle demande d'attestation a été soumise:
+                            <br/>
+                            <b>Numéro:</b>  ${object.name}<br/>
+                            <b>Employée:</b> ${object.hr_employee_id.name}<br/>
+                            <b>Attestation demandée:</b> ${object.type}<br/>
+                            <br/>
+                            <br/>
+                            Cordialement,<br/>
+                            Equipe RH
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </field>
+    </record>
+
+    <record id="email_template_data_attestation_employee" model="mail.template">
+        <field name="name">Attestation: Mise à jour concernant votre demande</field>
+        <field name="model_id" ref="odoo_hr.model_hr_attestation"/>
+        <field name="subject">Demande d'attestation N° ${object.name}</field>
+        <field name="email_to">${object.hr_employee_id.work_email if object.hr_employee_id.id and object.hr_employee_id.work_email else False}</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                   style="background-color: white; border-collapse: collapse; margin-left: 20px;">
+                <tr>
+                    <td valign="top" style="padding: 0px 10px;">
+                        <div style="font-size: 13px; margin: 0px; padding: 0px;">
+                            Bonjour,
+                            <br/>
+                            % if object.state == 'draft':
+                            Votre demande d'attestation N° ${object.name} a bien été soumise au département RH.<br/>
+                            Vous receverez un email de notification lorsqu'elle sera traitée.<br/>
+                            % endif
+
+                            % if object.state == 'done':
+                            Votre Attestation N° ${object.name} est prête.<br/>
+                            Prière de passer la récupérer au département RH.<br/>
+                            % endif
+
+                            % if object.state == 'complete':
+                            Votre Attestation N° ${object.name} a été récupérée.<br/>
+                            % endif
+
+                            % if object.state == 'cancel':
+                            Votre demande d'attestation N° ${object.name} a été refusée.<br/>
+                            % endif
+
+                            <br/>
+                            <br/>
+                            Cordialement,<br/>
+                            Equipe RH
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </field>
+    </record>-->
+</odoo>

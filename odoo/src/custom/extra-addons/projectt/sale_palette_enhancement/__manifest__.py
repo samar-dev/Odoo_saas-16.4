@@ -1,0 +1,20 @@
+{
+    "name": "Gestion des Palettes",
+    "version": "saas~16.4.1.0.0",
+    "category": "External",
+    "author": "Odoo",
+    "website": "",
+    "license": "Other proprietary",
+    "depends": ["base", "contacts", "stock","sale"],
+    "data": [
+        "data/partner_pallets_action.xml",
+        "views/res_partner_view.xml",
+        "report/purchase_report_result_action.xml",
+        "report/purchase_report_result_template.xml",
+        "views/product_view.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

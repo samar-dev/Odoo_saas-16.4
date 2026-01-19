@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+
+                <header position="inside">
+                    <button name="print_customized_document" class="btn-info" type="object" string="Imprimer" icon="fa-print" />
+                </header>
+
+            </field>
+        </record>
+
+        <record id="print_customized_document_action" model="ir.actions.report">
+            <field name="name">Document personnalisé</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">v__payment_methods_print.customized_document
+            </field>
+            <field name="report_file">v__payment_methods_print.customized_document
+            </field>
+            <field name="print_report_name">'Paiment %s' % (object.name).replace('/',
+                '')
+            </field>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

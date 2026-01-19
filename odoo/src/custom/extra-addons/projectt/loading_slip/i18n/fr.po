@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* loading_slip
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-04 09:26+0000\n"
+"PO-Revision-Date: 2024-03-04 09:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: loading_slip
+#: model:ir.actions.report,print_report_name:loading_slip.loading_slip_record
+msgid "\"Bon de chargement\""
+msgstr ""
+
+#. module: loading_slip
+#: model_terms:ir.ui.view,arch_db:loading_slip.report_loading_slip
+msgid "<span>Bon de chargement</span>"
+msgstr ""
+
+#. module: loading_slip
+#: model_terms:ir.ui.view,arch_db:loading_slip.report_loading_slip
+msgid "<span>Somme</span>"
+msgstr ""
+
+#. module: loading_slip
+#: model_terms:ir.ui.view,arch_db:loading_slip.report_loading_slip
+msgid ""
+"<strong>Livreur:</strong>\n"
+"                                    <br/>"
+msgstr ""
+
+#. module: loading_slip
+#: model_terms:ir.ui.view,arch_db:loading_slip.report_loading_slip
+msgid ""
+"<strong>Poids Net:</strong>\n"
+"                                    <br/>"
+msgstr ""
+
+#. module: loading_slip
+#: model_terms:ir.ui.view,arch_db:loading_slip.report_loading_slip
+msgid ""
+"<strong>Véhicule:</strong>\n"
+"                                    <br/>"
+msgstr ""
+
+#. module: loading_slip
+#: model:ir.actions.report,name:loading_slip.loading_slip_record
+msgid "Loading Slip"
+msgstr "Bon de chargement"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="scale_paperformat" model="report.paperformat">
+            <field name="name">Blance Report</field>
+            <field name="default" eval="False"/>
+            <field name="format">custom</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">60</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_scale_invoice_report" model="ir.actions.report">
+            <field name="name">Scale Invoice Report</field>
+            <field name="model">scale.reader</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">odoo_scale_integration.scale_invoice_report</field>
+            <field name="report_file">odoo_scale_integration.scale_invoice_report</field>
+            <field name="binding_model_id" ref="model_scale_reader"/>
+            <field name="print_report_name">'Scale Invoice - %s - ' % (object.name)+time.strftime('%Y-%m-%d %H:%M:%S')
+            </field>
+            <field name="paperformat_id" ref="odoo_scale_integration.scale_paperformat"/>
+        </record>
+
+        <template id="scale_invoice_report">
+            <t t-call="account.report_invoice">
+                <t t-set="print_with_payments" t-value="True"/>
+            </t>
+        </template>
+    </data>
+</odoo>

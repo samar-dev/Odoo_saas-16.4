@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Tree view for treasury.summary.line -->
+        <record id="view_treasury_summary_line_tree" model="ir.ui.view">
+            <field name="name">treasury.summary.line.tree</field>
+            <field name="model">treasury.summary.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sector_id"/>
+                    <field name="jan"/>
+                    <field name="feb"/>
+                    <field name="mar"/>
+                    <field name="apr"/>
+                    <field name="may"/>
+                    <field name="jun"/>
+                    <field name="jul"/>
+                    <field name="aug"/>
+                    <field name="sep"/>
+                    <field name="oct"/>
+                    <field name="nov"/>
+                    <field name="dec"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view for treasury.summary -->
+        <record id="view_treasury_summary_form" model="ir.ui.view">
+            <field name="name">treasury.summary.form</field>
+            <field name="model">treasury.summary</field>
+            <field name="arch" type="xml">
+                <form string="Treasury Summary">
+                    <header>
+                        <button name="action_recompute_summary_lines"
+                                string="Recompute Summary"
+                                type="object"
+                                class="btn-secondary"
+                                icon="fa-refresh"/>
+
+                        <button name="action_export_excel"
+                                string="Export Excel"
+                                type="object"
+                                class="btn-primary"
+                                icon="fa-file-excel-o"/>
+                        <field name="excel_file" filename="excel_filename" invisible="1"/>
+                    </header>
+                    <sheet>
+
+                        <field name="name" string="Label"/>
+                        <group>
+                            <field name="template_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Monthly Summary by Sector">
+                                <field name="summary_line_ids" nolabel="1">
+                                    <tree>
+                                        <field name="sector_id"/>
+                                        <field name="jan"/>
+                                        <field name="feb"/>
+                                        <field name="mar"/>
+                                        <field name="apr"/>
+                                        <field name="may"/>
+                                        <field name="jun"/>
+                                        <field name="jul"/>
+                                        <field name="aug"/>
+                                        <field name="sep"/>
+                                        <field name="oct"/>
+                                        <field name="nov"/>
+                                        <field name="dec"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

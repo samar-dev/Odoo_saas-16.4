@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hr_leave_type_form_inherit_credit" model="ir.ui.view">
+            <field name="name">hr.leave.type.form.inherit.credit</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="company_ids" widget="many2many_tags"/>
+                    <field name="can_notify" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

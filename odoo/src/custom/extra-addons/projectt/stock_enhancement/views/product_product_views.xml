@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_normal_form_inherit" model="ir.ui.view">
+            <field name="name">product.product.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='weight']" position="attributes">
+                    <attribute name="string">Net weight</attribute>
+                </xpath>
+                <xpath expr="//field[@name='uom_po_id']" position="after">
+                    <field name="etiquette_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_product_product_type_form">
+            <field name="name">product.template.product.form..type.view.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='detailed_type']" position="after">
+                    <field name="x_product_type"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_product_tree_inherit_etiquette" model="ir.ui.view">
+            <field name="name">product.product.tree.etiquette</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="inside">
+                    <field name="etiquette_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_template_search_inherit" model="ir.ui.view">
+            <field name="name">product.template.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='filter_to_sell']" position="after">
+                    <filter string="Immobilisation" name="immobilisation"
+                            domain="[('x_product_type','=','immobilisation')]"/>
+                    <filter string="Fourniture Divers" name="fourniture_divers"
+                            domain="[('x_product_type','=','fourniture_divers')]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

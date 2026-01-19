@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_quality_checklist_emballage,access_quality_checklist_emballage,model_quality_checklist_emballage,base.group_user,1,1,1,1
+access_lab_sample_reference,access.lab.sample.reference,model_lab_sample_reference,base.group_user,1,1,1,1
+access_lab_sample_reception,access.lab.sample.reception,model_lab_sample_reception,base.group_user,1,1,1,1

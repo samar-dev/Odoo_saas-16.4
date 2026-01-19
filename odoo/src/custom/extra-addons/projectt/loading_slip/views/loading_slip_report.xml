@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- QWeb Reports -->
+        <record id="loading_slip_record" model="ir.actions.report">
+            <field name="name">Loading Slip</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">loading_slip.report_loading_slip</field>
+            <field name="report_file">loading_slip.report_loading_slip</field>
+            <field name="print_report_name">"Bon de chargement"</field>
+            <field name="attachment"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="loading_slip.report_loading_slip">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="mt-5 clearfix">
+                        <div class="page mb-4">
+                            <h2>
+                                <span>Bon de chargement</span>
+                            </h2>
+                            <div class="oe_structure"></div>
+                            <div id="informations" class="row mt-3 mb-1">
+                                <t t-set="picking_id"
+                                   t-value="docs[0].invoice_line_ids[0].sale_line_ids.move_ids.picking_id"/>
+                                <div t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                     name="vehicle">
+                                    <strong>Véhicule:</strong>
+                                    <br/>
+                                    <span t-if="'vehicle_id' in picking_id" t-field="picking_id.vehicle_id"/>
+                                </div>
+                                <div t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                     name="vehicle">
+                                    <strong>Livreur:</strong>
+                                    <br/>
+                                    <span t-if="'delivery_person_id' in picking_id"
+                                          t-field="picking_id.delivery_person_id"/>
+                                </div>
+                                <div t-attf-class="#{'col-auto col-3 mw-100' if report_type != 'html' else 'col'} mb-2"
+                                     name="date">
+                                    <strong>Date:</strong>
+                                    <br/>
+                                    <span t-esc="datetime.date.today()"/>
+                                </div>
+                            </div>
+
+                            <table class="table table-sm o_main_table table-bordered" name="invoice_line_table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th name="th_customer_name" class="text-start" t-foreach="docs" t-as="doc">
+                                            <span t-field="doc.partner_id.name"/>
+                                        </th>
+                                        <th/>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th name="th_lot_number" class="text-start">
+                                            <span>Conditionnement</span>
+                                        </th>
+                                        <th name="th_lot_number" class="text-start">
+                                            <span>Num lot</span>
+                                        </th>
+                                        <th name="th_invoice_name" class="text-start" t-foreach="docs" t-as="doc">
+                                            <span t-field="doc.name"/>
+                                        </th>
+                                        <th name="th_sum" class="text-start">
+                                            <span>Somme</span>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <tr t-att-class="'fw-bold o_line_section' "
+                                        t-foreach="set(docs.invoice_line_ids.filtered(lambda line: line.product_id.product_tmpl_id.is_tax_stamp == False).mapped('product_id'))"
+                                        t-as="product">
+                                        <t t-set="sum_qty_col" t-value="0"/>
+                                        <td name="product_name" class="text-start">
+                                            <span t-field="product.name"/>
+                                        </td>
+                                        <td name="product_packaging" class="text-start">
+                                            <t t-set="product_packaging_qty"
+                                               t-value="docs.invoice_line_ids.filtered(lambda line: line.product_id == product).sale_line_ids.product_packaging_id.name"/>
+                                            <span t-esc="product_packaging_qty"/>
+                                        </td>
+                                        <td name="product_lot_number" class="text-start">
+                                            <t t-set="product_lot_name"
+                                               t-value="docs.invoice_line_ids.filtered(lambda line: line.product_id == product).sale_line_ids.move_ids.lot_ids.name"/>
+                                            <span t-esc="product_lot_name"/>
+                                        </td>
+                                        <td name="product_qty" class="text-start" t-foreach="docs" t-as="doc">
+                                            <t t-if="doc.invoice_line_ids.filtered(lambda line: line.product_id == product).sale_line_ids.product_packaging_id">
+                                                <t t-set="sum_product_qty"
+                                                   t-value="sum(doc.invoice_line_ids.filtered(lambda line: line.product_id == product).mapped('sale_line_ids.product_packaging_qty'))"/>
+                                                <span t-esc="sum_product_qty"/>
+                                                <t t-set="sum_qty_col" t-value="sum_qty_col+sum_product_qty"/>
+                                                <!--                                                <t t-set="sum_qty_line" t-value="sum_qty_line+sum_product_qty"/>-->
+                                            </t>
+                                            <t t-else="">
+                                                <t t-set="sum_product"
+                                                   t-value="sum(doc.invoice_line_ids.filtered(lambda line: line.product_id == product).mapped('quantity'))"/>
+                                                <span t-esc="sum_product"/>
+                                                <t t-set="sum_qty_col" t-value="sum_qty_col+sum_product"/>
+                                                <!--                                                <t t-set="sum_qty_line" t-value="sum_qty_line+sum_product"/>-->
+                                            </t>
+                                        </td>
+                                        <td name="sum_qty_col" class="text-start">
+                                            <span t-esc="sum_qty_col"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-att-class="'bg-200 fw-bold o_line_section' ">
+                                        <td name="td_sum" class="text-start">
+                                            <span>Somme</span>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td name="sum_qty_line" class="text-start" t-foreach="docs" t-as="doc">
+                                            <t t-set="sum_qty_line" t-value="0"/>
+                                            <t t-foreach="set(doc.invoice_line_ids.filtered(lambda line: line.product_id.product_tmpl_id.is_tax_stamp == False).mapped('product_id'))"
+                                               t-as="product">
+                                                <t t-if="doc.invoice_line_ids.filtered(lambda line: line.product_id == product).sale_line_ids.product_packaging_id">
+                                                    <t t-set="sum_product_qty"
+                                                       t-value="sum(doc.invoice_line_ids.filtered(lambda line: line.product_id == product).mapped('sale_line_ids.product_packaging_qty'))"/>
+                                                    <t t-set="sum_qty_line" t-value="sum_qty_line+sum_product_qty"/>
+
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-set="sum_product"
+                                                       t-value="sum(doc.invoice_line_ids.filtered(lambda line: line.product_id == product).mapped('quantity'))"/>
+                                                    <t t-set="sum_qty_line" t-value="sum_qty_line+sum_product"/>
+                                                </t>
+                                            </t>
+                                            <span t-esc="sum_qty_line"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

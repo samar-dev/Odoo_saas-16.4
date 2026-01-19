@@ -1,0 +1,20 @@
+{
+    "name": "Custom Qweb reports",
+    "version": "saas~16.4.1.0.0",
+    "category": "External",
+    "author": "Veganet",
+    "website": "https://vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "sale", "purchase"],
+    "data": [
+        "report/ir_actions_report.xml",
+        "report/bc_fournisseur_import_template.xml",
+        "report/facture_export_template.xml",
+        "report/liste_packaging_template.xml",
+        "report/facture_pro_forma_template.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

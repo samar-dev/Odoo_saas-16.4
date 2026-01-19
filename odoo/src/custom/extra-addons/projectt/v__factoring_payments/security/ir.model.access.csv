@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_journal_factoring_line,access_account_journal_factoring_line,model_account_journal_factoring_line,base.group_user,1,1,1,1
+access_account_factoring,access_account_factoring,model_account_factoring,account.group_account_invoice,1,1,1,1
+access_account_factoring_commission,access_account_factoring_commission,model_account_factoring_commission,account.group_account_invoice,1,1,1,1

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="view_move_form_production" model="ir.ui.view">
+        <field name="name">stock.production.lot.inherit.form</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="product_expiry.view_move_form_expiry"/>
+        <field name="arch" type="xml">
+            <field name="expiration_date" position="after">
+                <field name="use_production_date" invisible="1"/>
+                <field name="production_date" attrs="{'invisible': [('use_production_date', '=', False)]}"/>
+            </field>
+            <xpath expr="//page[@name='expiration_dates']" position="attributes">
+                <attribute name="attrs">{'invisible':[('use_expiration_date', '=', False), ('use_production_date', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

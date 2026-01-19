@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+
+        <record id="group_create_purchase_from_sale" model="res.groups">
+            <field name="name">Create Purchase from Sale</field>
+            <field name="comment">the user will have access to create purchase order directly from a sale order.</field>
+        </record>
+
+    </data>
+</odoo>

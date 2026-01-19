@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_scale_settings,access_scale_settings,model_scale_settings,,1,1,1,1
+access_scale_reader,access_scale_reader,model_scale_reader,,1,1,1,1
+access_scale_reader_line_user,access_scale_reader_line_user,model_scale_reader_line,,1,1,1,1
+access_scale_reader_user,access_scale_reader_user,model_scale_reader,,1,1,1,1

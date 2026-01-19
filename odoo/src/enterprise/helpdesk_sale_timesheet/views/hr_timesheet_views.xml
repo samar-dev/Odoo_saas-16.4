@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="timesheet_view_form_inherit_helpdesk_sale_timesheet" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.timesheet</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="sale_timesheet.hr_timesheet_line_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='task_id']" position="after">
+                <field name="display_sol" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='so_line']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('display_sol', '!=', True), ('allow_billable', '=', False)], 'readonly': [('readonly_timesheet', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

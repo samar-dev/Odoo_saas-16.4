@@ -1,0 +1,27 @@
+{
+    "name": "Payment Methods",
+    "version": "saas~16.4.3.9.0",
+    "description": "Payment Methods",
+    "summary": "Add new payments to odoo, don't auto reconcile payments, "
+    "reconcile after reaching a predefined stage",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "account", "account_batch_payment", "v__message_service"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/account.payment.method.csv",
+        "data/ir_cron.xml",
+        "views/core/account_payment_method.xml",
+        "views/core/account_payment.xml",
+        "views/core/account_batch_payment.xml",
+        "views/core/account_journal.xml",
+        "views/core/account_account.xml",
+        "wizards/core/account_payment_register.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

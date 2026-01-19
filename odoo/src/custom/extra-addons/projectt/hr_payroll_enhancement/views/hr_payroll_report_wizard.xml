@@ -1,0 +1,189 @@
+<odoo>
+    <data>
+
+        <record id="hr_payroll_paperformat" model="report.paperformat">
+            <field name="name">Journal Paie Report</field>
+            <field name="default" eval="False"/>
+            <field name="format">custom</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">30</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <template id="journal_pay_periodique_template">
+    <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+
+            <div class="page">
+
+                <style>
+                    table.o_main_table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-size: small;
+                    }
+                    table.o_main_table th, table.o_main_table td {
+                        border: 1px solid black;
+                        padding: 3px;
+                    }
+                    table.o_main_table thead th {
+                        background-color: #c6c6c6;
+                        text-align: center;
+                    }
+                    .total-cell {
+                        background-color: #f0f0f0;
+                        font-weight: bold;
+                        text-align: right;
+                    }
+                    .category-cell {
+                        font-weight: bold;
+                        text-align: left;
+                        width: 20%;
+                    }
+                    .cell-center { text-align:center; }
+                    .cell-right { text-align:right; }
+                    .monetary {
+                        font-feature-settings: "tnum";
+                        font-variant-numeric: tabular-nums;
+                        font-family: 'Courier New', Courier, monospace;
+                    }
+                    h1 { text-align:center; text-transform: uppercase; color:#675fb3; }
+                </style>
+
+                <h1>Journal de paie <span t-esc="motif"/></h1>
+
+                <!-- LOOP THROUGH GROUPS -->
+                <t t-foreach="groups" t-as="group">
+
+                    <t t-set="group_employees" t-value="group['employees']"/>
+                    <t t-set="group_keys" t-value="group['sorted_keys']"/>
+
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th>Catégorie</th>
+                                <t t-foreach="group_employees" t-as="emp">
+                                    <t t-set="employee" t-value="emp['employee_matricule'] + ' | ' + emp['employee_name']"/>
+                                    <th class="cell-center" t-esc="employee"/>
+                                </t>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <t t-foreach="group_keys" t-as="rule_name">
+                                <tr>
+                                    <td class="category-cell" t-esc="rule_name"/>
+
+                                    <t t-foreach="group_employees" t-as="emp">
+                                        <td class="cell-right monetary"
+                                            t-esc="emp['salary_lines'].get(rule_name, {}).get('amount', 0.0)"/>
+                                    </t>
+
+                                    <td class="total-cell monetary">
+                                        <t t-set="money"
+                                           t-value="round(sum([emp['salary_lines'].get(rule_name, {}).get('amount', 0.0) for emp in group_employees]), 3)"/>
+                                        <span t-esc="'%.3f' % money"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <br/>
+                </t>
+
+                <!-- GRAND TOTAL TABLE -->
+                <table class="table table-sm o_main_table" style="border:2px solid black; background:#e0e0e0;">
+                    <thead>
+                        <tr>
+                            <th class="category-cell">Catégorie</th>
+                            <th class="cell-center">Total général</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <t t-foreach="all_keys_total_sorted" t-as="rule_name">
+                            <tr>
+                                <td class="category-cell" t-esc="rule_name"/>
+                                <td class="cell-right monetary"
+                                    t-esc="round(sum([emp['salary_lines'].get(rule_name, {}).get('amount', 0.0) for emp in result]), 3)"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <p style="text-align:right;">
+                    <strong>Imprimé le :</strong>
+                    <span t-esc="time.strftime('%Y-%m-%d')"/>
+                </p>
+
+            </div>
+
+        </t>
+    </t>
+</template>
+
+
+        <!-- Action rapport -->
+        <record id="journal_pay_periodique_report_action" model="ir.actions.report">
+            <field name="name">Journal Paie Périodique</field>
+            <field name="model">wizard.journal.pay.periodique</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_payroll_enhancement.journal_pay_periodique_template</field>
+            <field name="report_file">hr_payroll_enhancement.journal_pay_periodique_template</field>
+            <field name="paperformat_id" ref="hr_payroll_enhancement.hr_payroll_paperformat"/>
+        </record>
+
+        <!-- Action wizard -->
+        <record id="action_wizard_journal_pay_periodique" model="ir.actions.act_window">
+            <field name="name">Journal Paie Périodique</field>
+            <field name="res_model">wizard.journal.pay.periodique</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Vue Formulaire wizard -->
+        <record id="view_wizard_journal_pay_periodique_form" model="ir.ui.view">
+            <field name="name">wizard.journal.pay.periodique.form</field>
+            <field name="model">wizard.journal.pay.periodique</field>
+            <field name="arch" type="xml">
+                <form string="Journal Paie Périodique">
+                    <group>
+                        <group string="Calander">
+                            <field name="year"/>
+                            <field name="month"/>
+                            <field name="month_end"/>
+                        </group>
+                        <group string="Details">
+                            <field name="motif"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Imprimer" type="object" name="print_report" class="btn-primary"/>
+                        <button name="export_to_excel"
+                                string="Export to Excel"
+                                type="object"
+                                class="btn-success"/>
+                        <button string="Annuler" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_journal_pay_periodique_wizard_action"
+                  name="Livre de paie"
+                  parent="declaration_cnss_menuitem"
+                  action="action_wizard_journal_pay_periodique"
+                  sequence="2"/>
+
+    </data>
+
+
+</odoo>

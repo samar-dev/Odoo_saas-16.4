@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_employee_form_update" model="ir.ui.view">
+            <field name="name">hr.employee.form.update</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <field name="locked" invisible="1"/>
+                    <button type="object" name="lock" string="Verouiller"
+                            attrs="{'invisible': [('locked', '=', True)]}"/>
+                    <button type="object" name="unlock" string="Deverouiller"
+                            attrs="{'invisible': [('locked', '=', False)]}"/>
+                </header>
+                <!-- all replaces -->
+                <xpath expr="//field[@name='identification_id']" position="replace"/>
+                <!-- Documents Administratives -->
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page string="Documents" name="hr_documents">
+                        <group>
+                            <group string="Document CIN" name="doc_cin">
+                                <field name="identification_id"/>
+                                <field name="cin_issuance_date"
+                                       decoration-danger="cin_issuance_date &gt; current_date"/>
+                                <field name="cin_issuance_place"/>
+                                <field name="cin_scanned_file" widget="many2many_binary" string="CIN Scanné"/>
+                            </group>
+                            <group string="Document Cnss" name="doc_cnss">
+                                <field name="cnss_registration_number"/>
+                                <field name="cnss_effective_date"
+                                       decoration-danger="cnss_effective_date &gt; current_date"/>
+                                <field name="cnss_scanned_file" widget="many2many_binary" string="CNSS Scanné"/>
+                            </group>
+                            <group string="Documents Bancaire" name="doc_bnk">
+                                <field name="rib_number"/>
+                                <field name="bank_id"/>
+                                <field name="rib_scanned_file" widget="many2many_binary"/>
+                            </group>
+                            <group string="Documents Judiciaire">
+                                <field name="b3_scanned_file" widget="many2many_binary" string="B3 Scanné"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <!-- Parametres hr -->
+                <xpath expr="//group[@name='payroll_group']" position="after">
+                    <group name="payroll_setting" string="Paramètres de paie">
+                        <field name="currency_id" invisible="1"/>
+                        <field name="contract_type"/>
+                        <field name="holder"/>
+                        <field name="convention_id"/>
+                        <field name="civp_amount" attrs="{'invisible': [('contract_type', '!=', 'civp_caip')]}"/>
+                        <field name="base_salary"/>
+                        <field name="gross_salary"/>
+                        <field name="net_salary"/>
+
+                    </group>
+                    <group string="Echelle/Echelon " name="ech_info">
+                        <field name="convention_category"/>
+                        <field name="convention_category_id"/>
+                        <field name="convention_echelon"/>
+                        <field name="echelon_date"/>
+                    </group>
+                    <group string="Avantages" name="adv_info">
+                        <field name="fuel_card"/>
+                        <field name="fuel_card_number" attrs="{'invisible': [('fuel_card', '=', False)]}"/>
+                        <field name="fuel_card_rate" attrs="{'invisible': [('fuel_card', '=', False)]}"/>
+                        <field name="toll_card"/>
+                        <field name="toll_card_number" attrs="{'invisible': [('toll_card', '=', False)]}"/>
+                        <field name="toll_card_rate" attrs="{'invisible': [('toll_card', '=', False)]}"/>
+                        <field name="group_insurance"/>
+                        <field name="vehicle_type"/>
+                    </group>
+                    <group string="Prime" name="prm_info">
+                        <field name="basket_allowance"/>
+                        <field name="transport_allowance"/>
+                        <field name="attendance_bonus"/>
+                        <field name="differential_bonus"/>
+                        <field name="additional_premium"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//group[@name='active_group']" position="inside">
+                    <field name="spouse_job"/>
+                </xpath>
+                <xpath expr="//group[@name='identification_group']" position="inside">
+                    <field name="nb_salary"/>
+                </xpath>
+
+                <xpath expr="//field[@name='children']" position="after">
+                    <field name="disabled_child"
+                           attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"/>
+                    <field name="child_sup" attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

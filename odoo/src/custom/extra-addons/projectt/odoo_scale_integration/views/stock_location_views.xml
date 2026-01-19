@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Vue Kanban personnalisée -->
+    <data>
+
+        <record id="stock_location_form_inherit_capacity" model="ir.ui.view">
+            <field name="name">stock.location.form.capacity.inherit</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <!-- Par exemple, ajoute le champ après le champ 'usage' -->
+                <xpath expr="//field[@name='usage']" position="after">
+                    <field name="capacity_max" widget="float" string="Max Capacity"/>
+                    <field name="capacity_unit" string="Capacity Unit"/>
+                    <field name="row"/>
+                    <field name="col"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="stock_location_kanban_view" model="ir.ui.view">
+            <field name="name">stock.location.kanban.custom</field>
+            <field name="model">stock.location</field>
+            <field name="arch" type="xml">
+                <kanban create="false" class="o_kanban_dashboard o_kanban_referral_job" js_class="referral_kanban">
+                    <field name="name"/>
+                    <field name="capacity_max"/>
+                    <field name="capacity_occupied"/>
+                    <field name="occupancy_percent"/>
+                    <field name="capacity_status"/>
+                    <field name="product_lot_info"/>
+                    <field name="product_txt"/>
+                    <field name="product_lot_report" invisible="1"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <style>
+                                .progress-bar-container {
+                                margin-top: 5px;
+                                }
+                                .progress-bar {
+                                width: 100%;
+                                height: 12px;
+                                background: #e0e0e0;
+                                border-radius: 6px;
+                                overflow: hidden;
+                                box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+                                }
+                                .progress-bar-fill {
+                                height: 100%;
+                                border-radius: 6px;
+                                transition: width 0.5s ease;
+                                }
+                                .progress-green {
+                                background-color: #4caf50; /* vert */
+                                }
+                                .progress-orange {
+                                background-color: #ff9800; /* orange */
+                                }
+                                .progress-red {
+                                background-color: #f44336; /* rouge */
+                                }
+                                .lot-info-pre {
+                                font-size: 10px;
+                                white-space: normal;
+                                margin: 5px 0;
+                                max-height: 150px;
+                                overflow-y: auto;
+                                border: 1px solid #ddd;
+                                padding: 8px;
+                                background: #fafafa;
+                                box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+                                text-align: left;
+                                font-family: monospace;
+                                border-radius: 4px;
+                                }
+                                .o_kanban_card_header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                border-bottom: 1px solid #ddd;
+                                padding-bottom: 0.5rem;
+                                margin-bottom: 0.5rem;
+                                }
+                                .o_kanban_card_header_title {
+                                font-weight: 600;
+                                flex-grow: 1;
+                                }
+                                .header-info {
+                                display: flex;
+                                gap: 1rem;
+                                align-items: center;
+                                }
+                                .header-info div small {
+                                color: #888;
+                                }
+                            </style>
+                            <div class="oe_kanban_card">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title o_primary">
+                                        <field name="name"/>
+                                    </div>
+                                    <div class="header-info">
+                                        <div>
+                                            <small>Capacité max</small>
+                                            <br/>
+                                            <strong>
+                                                <t t-esc="record.capacity_max.raw_value"/>
+                                            </strong>
+                                        </div>
+                                        <div>
+                                            <small>Occupé</small>
+                                            <br/>
+                                            <strong>
+                                                <t t-esc="record.capacity_occupied.raw_value"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar">
+                                        <div t-att-class="{
+                'progress-bar-fill': true,
+                'progress-green': record.capacity_status.raw_value === 'green',
+                'progress-orange': record.capacity_status.raw_value === 'orange',
+                'progress-red': record.capacity_status.raw_value === 'red'
+              }"
+                                             t-att-style="'width: ' + record.occupancy_percent.raw_value + '%;'">
+                                        </div>
+                                    </div>
+                                    <div class="text-muted" style="font-size:12px; margin-top:5px;">
+                                        <t t-esc="record.capacity_occupied.raw_value"/>
+                                        /
+                                        <t t-esc="record.capacity_max.raw_value"/>
+                                        (<t t-esc="record.occupancy_percent.raw_value"/>%)
+                                    </div>
+                                </div>
+                                <pre class="lot-info-pre">
+                                    <p t-esc="record.product_txt.value"/>
+                                    <t t-esc="record.product_lot_info.value"/>
+                                </pre>
+                            </div>
+                        </t>
+                    </templates>
+
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_stock_location_kanban_view" model="ir.actions.act_window">
+            <field name="name">Etat Stock Citernes</field>
+            <field name="res_model">stock.location</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="stock_location_kanban_view"/>
+            <field name="domain">["|", ["usage", "=", "internal"], ["usage", "=", "transit"]]</field>
+        </record>
+        <menuitem id="menu_stock_location_kanban_custom"
+                  name="Capacité des emplacements"
+                  parent="stock.menu_warehouse_report"
+                  action="action_stock_location_kanban_view"
+                  sequence="99"/>
+        <record id="action_report_stock_lot_kanban_style" model="ir.actions.report">
+            <field name="name">Rapport Stock Citernes</field>
+            <field name="model">stock.location</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">odoo_scale_integration.report_stock_lot_kanban_style</field>
+            <field name="report_file">odoo_scale_integration.report_stock_lot_kanban_style</field>
+            <field name="print_report_name">'Lot - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="stock.model_stock_location"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_stock_lot_kanban_style">
+            <t t-call="web.basic_layout">
+    <style>
+      .tank-board {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .tank-square {
+        position: absolute;
+        width: 270px;
+        border: 3px solid #444;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 14px;
+        padding: 6px;
+        background: #f9f9f9;
+        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+        font-family: monospace;
+      }
+
+      .tank-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+
+      .tank-meta {
+        font-size: 12px;
+        color: #555;
+        margin: 3px 0;
+      }
+
+      .tank-lots {
+        font-size: 12px;
+        text-align: left;
+        margin-top: 4px;
+      }
+
+      .tank-progress {
+        margin: 6px 0;
+        height: 12px;
+        background: #eee;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .tank-progress-fill {
+        height: 100%;
+        background: #4caf50;
+        text-align: center;
+        color: #fff;
+        font-size: 10px;
+        line-height: 12px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+      }
+
+      td {
+        padding: 3px 5px;
+        text-align: center;
+        vertical-align: top;
+        border: 1px solid #ddd;
+      }
+
+      td small {
+        font-size: 11px;
+        color: #333;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .small_txt {
+        font-size: 12px;
+        color: #333;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      td strong {
+        font-size: 12px;
+        color: #333;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* Header styles */
+      .report-header {
+        width: 100%;
+        border-bottom: 2px solid #444;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        display: table;
+        /* Ensures proper row/column layout */
+      }
+
+      .report-header-row {
+        display: table-row;
+      }
+
+      .report-header-cell {
+        display: table-cell;
+        padding: 5px 10px;
+        vertical-align: middle;
+      }
+
+      .report-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .report-print-time {
+        font-size: 18px;
+        color: #555;
+        text-align: right;
+      }
+      .line-separator {
+  border: none;         /* Remove default border */
+  height: 2px;          /* Thickness of the line */
+  background-color: #333; /* Line color */
+  margin: 20px 0;       /* Spacing above and below */
+}
+    </style>
+    <!-- Group docs by row_col -->
+    <t t-set="grouped_docs" t-value="{}"/>
+    <div class="report-header">
+      <div class="report-header-row">
+        <div class="report-header-cell report-title"> Stock Citernes </div>
+        <div class="report-header-cell report-print-time"> Date :
+          <t t-esc="time.strftime('%d/%m/%Y %H:%M')"/>
+        </div>
+      </div>
+    </div>
+    <t t-foreach="docs" t-as="loc">
+      <t t-set="key" t-value="str(loc.row) + '_' + str(loc.col)"/>
+      <t t-if="key in grouped_docs">
+        <t t-set="grouped_docs" t-value="grouped_docs.update({key: grouped_docs[key] + [loc]}) or grouped_docs"/>
+      </t>
+      <t t-if="key not in grouped_docs">
+        <t t-set="grouped_docs" t-value="grouped_docs.update({key: [loc]}) or grouped_docs"/>
+      </t>
+    </t>
+    <div class="tank-board">
+
+      <t t-foreach="grouped_docs.items()" t-as="item">
+        <t t-set="count" t-value="0"/>
+        <t t-set="key" t-value="item[0]"/>
+        <t t-set="locs" t-value="item[1]"/>
+        <div class="tank-square oe_kanban_card" t-attf-style="top:{{int(key.split('_')[0]) * 260}}px; left:{{int(key.split('_')[1]) * 280}}px;">
+          <t t-foreach="locs" t-as="loc">
+            <!-- Tank info table -->
+            <t t-set="count" t-value="count+1"/>
+            <t t-if="count &gt;= 2">
+                <div class="line-separator"/>
+            </t>
+            <table style="margin-bottom: 5px;">
+              <tr>
+                <td>
+                  <small>Emp</small>
+                </td>
+                <td>
+                  <small>Capacité max</small>
+                </td>
+                <td>
+                  <small>Occupé</small>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>
+                    <t t-esc="loc.name"/>
+                  </strong>
+                </td>
+                <td>
+                  <strong>
+                    <t t-esc="round((loc.capacity_max / 1000),3) if loc.capacity_max else 0"/> T
+                  </strong>
+                </td>
+                <td>
+                  <strong>
+                    <t t-esc="round((loc.capacity_occupied / 1000),3) if loc.capacity_occupied else 0"/> T
+                  </strong>
+                </td>
+              </tr>
+            </table>
+            <!-- Progress bar -->
+            <div class="tank-progress">
+              <div class="tank-progress-fill" t-attf-style="width:{{loc.occupancy_percent}}%">
+                <span class="small_txt">
+                  <t t-esc="loc.occupancy_percent"/>%
+                </span>
+              </div>
+            </div>
+            <!-- Product lots -->
+            <div class="tank-lots">
+              <table>
+                <tr>
+                  <td>
+                    <small>Lots</small>
+                  </td>
+                  <td>
+                    <small>Analyse</small>
+                  </td>
+                </tr>
+                <t t-foreach="loc.product_lot_report.split(')')" t-as="lot_raw">
+    <t t-if="lot_raw.strip()">
+        <!-- Extract lot info -->
+        <t t-set="lot_name" t-value="lot_raw.split('-&gt;')[0].strip()"/>
+        <t t-set="adm_number" t-value="lot_raw.split('-&gt;')[1].split(':')[0].strip() if '-&gt;' in lot_raw else '-'"/>
+        <t t-set="analysis" t-value="lot_raw.split(':')[1].split('(')[0].strip() if ':' in lot_raw else '-'"/>
+        <t t-set="qty_str" t-value="lot_raw[lot_raw.find('(')+1:].strip() if '(' in lot_raw else '0'"/>
+        <t t-set="qty" t-value="float(qty_str) if qty_str else 0"/>
+        <t t-if="qty &gt; 0">
+            <tr>
+                <td><small t-esc="lot_name"/></td>
+                <td><small t-esc="adm_number"/> / <small t-esc="analysis"/>-<small t-esc="qty_str"/></td>
+            </tr>
+        </t>
+    </t>
+</t>
+              </table>
+            </div>
+          </t>
+        </div>
+      </t>
+    </div>
+  </t>
+        </template>
+
+
+    </data>
+</odoo>

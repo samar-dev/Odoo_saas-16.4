@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mrp_bom_form_view_inherit" model="ir.ui.view">
+            <field name="name">mrp_bom_form_view_inherit</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+            <field name="arch" type="xml">
+
+<!--                <xpath expr="//div[hasclass('oe_button_box')]" position="after">-->
+<!--                    <div class="options">-->
+<!--                        <span class="d-inline-block">-->
+<!--                            <field name="is_template" />-->
+<!--                            <label for="is_template" />-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                </xpath>-->
+
+                <div class="oe_button_box" position="inside">
+                    <field name="is_template" invisible="1" />
+<!--                    <button name="action_toggle_is_template" attrs="{'invisible': [('is_template', '=', False)]}" class="oe_stat_button text-success" type="object" icon="fa-files-o">-->
+<!--                        <div class="o_stat_info o_field_widget">-->
+<!--                            <span class="text-success">Template</span>-->
+<!--                        </div>-->
+<!--                    </button>-->
+<!--                    <button name="action_toggle_is_template" attrs="{'invisible': [('is_template', '=', True)]}" class="oe_stat_button text-info" type="object" icon="fa-bars">-->
+<!--                        <div class="o_stat_info o_field_widget">-->
+<!--                            <span class="text-info">Normal</span>-->
+<!--                        </div>-->
+<!--                    </button>-->
+                </div>
+
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="mrp_routing_ids" options="{'no_create': 1, 'no_edit': 1}" domain="[('state', '=', 'approved')]" widget="many2many_tags" />
+                </xpath>
+
+                <xpath expr="//field[@name='operation_ids']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('type','not in',('normal','phantom'))], 'readonly': [('mrp_routing_ids', '!=', False)]}</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_mrp_bom_filter_inherit" model="ir.ui.view">
+            <field name="name">view_mrp_bom_filter_inherit</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.view_mrp_bom_filter" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//filter[@name='phantom']" position="after">
+                    <filter name="template_filter" string="BOM" domain="[('is_template', '=', False)]" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="mrp.mrp_bom_form_action" model="ir.actions.act_window">
+            <field name="context">{'default_company_id': allowed_company_ids[0], 'search_default_template_filter': 1}</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!--        tree view of declaration cnss-->
+        <record model="ir.ui.view" id="declaration_cnss_tree">
+            <field name="name">cnss.declaration.tree</field>
+            <field name="model">cnss.declaration</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="CNSS Declarations">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="total_employee_cnss"/>
+                    <field name="total_employer_cnss"/>
+                    <field name="total_amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        form view of declaration cnss-->
+        <record model="ir.ui.view" id="declaration_cnss_form">
+            <field name="name">cnss.declaration.form</field>
+            <field name="model">cnss.declaration</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="CNSS Declaration">
+                    <header>
+                        <button string="Générer fichier CNSS" type="object" name="generate_file"
+                                class="btn-primary"/>
+                        <button name="action_generate_lines" type="object" string="Generate Lines" class="btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button string="Télécharger fichier CNSS" type="object"
+                                attrs="{'invisible': [('active_file', '=', False)]}"
+                                name="action_download_cnss_file"
+                                class="btn-secondary"/>
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="active_file" invisible="1"/>
+                            <field name="data" invisible="1"/>
+                            <field name="file_name" invisible="1"/>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="state" readonly="1"/>
+                            </group>
+                            <group string="Totals">
+                                <field name="total_employee_cnss" readonly="1"/>
+                                <field name="total_employer_cnss" readonly="1"/>
+                                <field name="total_amount" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Declaration Lines">
+                                <field name="line_ids">
+                                    <tree editable="bottom">
+                                        <field name="employee_id"/>
+                                        <field name="employee_cnss"/>
+                                        <field name="employer_cnss"/>
+                                        <field name="remuneration_1"/>
+                                        <field name="remuneration_2"/>
+                                        <field name="remuneration_3"/>
+                                        <field name="total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--        action of declaration cnss-->
+        <record model="ir.actions.act_window" id="declaration_cnss_action">
+            <field name="name">Declaration CNSS</field>
+            <field name="res_model">cnss.declaration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create a new CNSS Declaration for a trimester period and generate
+                    lines.
+                </p>
+            </field>
+        </record>
+
+
+        <!--menu of Repports-->
+        <menuitem id="declaration_cnss_menuitem" name="Rappots"
+                  parent="hr_work_entry_contract_enterprise.menu_hr_payroll_root" sequence="75"/>
+        <!--menu of declaration cnss-->
+        <menuitem id="repport_menuitem" name="Declaration CNSS" action="declaration_cnss_action"
+                  parent="declaration_cnss_menuitem"/>
+    </data>
+</odoo>

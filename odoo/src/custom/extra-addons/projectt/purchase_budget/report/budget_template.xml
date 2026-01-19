@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_budget_template_reader_report" model="ir.actions.report">
+            <field name="name">Budget Report</field>
+            <field name="model">purchase.crossovered.budget</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase_budget.budget_template_reader_report</field>
+            <field name="report_file">purchase_budget.budget_template_reader_report</field>
+            <field name="binding_model_id" ref="model_purchase_crossovered_budget"/>
+            <field name="print_report_name">'Scale Report - %s - ' % (object.name)+time.strftime('%Y-%m-%d %H:%M:%S')
+            </field>
+        </record>
+
+        <template id="budget_template_reader_report">
+            <t t-call="web.basic_layout">
+                <style>
+                    /* Table styles */
+                    table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                    }
+
+                    table, th, td {
+                    border: 1px solid #ddd;
+                    }
+
+                    th, td {
+                    padding: 10px;
+                    text-align: left;
+                    }
+
+                    th {
+                    background-color: #f2f2f2;
+                    font-weight: bold;
+                    }
+
+                    tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                    }
+
+                    tr:hover {
+                    background-color: #f1f1f1;
+                    }
+
+                    .account-info {
+                    margin-top: 10px;
+                    padding: 5px;
+                    background-color: #e8e8e8;
+                    }
+
+                    .account-info span {
+                    display: inline-block;
+                    margin-right: 10px;
+                    }
+                    .head_type {
+                    background-color: #f2f2f2;
+                    /* Light gray background for headers */
+                    border: 1px solid #000;
+                    /* Add a border to header cells */
+                    padding: 8px;
+                    /* Add padding to header cells */
+                    text-align: left;
+                    border: 1px;
+                    margin-right: 5px;
+                    }
+                    .text {
+                    padding: 10px;
+                    text-align: center;
+                    }
+                </style>
+                <div class="page">
+                    <div class="report-header" style="text-align: center;">
+                        <h1 class="head_type text">Rapport de lecture d'échelle</h1>
+                        <p>Généré le :
+                            <span t-esc="time.strftime('%d/%m/%Y %H:%M:%S')"/>
+                        </p>
+                    </div>
+                    <h2 class="head_type text">Résumé des composants pour les produits</h2>
+
+                    <!-- Initialize an empty list to store the component summary -->
+                    <t t-set="component_summary" t-value="[]"/>
+
+                    <!-- Loop through each 'doc' (document, in this case, the product list) -->
+                    <t t-foreach="docs" t-as="doc">
+                        <!-- Loop through each 'crossovered_budget_line' in the product -->
+                        <t t-foreach="doc.crossovered_budget_line" t-as="cdl_line">
+                            <!-- Loop through each BOM (Bill of Materials) linked to the product -->
+                            <t t-foreach="cdl_line.product_id.bom_ids" t-as="bom">
+                                <!-- Loop through each BOM line (the actual components) -->
+                                <t t-foreach="bom.bom_line_ids" t-as="bom_line">
+                                    <t t-set="component_name" t-value="bom_line.product_id.name"/>
+                                    <t t-set="component_quantity"
+                                       t-value="bom_line.product_qty*cdl_line.planned_amount"/>
+                                    <t t-set="product_uom_id" t-value="bom_line.product_uom_id.name"/> <!-- UOM name -->
+                                    <t t-set="product_crt_qty" t-value="bom.product_qty"/> <!-- UOM name -->
+                                    <t t-set="product_categ" t-value="bom_line.product_id.categ_id.name"/>
+                                    <t t-set="component_cost"
+                                       t-value="bom_line.product_qty*cdl_line.planned_amount*bom_line.product_id.standard_price"/>
+                                    <!-- Initialize a flag to check if the component exists in the list -->
+                                    <t t-set="component_exists" t-value="False"/>
+                                    <t t-set="new_summary" t-value="[]"/>
+
+                                    <!-- Check if the component already exists in the summary list -->
+                                    <t t-foreach="component_summary" t-as="existing">
+                                        <t t-if="existing[0] == component_name and existing[2] == product_uom_id">
+                                            <!-- If found, update the quantity and set the flag -->
+                                            <t t-set="component_exists" t-value="True"/>
+                                            <t t-set="new_summary"
+                                               t-value="new_summary + [(component_name, existing[1] + component_quantity, product_uom_id,product_crt_qty,product_categ,component_cost)]"/>
+                                        </t>
+                                        <t t-else="">
+                                            <!-- If the component does not exist, keep the existing item -->
+                                            <t t-set="new_summary" t-value="new_summary + [existing]"/>
+                                        </t>
+                                    </t>
+
+                                    <!-- If the component doesn't exist, add it to the list -->
+                                    <t t-if="not component_exists">
+                                        <t t-set="new_summary"
+                                           t-value="new_summary + [(component_name, component_quantity, product_uom_id,product_crt_qty,product_categ,component_cost)]"/>
+                                    </t>
+
+                                    <!-- Update the component summary with the new list -->
+                                    <t t-set="component_summary" t-value="new_summary"/>
+                                </t>
+                            </t>
+                        </t>
+                    </t>
+
+                    <!-- Display the aggregated component summary in a table -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Component Name</th>
+                                <th>Quantity</th>
+                                <th>Product CRT Quantity</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Step 1: Create a dictionary with unique categories -->
+                            <t t-set="categories" t-value="[]"/>
+
+                            <t t-foreach="doc.component_line_ids" t-as="line">
+                                <t t-if="line.category_name not in categories">
+                                    <!-- Add unique category to the dictionary -->
+                                    <t t-set="categories" t-value="categories + [line.category_name]"/>
+                                </t>
+                            </t>
+
+                            <!-- Step 2: Iterate through the unique categories -->
+                            <t t-foreach="categories" t-as="category">
+                                <!-- Display the category name -->
+                                <tr>
+                                    <td colspan="5">
+                                        <strong>
+                                            <t t-esc="category"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+
+                                <!-- Step 3: Initialize totals for this category -->
+                                <t t-set="total_quantity" t-value="0.0"/>
+                                <t t-set="total_product_crt_qty" t-value="0.0"/>
+                                <t t-set="total_cost" t-value="0.0"/>
+
+                                <!-- Step 4: Filter and display products for this category -->
+                                <t t-foreach="doc.component_line_ids" t-as="line">
+                                    <t t-if="line.category_name == category">
+                                        <tr>
+                                            <td></td> <!-- Empty cell for category -->
+                                            <td>
+                                                <t t-esc="line.component_name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="'%.3f'% line.quantity"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc=" '%.3f'% line.product_crt_qty"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="'%.3f'% line.cost"/>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Step 5: Accumulate totals for the category -->
+                                        <t t-set="total_quantity" t-value="total_quantity + line.quantity"/>
+                                        <t t-set="total_product_crt_qty"
+                                           t-value="total_product_crt_qty + line.product_crt_qty"/>
+                                        <t t-set="total_cost" t-value="total_cost + line.cost"/>
+                                    </t>
+                                </t>
+
+                                <!-- Step 6: Display the totals for this category -->
+                                <tr>
+                                    <td colspan="2" style="text-align:right; font-weight:bold;">Total for
+                                        <t
+                                                t-esc="category"/>
+                                        :
+                                    </td>
+                                    <td>
+                                        <t t-esc="'%.3f'% total_quantity"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'%.3f'% total_product_crt_qty"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'%.3f'% total_cost"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

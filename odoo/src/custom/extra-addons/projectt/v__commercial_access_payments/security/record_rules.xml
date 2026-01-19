@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="access_special_account_payment_rule" model="ir.rule">
+            <field name="name">access_special_account_payment_rule</field>
+            <field ref="account.model_account_payment" name="model_id" />
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_write" eval="1" />
+            <field name="perm_create" eval="1" />
+            <field name="perm_read" eval="1" />
+            <field name="perm_unlink" eval="1" />
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups"
+                   eval="[(4, ref('v__commercial_access_payments.group_special_access_payment'))]" />
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+        <record id="access_special_account_move_rule" model="ir.rule">
+            <field name="name">access_special_account_move_rule</field>
+            <field ref="account.model_account_move" name="model_id" />
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_write" eval="1" />
+            <field name="perm_create" eval="1" />
+            <field name="perm_read" eval="1" />
+            <field name="perm_unlink" eval="1" />
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups"
+                   eval="[(4, ref('v__commercial_access_payments.group_special_access_payment'))]" />
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+        <record id="access_special_account_move_line_rule" model="ir.rule">
+            <field name="name">access_special_account_move_line_rule</field>
+            <field ref="account.model_account_move_line" name="model_id" />
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="perm_write" eval="1" />
+            <field name="perm_create" eval="1" />
+            <field name="perm_read" eval="1" />
+            <field name="perm_unlink" eval="1" />
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups"
+                   eval="[(4, ref('v__commercial_access_payments.group_special_access_payment'))]" />
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-29 09:58+0000\n"
+"PO-Revision-Date: 2024-03-29 09:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_enhancement
+#: model:ir.model.fields,field_description:purchase_enhancement.field_purchase_order__customer_type
+msgid "Customer type"
+msgstr "Type de client"
+
+#. module: purchase_enhancement
+#. odoo-python
+#: code:addons/purchase_enhancement/models/purchase_order.py:0
+#: model:ir.model.fields,field_description:purchase_enhancement.field_purchase_order__discharge_port
+#, python-format
+msgid "Discharge port"
+msgstr "Port de déchargement"
+
+#. module: purchase_enhancement
+#. odoo-python
+#: code:addons/purchase_enhancement/models/purchase_order.py:0
+#: model:ir.model.fields,field_description:purchase_enhancement.field_purchase_order__free_detention_days
+#, python-format
+msgid "Free detention days"
+msgstr "Jours de détention gratuits"
+
+#. module: purchase_enhancement
+#: model_terms:ir.ui.view,arch_db:purchase_enhancement.purchase_order_form_inherit
+msgid "Import"
+msgstr ""
+
+#. module: purchase_enhancement
+#. odoo-python
+#: code:addons/purchase_enhancement/models/purchase_order.py:0
+#: model:ir.model.fields,field_description:purchase_enhancement.field_purchase_order__loading_port
+#, python-format
+msgid "Loading port"
+msgstr "Port de chargement"
+
+#. module: purchase_enhancement
+#: model:ir.model,name:purchase_enhancement.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bon de commande fournisseur"
+
+#. module: purchase_enhancement
+#: model:ir.model,name:purchase_enhancement.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: purchase_enhancement
+#. odoo-python
+#: code:addons/purchase_enhancement/models/purchase_order.py:0
+#: model:ir.model.fields,field_description:purchase_enhancement.field_purchase_order__shipping_date
+#, python-format
+msgid "Shipping date"
+msgstr "Date d'expédition"
+
+#. module: purchase_enhancement
+#: model_terms:ir.ui.view,arch_db:purchase_enhancement.purchase_order_form_inherit
+msgid "Transport"
+msgstr ""

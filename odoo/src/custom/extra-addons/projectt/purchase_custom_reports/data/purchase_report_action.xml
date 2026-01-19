@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_summary_per_po" model="ir.actions.report">
+        <field name="name">Purchase Summary per PO</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_custom_reports.report_summary_per_po_template</field>
+        <field name="report_file">purchase_custom_reports.report_summary_per_po_template</field>
+    </record>
+
+    <record id="report_detail_lines" model="ir.actions.report">
+        <field name="name">Purchase Detail Lines</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_custom_reports.report_detail_lines_template</field>
+        <field name="report_file">purchase_custom_reports.report_detail_lines_template</field>
+    </record>
+
+    <record id="report_grouped_by_product" model="ir.actions.report">
+        <field name="name">Purchase Grouped by Product</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_custom_reports.report_grouped_by_product_template</field>
+        <field name="report_file">purchase_custom_reports.report_grouped_by_product_template</field>
+    </record>
+</odoo>
+
+

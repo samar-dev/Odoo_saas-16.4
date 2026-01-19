@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_helpdesk_alias_member_tree" model="ir.ui.view">
+            <field name="name">helpdesk.alias.member.tree</field>
+            <field name="model">helpdesk.alias.member</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="team_id"/>
+                   <field name="employee_ids" widget="many2many_tags"/>
+                    <field name="email"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_helpdesk_alias_member_form" model="ir.ui.view">
+            <field name="name">helpdesk.alias.member.form</field>
+            <field name="model">helpdesk.alias.member</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="team_id"/>
+                            <field name="employee_ids" widget="many2many_tags"/>
+                            <field name="email" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_helpdesk_alias_member" model="ir.actions.act_window">
+            <field name="name">Alias Members</field>
+            <field name="res_model">helpdesk.alias.member</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your alias members here.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

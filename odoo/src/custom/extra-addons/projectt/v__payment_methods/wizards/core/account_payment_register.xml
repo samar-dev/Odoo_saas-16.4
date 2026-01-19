@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_register_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_register_form_inherit</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]" position="after">
+                    <field name="x_attachement_ids"
+                           string="Joindre un fichier"
+                           nolabel="1"
+                           widget="many2many_binary" />
+                    <group name="v-check-group"
+                           string="Informations du chèque"
+                           attrs="{'invisible': [('payment_method_code', '!=', 'v-check')]}">
+                        <group>
+                            <field name="customer_bank_id"
+                                   context="{'default_partner_id': partner_id}"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote')), ('payment_type', '=', 'inbound')], 'invisible': [('payment_type', '=', 'outbound')]}" />
+                            <field name="due_date"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))]}" />
+                            <label for="due_in_days" />
+                            <div>
+                                <field name="due_in_days" class="oe_inline" />
+                                <span class="ml4">Jour(s)</span>
+                            </div>
+
+                            <field name="confirmation_number"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-check'), ('check_certified', '=', True)], 'invisible': [('check_certified', '=', False)]}" />
+                        </group>
+                        <group>
+                            <field name="transaction_number"
+                                   string="Numéro du chèque"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))]}" />
+                            <field name="check_certified"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-check')]}"
+                                   widget="boolean_toggle" />
+                        </group>
+                    </group>
+                    <group name="v-banknote-group"
+                           string="Informations du effet"
+                           attrs="{'invisible': [('payment_method_code', '!=', 'v-banknote')]}">
+                        <group>
+                            <field name="customer_bank_id"
+                                   context="{'default_partner_id': partner_id}"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote')), ('payment_type', '=', 'inbound')], 'invisible': [('payment_type', '=', 'outbound')]}" />
+                            <label for="due_in_days" />
+                            <div>
+                                <field name="due_in_days" class="oe_inline" />
+                                <span class="ml4">Jour(s)</span>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="transaction_number"
+                                   string="Numéro du effet"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))]}" />
+                            <field name="due_date"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))]}" />
+                        </group>
+                    </group>
+                    <group name="v-transfer-group"
+                           string="Informations du virement"
+                           attrs="{'invisible': [('payment_method_code', '!=', 'v-transfer')]}">
+                        <group>
+                            <field name="from_account_id"
+                                   options="{'no_create': 1, 'no_edit': 1}"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-transfer')]}" />
+                        </group>
+                        <group>
+                            <field name="to_account_id"
+                                   options="{'no_create': 1, 'no_edit': 1}"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-transfer')]}" />
+                        </group>
+                    </group>
+
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

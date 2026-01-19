@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_commission,access_account_commission,model_account_commission,base.group_user,1,1,1,1
+access_account_commission_line,access_account_commission_line,model_account_commission_line,base.group_user,1,1,1,1
+access_next_stage_payment_commission_line,access_next_stage_payment_commission_line,model_next_stage_payment_commission_line,base.group_user,1,1,1,1
+access_account_payment_commission,access_account_payment_commission,model_account_payment_commission,base.group_user,1,1,1,1

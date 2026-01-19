@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* test_sale_subscription
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-25 11:50+0000\n"
+"PO-Revision-Date: 2023-07-25 11:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: test_sale_subscription
+#: model:product.template,name:test_sale_subscription.product_fire_insurance_product_template
+msgid "Fire Insurance (SUB)"
+msgstr ""
+
+#. module: test_sale_subscription
+#: model_terms:sale.order.template,note:test_sale_subscription.template_draft_multi
+msgid "Full flow"
+msgstr ""
+
+#. module: test_sale_subscription
+#: model:ir.model.fields,help:test_sale_subscription.field_product_product__incompatible_checkbox
+#: model:ir.model.fields,help:test_sale_subscription.field_product_template__incompatible_checkbox
+msgid "If set, on a subscription product, a python constraint will be raised"
+msgstr ""
+
+#. module: test_sale_subscription
+#: model:ir.model.fields,field_description:test_sale_subscription.field_product_product__incompatible_checkbox
+#: model:ir.model.fields,field_description:test_sale_subscription.field_product_template__incompatible_checkbox
+msgid "Incompatible checkbox"
+msgstr ""
+
+#. module: test_sale_subscription
+#: model:sale.order.template.line,name:test_sale_subscription.template_draft_multi_line_0
+#: model:sale.order.template.line,name:test_sale_subscription.template_draft_multi_line_1
+#: model:sale.order.template.line,name:test_sale_subscription.template_draft_multi_line_2
+msgid "Office Cleaning Service (SUB)"
+msgstr ""
+
+#. module: test_sale_subscription
+#: model:ir.model,name:test_sale_subscription.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: test_sale_subscription
+#: model:ir.model,name:test_sale_subscription.model_sale_order
+msgid "Sales Order"
+msgstr ""

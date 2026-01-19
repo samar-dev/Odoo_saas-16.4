@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">view.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <field name="partner_id" position="after">
+                    <field name="x_customer_type" invisible="1"/>
+                </field>
+                <field name="sale_order_template_id" position="after">
+                    <field name="x_show_nbpallet" widget="boolean_toggle"/>
+                    <field name="type_de_palette" attrs="{'invisible': [('x_show_nbpallet', '=', False)]}"/>
+                    <field name="customer_bank_id" options="{'no_create': 1, 'no_edit': 1}"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Export"
+                          attrs="{'invisible': [('x_customer_type', '!=', 'export')]}">
+                        <group>
+                            <group id="order" string="Order">
+                                <field name="x_order_number"/>
+                                <field name="x_order_date"/>
+                                <field name="x_other_reference"/>
+                            </group>
+                            <group id="contract" string="Contract">
+                                <field name="x_contract_number"/>
+                                <field name="x_contract_date"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                            </group>
+                            <group id="transport" string="Transport">
+                                <field name="x_loading_port"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                                <field name="x_unloading_port"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                                <field name="x_transport_by"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                                <field name="x_exporter_manufacturer"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                                <field name="x_customer_invoice_recipient"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                            </group>
+                            <group id="transport_second" string="Transport">
+                                <field name="x_party_to_inform"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                                <field name="x_plan_number"/>
+                                <field name="x_flexitank_number"/>
+                                <field name="x_citerne_number"/>
+                                <field name="x_container_number"/>
+                                <field name="x_container_size"
+                                       attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+                                <field name="x_ship_name"/>
+                                <field name="x_batch_number"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="net_weight" optional="hide"/>
+                    <field name="gross_weight" optional="hide"/>
+                    <field name="nbr_pallet" optional="hide"/>
+                    <field name="duplicate" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="after">
+
+                    <field name="x_container_number"/>
+                    <field name="x_nbr_pallet"/>
+                </xpath>
+
+                <xpath expr="//field[@name='tax_totals']" position="after">
+                    <field name="sum_net_weight"/>
+                    <field name="sum_gross_weight"/>
+                    <field name="sum_pallet"/>
+                    <field name="sum_product_packaging_qty"/>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="x_real_pallet_number"/>
+                    <field name="type_of_delivery" attrs="{'required': [('x_customer_type', '=', 'export')]}"/>
+
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

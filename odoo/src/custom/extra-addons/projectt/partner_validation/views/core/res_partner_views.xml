@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_property_form_inherit" model="ir.ui.view">
+            <field name="name">view.partner.form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <field name="show_validation_button" invisible="1"/>
+                        <field name="supplier_rank" invisible="1"/>
+                        <field name="customer_rank" invisible="1"/>
+                        <button name="action_validate"
+                                confirm="Do you really want to validate this creation request??"
+                                attrs="{'invisible':['&amp;','|',('supplier_rank','=',0),('customer_rank','=',0),('show_validation_button','=',False)]}"
+                                string="Validate" class="oe_highlight"
+                                type="object"/>
+                        <button name="action_refuse"
+                                confirm="Do you really want to refuse this creation request??"
+                                string="Refuse"
+                                attrs="{'invisible':['&amp;','|',('supplier_rank','=',0),('customer_rank','=',0),('show_validation_button','=',False)]}"
+                                type="object"/>
+                        <field name="state" widget="statusbar"
+                               attrs="{'invisible':['&amp;',('supplier_rank','=',0),('customer_rank','=',0)]}"/>
+                    </header>
+
+                </xpath>
+                <xpath expr="//page[@name='internal_notes']" position="before">
+                    <page string="Validators" name="validators"
+                          attrs="{'invisible':['&amp;',('supplier_rank','=',0),('customer_rank','=',0)]}">
+                        <field name="validator_ids">
+                            <tree editable="bottom">
+                                <field name="validator_id"/>
+                                <field name="state" widget="badge"
+                                       decoration-warning="state == 'waiting'"
+                                       decoration-danger="state == 'refused'"
+                                       decoration-success="state == 'approved'"/>
+                                <field name="notification_sent"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

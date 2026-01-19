@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.inherit.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='backorder_id']" position="after">
+                    <field name="vehicle_id"/>
+                    <field name="delivery_person_id"/>
+                    <field name="container_ids" widget="many2many_tags" domain="[('state', '=', 'validated')]"/>
+                </xpath>
+
+                <xpath expr="//field[@name='owner_id']" position="after">
+                    <field name="sum_net_weight" invisible="1"/>
+                    <field name="sum_gross_weight" invisible="0"/>
+                    <field name="sum_pallet"/>
+                    <field name="sum_product_packaging_qty"/>
+                    <field name="type_of_delivery"/>
+                    <field name="v_delivery_number" attrs="{'required': [('picking_type_code','=','incoming')]}"/>
+
+
+                </xpath>
+
+                <xpath expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']"
+                       position="after">
+                    <field name="net_weight" optional="hide"/>
+                    <field name="gross_weight" optional="hide"/>
+                    <field name="nbr_pallet" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

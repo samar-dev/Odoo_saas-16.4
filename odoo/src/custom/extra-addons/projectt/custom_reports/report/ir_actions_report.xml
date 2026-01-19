@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="action_facture_client_pro_forma" model="ir.actions.report">
+        <field name="name">Facture pro-forma client export STCA</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.template_facture_client_pro_forma</field>
+        <field name="report_file">custom_reports.template_facture_client_pro_forma</field>
+        <field name="print_report_name">'PRO FORMA - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_liste_packaging" model="ir.actions.report">
+        <field name="name">Liste des packaging STCA</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.template_liste_packaging</field>
+        <field name="report_file">custom_reports.template_liste_packaging</field>
+        <field name="print_report_name">'LISTE PACKAGING - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_facture_client_export" model="ir.actions.report">
+        <field name="name">Facture client export STCA</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.template_facture_client_export</field>
+        <field name="report_file">custom_reports.template_facture_client_export</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_bc_fournisseur_import" model="ir.actions.report">
+        <field name="name">BC fournisseur import</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.template_bc_fournisseur_import</field>
+        <field name="report_file">custom_reports.template_bc_fournisseur_import</field>
+        <field name="print_report_name">'BC IMPORT - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

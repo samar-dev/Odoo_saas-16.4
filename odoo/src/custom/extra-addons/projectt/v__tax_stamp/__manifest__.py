@@ -1,0 +1,23 @@
+{
+    "name": "Tax Stamp",
+    "version": "saas~16.4.1.4.5",
+    "description": "Tax Stamp",
+    "summary": "Add a product as a tax stamp",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "product", "account"],
+    "data": [
+        "views/core/product_template.xml",
+        "views/core/res_partner.xml",
+        "views/core/account_move_line.xml",
+        "views/core/account_move.xml",
+        "wizards/core/account_move_reversal.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+    "post_init_hook": "post_init_hook",
+}

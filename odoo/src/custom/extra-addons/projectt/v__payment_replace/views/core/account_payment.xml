@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+
+                <header position="inside">
+                    <field name="is_butterfly" invisible="1" />
+                    <field name="is_prior_notice" invisible="1" />
+                    <field name="is_paid" invisible="1" />
+                    <field name="is_unpaid" invisible="1" />
+                    <field name="is_replaced" invisible="1" />
+                    <field name="butterfly_button_hidden" invisible="1" />
+                    <field name="prior_notice_button_hidden" invisible="1" />
+                    <field name="paid_button_hidden" invisible="1" />
+                    <field name="unpaid_button_hidden" invisible="1" />
+                    <field name="replace_button_hidden" invisible="1" />
+                    <field name="create_date" invisible="1" />
+                    <button attrs="{'invisible': ['|', ('paid_button_hidden', '=', True), ('create_date', '=', False)]}"
+                            name="action_set_paid"
+                            type="object"
+                            icon="fa-check"
+                            class="btn-success"
+                            string="Payé" />
+                    <button attrs="{'invisible': ['|', ('butterfly_button_hidden', '=', True), ('create_date', '=', False)]}"
+                            name="action_set_butterfly"
+                            type="object"
+                            class="btn-info"
+                            string="Papillon" />
+                    <button attrs="{'invisible': ['|', ('prior_notice_button_hidden', '=', True), ('create_date', '=', False)]}"
+                            name="action_set_prior_notice"
+                            type="object"
+                            class="btn-warning"
+                            icon="fa-exclamation-circle"
+                            string="Préavis" />
+                    <button attrs="{'invisible': ['|', ('unpaid_button_hidden', '=', True), ('create_date', '=', False)]}"
+                            name="action_set_unpaid"
+                            type="object"
+                            icon="fa-credit-card"
+                            class="btn-danger"
+                            string="Impayé" />
+                    <button attrs="{'invisible': ['|', ('replace_button_hidden', '=', True), ('create_date', '=', False)]}"
+                            name="action_replace_payment"
+                            type="object"
+                            icon="fa-refresh"
+                            class="btn-danger"
+                            string="Remplacer" />
+                </header>
+
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <widget name="web_ribbon"
+                            text="Impayé"
+                            bg_color="bg-danger"
+                            attrs="{'invisible': ['|', ('is_unpaid', '!=', 'yes'), ('is_replaced', '=', True)]}" />
+                    <widget name="web_ribbon"
+                            text="Remplacé"
+                            bg_color="bg-warning"
+                            attrs="{'invisible': [('is_replaced', '=', False)]}" />
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_open_related_payments"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-bars"
+                            attrs="{'invisible': [('replacement_payment_count','=', 0)]}">
+                        <div class="o_stat_info">
+
+                            <field name="replacement_payment_count" class="o_stat_value" />
+                            <span class="o_stat_text"
+                                  attrs="{'invisible': [('replacement_payment_count','&gt;', 1)]}">
+                                Remplacement
+                            </span>
+                            <span class="o_stat_text"
+                                  attrs="{'invisible': [('replacement_payment_count','&lt;=', 1)]}">
+                                Remplacements
+                            </span>
+                        </div>
+                    </button>
+                </xpath>
+
+                <xpath expr="//group[@name='group2']" position="inside">
+                    <field name="original_payments_hidden" invisible="1" />
+                    <field name="replaced_amount"
+                           attrs="{'invisible': [('replaced_amount', '=', 0)]}" />
+                    <field name="original_payment_ids"
+                           widget="many2many_tags"
+                           attrs="{'invisible': [('original_payments_hidden', '=', True)]}" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_tree_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_tree_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree" />
+            <field name="arch" type="xml">
+
+                <header position="inside">
+                    <button name="action_replace_payment" type="object" string="Remplacer"/>
+                </header>
+
+                <tree position="inside">
+                    <field name="is_paid" invisible="1" />
+                    <field name="is_unpaid" invisible="1" />
+                    <field name="is_prior_notice" invisible="1" />
+                </tree>
+
+                <tree position="attributes">
+                    <attribute name="decoration-success">is_paid</attribute>
+                    <attribute name="decoration-danger">is_unpaid == 'yes'</attribute>
+                    <attribute name="decoration-warning">is_prior_notice == 'yes' and is_unpaid != 'yes'</attribute>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_search_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_search_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='is_internal_transfer']" position="after">
+                    <separator />
+                    <filter name="in_progress_filter"
+                            string="En Traitement"
+                            domain="[('is_unpaid', '=', 'no'), ('is_paid', '=', False), ('is_replaced', '=', False), ('is_prior_notice', '=', 'no'), ('is_butterfly', '=', 'no'), ('state', '=', 'posted')]" />
+                    <filter name="butterfly_filter"
+                            string="Papillon"
+                            domain="[('is_butterfly', '=', 'yes')]" />
+                    <filter name="prior_notice_filter"
+                            string="Préavis"
+                            domain="[('is_prior_notice', '=', 'yes'), ('is_unpaid', '=', 'no')]" />
+                    <filter name="unpaid_filter"
+                            string="Impayé"
+                            domain="[('is_unpaid', '=', 'yes')]" />
+                    <filter name="replaced_filter"
+                            string="Remplacé"
+                            domain="[('is_replaced', '=', True)]" />
+                    <filter name="paid_filter"
+                            string="Cloturé"
+                            domain="[('is_paid', '=', True)]" />
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

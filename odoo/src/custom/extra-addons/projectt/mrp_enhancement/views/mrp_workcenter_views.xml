@@ -1,0 +1,24 @@
+<odoo>
+    <record id="mrp_workcenter_form_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.view.inherited</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position='after'>
+                <field name="workcenter_id" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mrp_workcenter_search_inherit" model="ir.ui.view">
+        <field name="name">mrp.workcenter.search.inherit</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.view_mrp_workcenter_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='company']" position="after">
+                <filter string="Parent Work Center" name="parent_work_center"
+                        context="{'group_by': 'workcenter_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

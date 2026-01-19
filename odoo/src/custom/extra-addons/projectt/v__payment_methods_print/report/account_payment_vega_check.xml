@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="account_payment_vega_check_report" name="Chèque VEGA">
+            <t t-call="web.html_container">
+                <meta charset="UTF-8" />
+                <div class="check">
+                    <span class="amount" t-field="docs.amount" />
+                    <span class="from"
+                          t-if="docs.payment_type == 'inbound'"
+                          t-field="docs.partner_id.name" />
+                    <span class="from"
+                          t-if="docs.payment_type == 'outbound'"
+                          t-field="docs.company_id.name" />
+                    <span class="to"
+                          t-if="docs.payment_type == 'inbound'"
+                          t-field="docs.company_id.name" />
+                    <span class="to"
+                          t-if="docs.payment_type == 'outbound'"
+                          t-field="docs.partner_id.name" />
+                    <span class="amount_text"
+                          t-esc="docs.currency_id.amount_to_text(docs.amount)" />
+
+                    <span class="date" t-field="docs.date" />
+
+                    <span class="number" t-field="docs.transaction_number" />
+                </div>
+                <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+                    .check { position: absolute; background-image:
+                    url('https://i.imgur.com/hRMZFsm.jpeg'); background-repeat:
+                    no-repeat; background-position: center; background-size: 100% 100%;
+                    width: 100%; height: 100%; }
+
+                    .amount { position: absolute; left: 69%; top: 43%; }
+
+                    .from { position: absolute; left: 17%; top: 54%; }
+
+                    .to { position: absolute; left: 23.5%; top: 64%; }
+
+                    .amount_text { position: absolute; left: 27.5%; top: 73%; }
+
+                    .date { position: absolute; left: 11%; top: 84%; }
+
+                    .number { position: absolute; left: 38.5%; top: 84%; }
+
+                </style>
+            </t>
+        </template>
+    </data>
+</odoo>

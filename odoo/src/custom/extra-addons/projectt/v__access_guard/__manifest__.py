@@ -1,0 +1,16 @@
+{
+    "name": "Access Guard",
+    "version": "saas~16.4.1.0.0",
+    "description": "Access Guard",
+    "summary": "Access Guard Module",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base"],
+    "data": ["views/core/res_config_settings.xml", "views/menuitems.xml"],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

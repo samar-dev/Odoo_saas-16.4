@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_register_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_register_form_inherit</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_method_line_id']" position="after">
+                    <field name="is_withholding" invisible="1" />
+                    <field name="with_withholding" attrs="{'invisible': [('is_withholding', '=', True)]}" />
+                    <field name="subtract_tax_stamp"
+                           attrs="{'invisible': [('with_withholding', '=', False)]}" />
+                    <field name="withholding_tax_id"
+                           options="{'no_create': 1, 'no_edit': 1}"
+                           domain="[('company_id', '=', company_id), ('type', '=', payment_type)]"
+                           attrs="{'invisible': [('with_withholding', '=', False), ('is_withholding', '=', False)], 'required': ['|', ('with_withholding', '=', True), ('is_withholding', '=', True)]}" />
+                    <field name="withholding_amount"
+                           widget="monetary"
+                           attrs="{'invisible': [('with_withholding', '=', False)]}" />
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_container_user,access.stock.container.user,model_stock_container,base.group_user,1,1,1,1
+access_stock_container_manager,access.stock.container.manager,model_stock_container,stock.group_stock_manager,1,1,1,1
+access_stock_container_line_user,access_stock_container_line_user,model_stock_container_line,base.group_user,1,1,1,1
+access_product_etiquette_user,access.product.etiquette.user,model_product_etiquette,base.group_user,1,1,1,1
+access_stock_verification_user,stock.verification user,model_stock_verification,stock.group_stock_manager,1,1,1,1

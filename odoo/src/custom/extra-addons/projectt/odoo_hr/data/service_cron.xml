@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_echelon" model="ir.cron">
+        <field name="name">HR; Passage automatique des échélons</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=1, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="code">model._passage_echelon()</field>
+        <field name="state">code</field>
+    </record>
+    <record forcecreate="True" id="cron_contract_expiry" model="ir.cron">
+		<field name="name">Check contract expiry</field>
+		<field eval="True" name="active"/>
+		<field name="user_id" ref="base.user_admin"/>
+		<field name="interval_number">1</field>
+		<field name="interval_type">days</field>
+		<field name="numbercall">-1</field>
+		<field name="nextcall" eval="(DateTime.now().replace(hour=1, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+		<field name="model_id" ref="hr_contract.model_hr_contract"/>
+		<field name="state">code</field>
+		<field name="code">model.check_expiry()</field>
+	</record>
+</odoo>

@@ -1,0 +1,237 @@
+<odoo>
+    <record id="view_imex_inventory_report_search" model="ir.ui.view">
+        <field name="name">imex.inventory.report.search</field>
+        <field name="model">imex.inventory.report</field>
+        <field name="arch" type="xml">
+            <search string="Imex Inventory Report Search">
+                <field name="product_id" string="Product"/>
+                <field name="product_category" string="Category"/>
+                <field name="location" string="Location"/>
+                <separator/>
+                <filter name="balance" string="In stock" domain="[('balance','!=',0)]"/>
+                <filter name="not_balance" string="Out of stock" domain="[('balance','=',0)]"/>
+                <separator/>
+                <filter name="imex" string="Imex Qty" domain="['|',('product_in','!=',0),('product_out','!=',0)]"/>
+                <filter name="not_imex" string="Not Imex Qty" domain="[('product_in','=',0),('product_out','=',0)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Product" name="product_id" domain="[]" context="{'group_by': 'product_id'}"/>
+                    <filter string="Category" name="product_category" domain="[]" context="{'group_by': 'product_category'}"/>
+                    <filter string="Location" name="location" domain="[]" context="{'group_by': 'location'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_imex_inventory_report_tree" model="ir.ui.view">
+        <field name="name">imex.inventory.report.tree</field>
+        <field name="model">imex.inventory.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" string="Imex Inventory Report">
+                <field name="product_id" string="Product"/>
+                <field name="product_uom" string="UoM" optional="show"/>
+                <field name="product_category" string="Category" optional="show"/>
+                <field name="location" string="Location" optional="show"/>
+                <field name="initial" string="Initial" optional="show"/>
+                <field name="initial_amount" string="Initial Amount" optional="show"/>
+                <field name="product_in" string="Total Qty In" optional="show"/>
+                <field name="product_in_amount" string="Total Amount In" optional="show"/>
+                <field name="product_out" string="Total Qty Out" optional="show"/>
+                <field name="product_out_amount" string="Total Amount Out" optional="show"/>
+                <field name="balance" string="Balance" optional="show"/>
+                <field name="amount" string="Amount" optional="show"/>
+                <button name="report_details" type="object" class="fa fa-search"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_imex_inventory_report_tree_view" model="ir.actions.act_window">
+        <field name="name">Imex Inventory Report</field>
+        <field name="res_model">imex.inventory.report</field>
+        <field name="search_view_id" ref="view_imex_inventory_report_search" />
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_imex_inventory_report_pdf" model="ir.actions.report">
+        <field name="name">Print imex inventory report</field>
+        <field name="model">imex.inventory.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">imex_inventory_report.imex_inventory_report_pdf</field>
+        <field name="report_file">imex_inventory_report.imex_inventory_report_pdf</field>
+        <field name="print_report_name">'Imex Inventory Report'</field>
+        <field name="binding_model_id" ref="model_imex_inventory_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="imex_inventory_report_pdf">
+        <t t-call="web.html_container">
+    <t t-call="web.external_layout">
+      <style>
+        h3 {
+          text-align: center;
+          text-transform: uppercase;
+          color: #675fb3;
+        }
+
+        th {
+          font-weight: bolder;
+          background-color: #f2f2f2;
+          color: #675fb3;
+        }
+
+        .row {
+          padding: 5px;
+        }
+
+        .col-3 {
+          border: 1px solid #675fb3;
+          padding: 5px;
+          margin-left: 5px;
+        }
+
+        .page {
+          font-size: 12px;
+        }
+
+        .row {
+          width: 100%;
+        }
+
+        .of_corp_left {
+          width: 100%;
+          border-collapse: collapse;
+          border: 1px solid #000;
+          text-align: left;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        .text {
+          padding: 10px;
+          text-align: center;
+        }
+      </style>
+      <div class="o_inventory_reports_page">
+        <br/>
+        <div class="row mt32 mb32 of_corp_left text">
+          <div class="col-5 text-center">
+            <h3>VALORISATION STOCK AU ............................ </h3>
+            <br/>
+          </div>
+          <div class="col-7" style="text-align:center;">
+            <strong>Date d'impression :</strong>
+            <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+            <br/>
+            <strong>Imprimé par :</strong>
+            <span t-esc="user.name"/>
+          </div>
+        </div>
+        <div class="row mt32 mb32 of_corp_left text">
+          <div class="col-12 text-center">
+            <h3>VALORISATION DES STOCKS PAR CATÉGORIE</h3>
+            <br/>
+          </div>
+        </div>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Catégorie</th>
+              <th class="text-end">Coût Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Initialize category grouping variables -->
+            <t t-set="category_summaries" t-value="[]"/>
+            <t t-set="processed_categories" t-value="[]"/>
+            <t t-foreach="docs" t-as="doc">
+              <t t-if="not doc.product_id.categ_id.name in processed_categories">
+                <t t-set="processed_categories" t-value="processed_categories + [doc.product_id.categ_id.name]"/>
+                <t t-set="category_docs" t-value="[d for d in docs if d.product_id.categ_id.name == doc.product_id.categ_id.name]"/>
+                <t t-set="qty" t-value="sum([d.balance for d in category_docs])"/>
+                <t t-set="cost" t-value="sum([d.amount for d in category_docs])"/>
+                <t t-set="unit" t-value="cost / qty if qty else 0.0"/>
+                <t t-set="category_summaries" t-value="category_summaries + [{       'name': doc.product_id.categ_id.name,       'total_quantity': qty,       'total_cost': cost,       'unit_cost': unit     }]"/>
+              </t>
+            </t>
+            <t t-foreach="category_summaries" t-as="cat">
+              <tr>
+                <td>
+                  <t t-esc="cat['name']"/>
+                </td>
+                <td class="text-end">
+                  <t t-esc="round(cat['total_cost'], 3)"/>
+                </td>
+              </tr>
+            </t>
+            <t t-set="grand_cost" t-value="sum([c['total_cost'] for c in category_summaries])"/>
+            <tr>
+              <td>
+                <strong>Total valeur Stock</strong>
+              </td>
+              <td class="text-end">
+                <strong>
+                  <t t-esc="round(grand_cost, 3)"/>
+                </strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row mt32 mb32 of_corp_left text">
+          <div class="col-12 text-center">
+            <h3>VALORISATION DES STOCKS PAR PRODUITS</h3>
+            <br/>
+          </div>
+        </div>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Categorie</th>
+              <th>Quantité</th>
+              <th>Coût Unitaire TH</th>
+              <th>Coût Unitaire R</th>
+              <th>Coût Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-set="product_list" t-value="[]"/>
+            <t t-set="processed_names" t-value="[]"/>
+            <t t-foreach="docs" t-as="doc">
+              <t t-if="not doc.product_id.name in processed_names">
+                <t t-set="processed_names" t-value="processed_names + [doc.product_id.name]"/>
+                <t t-set="qty" t-value="sum([d.balance for d in docs if d.product_id.name == doc.product_id.name])"/>
+                <t t-set="cost" t-value="sum([d.amount for d in docs if d.product_id.name == doc.product_id.name])"/>
+                <t t-set="unit" t-value="cost / qty if qty else 0.0"/>
+                <t t-set="standard_price" t-value="doc.product_id.standard_price if doc.product_id.standard_price else 0.0"/>
+                <t t-set="product_list" t-value="product_list + [{       'name': doc.product_id.name,       'category': doc.product_id.categ_id.name,       'total_quantity': qty,       'total_cost': cost,       'unit_cost': unit,       'standard_price': standard_price     }]"/>
+              </t>
+            </t>
+            <t t-foreach="product_list" t-as="prod">
+              <tr>
+                <td>
+                  <t t-esc="prod['name']"/>
+                </td>
+                <td>
+                  <t t-esc="prod['category']"/>
+                </td>
+                <td class="text-end">
+                  <t t-esc="round(prod['total_quantity'], 3)"/>
+                </td>
+                <td class="text-end">
+                  <t t-esc="round(prod['unit_cost'], 3)"/>
+                </td>
+                <td class="text-end">
+                  <t t-esc="round(prod['standard_price'], 3)"/>
+                </td>
+                <td class="text-end">
+                  <t t-esc="round(prod['total_cost'], 3)"/>
+                </td>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+      </div>
+    </t>
+  </t>
+    </template>
+
+</odoo>

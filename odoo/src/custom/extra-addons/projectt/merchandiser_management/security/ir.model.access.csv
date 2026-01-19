@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_assortment,access_assortment,model_assortment,base.group_user,1,1,1,1
+access_assortment_wizard,access_assortment_wizard,model_assortment_wizard,base.group_user,1,1,1,1
+access_merchandiser_report_wizard,access_merchandiser_report_wizard,model_merchandiser_report_wizard,base.group_user,1,1,1,1
+access_merchandise_planning,access_merchandise_planning,model_merchandise_planning,base.group_user,1,1,1,1
+access_merchandise_planning_line,access_merchandise_planning_line,model_merchandise_planning_line,base.group_user,1,1,1,1
+access_concurrent_line,access_concurrent_line,model_concurrent_line,base.group_user,1,1,1,1
+access_res_partner_store_user,access.res.partner.store.user,model_res_partner_store,base.group_user,1,1,1,1

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_simulation_order" model="ir.actions.report">
+            <field name="name">Simulation Order</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mrp_enhancement.template_simulation_order</field>
+            <field name="report_file">mrp_enhancement.template_simulation_order</field>
+            <field name="print_report_name">'SO - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="template_simulation_order">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <style>
+                        .of_corp {
+                        width: 100%;
+                        border-collapse: collapse;
+                        border: 1px solid #000;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                        margin-bottom: 20px;
+                        }
+
+                        .visa_h {
+                        height: 70px;
+                        }
+
+                        .head_type {
+                        background-color: #f2f2f2;
+                        /* Light gray background for headers */
+                        border: 1px solid #000;
+                        /* Add a border to header cells */
+                        padding: 8px;
+                        /* Add padding to header cells */
+                        text-align: left;
+                        border: 1px;
+                        margin-right: 5px;
+                        }
+
+                        table {
+                        width: auto;
+                        /* Allow the table to expand based on content */
+                        max-width: 100%;
+                        /* Limit the table width to the container width */
+                        border-collapse: collapse;
+                        margin-bottom: 20px;
+                        }
+
+                        table,
+                        th,
+                        td {
+                        border: 1px solid black;
+                        }
+
+                        th,
+                        td {
+                        padding: 10px;
+                        text-align: left;
+                        }
+
+                        thead {
+                        background-color: #f2f2f2;
+                        }
+
+                        .of_corp_left {
+                        width: 100%;
+                        border-collapse: collapse;
+                        border: 1px solid #000;
+                        text-align: left;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                        }
+
+                        .text {
+                        padding: 10px;
+                        text-align: center;
+                        }
+
+                        .text_visa {
+                        padding: 10px 5px 80px 5px;
+                        text-align: center;
+                        }
+
+                        .of_table__name {
+                        font-weight: bold;
+                        text-align: center;
+                        }
+
+                        .page {
+                        margin-top: 0px;
+                        }
+
+                        .page-break {
+                        page-break-inside: avoid-page;
+                        }
+                    </style>
+                    <t t-set="records" t-value="docs"/>
+                    <div style="font-size: 14px;">
+                        <div class="oe_structure"/>
+                        <div class="row mt32 mb32 of_corp_left text">
+                            <div class="col-5">
+                                <h2>BON DE SIMULATION</h2>
+                                <br/>
+                            </div>
+                            <div class="col-7" style="text-align:right;">
+                                <strong>Date d'impression :</strong>
+                                <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+                                <br/>
+                                <strong>Imprimé par :</strong>
+                                <span t-esc="user.name"/>
+                            </div>
+                        </div>
+                        <div class="oe_structure"/>
+                        <table class="table table-sm of_corp ">
+                            <thead>
+                                <th>RECAP ORDER DE FABRICATION / STOCK</th>
+                            </thead>
+                        </table>
+                        <table class="table table-sm of_corp">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Composant</th>
+                                                    <th>Catégorie</th>
+                                                    <th>Total Besoins</th>
+                                                    <th>Quantité en stock</th>
+                                                    <th>Virtuellement disponible</th>
+                                                    <th>Quantité réservée</th>
+                                                    <th>Manque</th>
+                                                    <th>Acheter</th>
+                                                </tr>
+                                            </thead>
+                                            <!--<t t-set="stock_quant" t-value="o.picking_ids[0].move_ids_without_package.filtered(lambda line: line.product_id == product)"/>-->
+                                            <tbody>
+                                                <t t-set="products" t-value="docs.move_raw_ids.mapped('product_id')"/>
+                                                <t t-set="products_sorted"
+                                                   t-value="products.sorted(lambda line: line.categ_id.name)"/>
+                                                <tr t-foreach="products_sorted" t-as="product">
+                                                    <t t-set="sum_product_qty" t-value="0"/>
+                                                    <t t-set="sum_product" t-value="0"/>
+                                                    <!-- Composant -->
+                                                    <td>
+                                                        <span t-field="product.name"/>
+                                                    </td>
+                                                    <!-- Catégorie -->
+                                                    <td>
+                                                        <span t-field="product.categ_id.name"/>
+                                                    </td>
+                                                    <!-- Total Besoins -->
+                                                    <td>
+                                                        <t t-foreach="docs" t-as="o">
+                                                            <t t-if="len(o.picking_ids) &gt;= 2">
+                                                                <t t-set="product_id"
+                                                                   t-value="o.picking_ids[0].move_ids_without_package.filtered(lambda line: line.product_id == product)"/>
+                                                                <t t-set="sum_product_qty"
+                                                                   t-value="sum_product_qty+product_id.product_uom_qty"/>
+                                                            </t>
+                                                        </t>
+                                                        <t t-esc="'%.3f'% sum_product_qty"/>
+                                                    </td>
+                                                    <!-- Quantité en stock -->
+                                                    <td>
+                                                        <span t-esc="'%.3f'% product.qty_available"/>
+                                                    </td>
+                                                    <!-- Virtuellement disponible -->
+                                                    <td>
+                                                        <span t-esc="'%.3f'% (product.qty_available - sum_product_qty)"/>
+                                                    </td>
+                                                    <!-- Quantité réservée -->
+                                                    <t t-set="free_qty"
+                                                       t-value="product.qty_available - sum_product_qty"/>
+                                                    <td>
+                                                        <span t-esc="'%.3f'% (product.qty_available - free_qty)"/>
+                                                    </td>
+                                                    <!-- Manque -->
+                                                    <td style="text-align:center;">
+                                                        <t t-if="(free_qty - product.qty_available - sum_product_qty) &gt;= 0">
+                                                            <span style="marging-right:10px;font-size: 12px;margin-bottom:5px;background-color: #04db6c;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                                                                Oui
+                                                            </span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 12px;margin-bottom:5px;background-color: #db0456;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                                                                Non
+                                                            </span>
+                                                        </t>
+                                                    </td>
+                                                    <!-- Acheter -->
+                                                    <td style="text-align:center;">
+                                                        <t t-if="(sum_product_qty-product.qty_available) &gt;= 0">
+                                                            <span style="marging-right:10px;font-size: 12px;margin-bottom:5px;background-color: #04db6c;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                                                                Oui
+                                                            </span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 12px;margin-bottom:5px;background-color: #db0456;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                                                                Non
+                                                            </span>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <table class="table table-sm of_corp" style="page-break-before:always;">
+                            <tbody>
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>
+                                            <div class="row mt32 mb32 text" t-foreach="records" t-as="o">
+                                                <div class="col-3">
+                                                    <div class="head_type">
+                                                        <h2>
+                                                            <span t-field="o.name"/>
+                                                        </h2>
+                                                        <p>PRODUIT :
+                                                            <span t-field="o.product_id"/>
+                                                        </p>
+                                                        <p>QTE :
+                                                            <span t-field="o.product_qty"/>
+                                                        </p>
+                                                        <br/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9" style="text-align:left;">
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width:40%">Composant</th>
+                                                                <th>Catégorie</th>
+                                                                <th>Quantité des composants</th>
+                                                                <th>Lots</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr t-foreach="o.move_raw_ids" t-as="product">
+                                                                <t t-set="sum_product_qty" t-value="0"/>
+                                                                <td>
+                                                                    <span t-field="product.product_id"/>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-field="product.product_id.categ_id.name"/>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-esc="product.product_uom_qty"/>
+                                                                </td>
+                                                                <td>
+                                                                    <t t-set="product_lot"
+                                                                       t-value="o.picking_ids[0].move_ids_without_package.filtered(lambda line: line.product_id == product.product_id)"/>
+                                                                    <t>
+                                                                        <span style="font-size: 12px;margin-bottom:5px;background-color: #db0456;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                                                                            <t t-foreach="product_lot.move_line_ids"
+                                                                               t-as="lots">
+                                                                                <t t-esc="lots.lot_id.name"/>
+                                                                            </t>
+                                                                        </span>
+                                                                    </t>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </tbody>
+                        </table>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report action (only one that handles all three reports via report_template) -->
+    <record id="purchase_report_action" model="ir.actions.report">
+        <field name="name">Purchase Report</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">purchase_custom_reports.purchase_report_template</field>
+        <field name="report_file">purchase_custom_reports.purchase_report_template</field>
+    </record>
+
+    <!-- Summary per PO report -->
+    <template id="report_summary_per_po_template">
+        <t t-call="web.html_container">
+            <h2>ETAT PREVISIONNEL DES PAIEMENTS FOURNISSEURS</h2>
+            <t>
+                <div>
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>Numéro BC</th>
+                                <th>Date de commande</th>
+                                <th>Fournisseur</th>
+                                <th>Quantité (Réceptionnée / Commandée)</th>
+                                <th>Montant (Facturé / Restant)</th>
+                                <th>Mode de paiement</th>
+                                <th>Incoterm</th>
+                                <th>Date de livraison prévue</th>
+                                <th>Statut de livraison</th>
+                                <th>Statut de paiement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="data.get('po_summary', [])" t-as="po">
+                                <td>
+                                    <t t-esc="po['order_name']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['date_order']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['partner_name']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['qty_received']"/>
+                                    /
+                                    <t t-esc="po['qty_ordered']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['price_invoiced']"/>
+                                    /
+                                    <t t-esc="po['price_remaining']"/>
+                                    <t t-esc="po['currency']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['payment_method']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['incoterm']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['date_planned']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['delivery_status']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="po['payment_status']"/>
+                                </td> <!-- NEW -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <!-- Detailed Lines report -->
+    <template id="report_line_items_template">
+        <t t-call="web.html_container">
+            <h2>PLANNING DE REÇU DES ACHATS</h2>
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Fournisseur</th>
+                        <th>Bon de commande</th>
+                        <th>Date de commande</th>
+                        <th>Date de confirmation du BAT</th>
+                        <th>Date de livraison prévue</th>
+                        <th>Qté commandée</th>
+                        <th>Qté reçue</th>
+                        <th>Qté restante</th>
+                        <th>Statut de livraison</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="data.get('lines_data', [])" t-as="line">
+                        <tr>
+                            <td>
+                                <t t-esc="line['product_name']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['partner_name']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['order_name']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['date_order']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['bat_date']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['date_planned']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['qty_ordered']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['qty_received']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['qty_remaining']"/>
+                            </td>
+                            <td>
+                                <t t-esc="line['status']"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+    </template>
+    <!-- Grouped per product report -->
+    <template id="report_grouped_per_product_template">
+        <t t-call="web.html_container">
+            <h2>ETAT DE SUIVI DES ECHEANCES DE LIVRAISON</h2>
+            <t t-foreach="data.get('grouped_data', {}).items()" t-as="item">
+                <t t-set="product" t-value="item[0]"/>
+                <t t-set="lines" t-value="item[1]"/>
+                <div style="margin-bottom: 20px;">
+                    <h3>
+                        <t t-esc="product"/>
+                    </h3>
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>N° BC</th>
+                                <th>Fournisseur</th>
+                                <th>Date de commande</th>
+                                <th>Date de confirmation du B.A.T</th>
+                                <th>Qté commandée</th>
+                                <th>Qté reçue</th>
+                                <th>Qté restante</th>
+                                <th>Date de livraison prévue</th>
+                                <th>Statut de livraison</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="lines" t-as="line">
+                                <tr>
+                                    <td>
+                                        <t t-esc="line['order_name']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['partner_name']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['date_planned']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['bat_date']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['qty_ordered']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['qty_received']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['qty_remaining']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['date_planned']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line['status']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+
+        </t>
+    </template>
+    <template id="report_styles" name="Purchase Reports Styles">
+        <style>
+            /* Centralize all text in tables */
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #333;
+            }
+            th, td {
+            border: 1px solid #ccc;
+            }
+            thead th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            }
+
+            /* Headings styling */
+            h2, h3 {
+            text-align: center;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            }
+
+            /* Alternate row shading for readability */
+            tbody tr:nth-child(odd) {
+            background-color: #fafafa;
+            }
+            tbody tr:hover {
+            background-color: #eaeaea;
+            }
+
+            /* Responsive design for smaller pages */
+            @media print {
+            table, th, td {
+            page-break-inside: avoid;
+            }
+            h2, h3 {
+            page-break-after: avoid;
+            }
+            }
+        </style>
+    </template>
+
+    <!-- Main wrapper template to dispatch based on report_template -->
+    <template id="purchase_report_template">
+        <t t-call="web.html_container">
+            <style>
+                table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+                color: #333;
+                }
+                th, td {
+                border: 1px solid #ccc;
+                padding: 6px 8px;
+                }
+                thead th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+                }
+                h2, h3 {
+                text-align: center;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                color: #1a1a1a;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                }
+                tbody tr:nth-child(odd) {
+                background-color: #fafafa;
+                }
+                tbody tr:hover {
+                background-color: #eaeaea;
+                }
+                @media print {
+                table, th, td {
+                page-break-inside: avoid;
+                }
+                h2, h3 {
+                page-break-after: avoid;
+                }
+                }
+            </style>
+
+            <t t-if="data.get('report_template') == 'summary_per_po'">
+                <t t-call="purchase_custom_reports.report_summary_per_po_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'line_items'">
+                <t t-call="purchase_custom_reports.report_line_items_template"/>
+            </t>
+            <t t-if="data.get('report_template') == 'grouped_per_product'">
+                <t t-call="purchase_custom_reports.report_grouped_per_product_template"/>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
+

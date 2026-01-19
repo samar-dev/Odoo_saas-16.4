@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_partnerledger">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="9"/>
+                <t t-set="data_report_dpi" t-value="90"/>
+                <t t-set="data_report_landscape" t-value="False"/>
+                <style>
+                    h4 {
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: #675fb3;
+                    }
+
+                    .th_style {
+                    font-weight: bolder;
+                    background-color: #f2f2f2;
+                    color: #675fb3;
+                    border-left: 1px solid black;
+                    }
+
+                    td {
+                    border-left: 1px solid black;
+                    width:auto;
+                    }
+
+                    .wd_4{
+                    width:10%;
+                    }
+
+                    .row {
+                    margin-bottom: 10px;
+                    width:90%;
+
+                    }
+
+                    .col-3 {
+                    border: 1px solid #675fb3;
+                    padding:5px;
+                    margin-left:2px;
+                    }
+                    .page{
+                    font-size:12px;
+                    }
+                    .row {
+                    width:100%;
+                    }
+                </style>
+                <div class="page">
+                    <div class="row">
+                        <div class="col-3">
+                            <strong>Company:</strong>
+                            <p t-esc="res_company.name"/>
+                        </div>
+                        <div class="col-3">
+                            <t t-if="data['form']['date_from']">
+                                <strong>Date from :</strong>
+                                <span t-esc="data['form']['date_from']"/>
+                                <br/>
+                            </t>
+                            <t t-if="data['form']['date_to']">
+                                <strong>Date to :</strong>
+                                <span t-esc="data['form']['date_to']"/>
+                            </t>
+                        </div>
+                        <div class="col-3">
+                            <strong>Target Moves:</strong>
+                            <p t-if="data['form']['target_move'] == 'all'">All Entries</p>
+                            <p t-if="data['form']['target_move'] == 'posted'">All Posted Entries</p>
+                        </div>
+                        <div class="col-3">
+                            <h4>Partner Ledger</h4>
+                        </div>
+                    </div>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th class="th_style wd_4">Date</th>
+                                <th class="th_style">JRNL</th>
+                                <th class="th_style">Account</th>
+                                <th class="th_style">Ref</th>
+                                <th class="th_style">Debit</th>
+                                <th class="th_style">Credit</th>
+                                <th class="th_style">Balance</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="docs" t-as="o">
+                            <tbody>
+                                <tr class="th_style">
+                                    <td colspan="4">
+                                        <strong t-esc="o.ref"/>
+                                        -
+                                        <strong t-esc="o.name"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong t-esc="sum_partner(data, o, 'debit')"
+                                                t-if="sum_partner(data, o, 'debit') &gt; 0"
+                                                t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong t-esc="sum_partner(data, o, 'credit')"
+                                                t-if="sum_partner(data, o, 'credit') &gt; 0"
+                                                t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong t-esc="sum_partner(data, o, 'debit - credit')"
+                                                t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="lines(data, o)" t-as="line">
+                                    <td class="wd_4">
+                                        <span t-esc="line['date']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['code']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['a_code']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['displayed_name']"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-esc="line['debit']" t-if="line['debit'] &gt; 0"
+                                              t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-esc="line['credit']" t-if="line['credit'] &gt; 0"
+                                              t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-esc="line['progress']"
+                                              t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                    </td>
+                                    <td class="text-end" t-if="data['form']['amount_currency']">
+                                        <t t-if="line['currency_id']">
+                                            <span t-esc="line['amount_currency']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': line['currency_id']}"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

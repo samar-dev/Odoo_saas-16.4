@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PDF Report Action -->
+    <record id="sale_pallet_report_pdf" model="ir.actions.report">
+        <field name="name">Palettes Report</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_palette_enhancement.report_partner_pallets</field>
+        <field name="report_file">sale_palette_enhancement.report_partner_pallets</field>
+        <field name="print_report_name">'Palettes - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Window Action for Menu -->
+    <record id="action_sale_pallets_window" model="ir.actions.act_window">
+        <field name="name">Palettes Report</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_rank','&gt;',0)]</field>
+    </record>
+
+
+
+
+</odoo>

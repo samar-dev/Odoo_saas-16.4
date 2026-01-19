@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='x_stage_id']" position="replace">
+                    <field name="x_new_stage_id"
+                           widget="statusbar"
+                           options="{'clickable': 0}"
+                           attrs="{'invisible': ['|', ('payment_method_line_id', '=', False), ('state', '!=', 'posted')]}"/>
+                </xpath>
+
+                <header position="inside">
+                    <field name="button_regularize_hidden" invisible="1"/>
+                    <button name="action_regularize_payment"
+                            class="btn-primary"
+                            type="object"
+                            attrs="{'invisible': ['|', ('button_regularize_hidden', '=', True), ('create_date', '=', False)]}"
+                            string="Régulariser par attestation"/>
+                    <button name="change_change_effet" type="object" string="REMPLACE ESC/ENC" icon="fa-refresh"
+                            class="btn-danger" attrs="{'invisible': [('operation_type', '=', False)]}"/>
+
+                </header>
+
+                <xpath expr="//group[@name='group2']" position="inside">
+                    <field name="certificate_name" invisible="1"/>
+                    <field name="certificate_file"
+                           filename="certificate_name"
+                           attrs="{'invisible': [('certificate_file', '=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="is_verified" invisible="1"/>
+                    <field name="show_is_verified" invisible="1"/>
+                    <button name="action_toggle_is_verified"
+                            attrs="{'invisible': ['|', ('is_verified', '=', False), '|', ('show_is_verified', '=', False), ('create_date', '=', False)]}"
+                            class="oe_stat_button text-success"
+                            type="object"
+                            icon="fa-check">
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-success" style="font-weight: 500;">
+                                Vérifié
+                            </span>
+                        </div>
+                    </button>
+                    <button name="action_toggle_is_verified"
+                            attrs="{'invisible': ['|', ('is_verified', '=', True), '|', ('show_is_verified', '=', False), ('create_date', '=', False)]}"
+                            class="oe_stat_button text-danger"
+                            type="object"
+                            icon="fa-remove">
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-danger" style="font-weight: 500;">Non
+                                Vérifié
+                            </span>
+                        </div>
+                    </button>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_form_without_header_inherit"
+                model="ir.ui.view">
+            <field name="name">view_account_payment_form_without_header_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id"
+                   ref="v__payment_methods.view_account_payment_form_without_header"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='original_payment_ids']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <footer position="inside">
+                    <button name="action_add_replacement"
+                            invisible="context.get('hide_replace_button')"
+                            class="btn-primary"
+                            icon="fa-refresh"
+                            type="object"
+                            string="Remplacer"/>
+                </footer>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_tree_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_tree_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='x_stage_id']" position="replace">
+                    <field name="x_new_stage_id"
+                           widget="badge"
+                           optional="show"
+                           decoration-success="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='x_next_stage_id']" position="replace">
+                    <field name="x_new_next_stage_id"
+                           widget="badge"
+                           optional="show"
+                           decoration-info="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_search_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_search_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='is_internal_transfer']" position="after">
+                    <separator/>
+                    <filter name="non_verified_filter"
+                            string="Non Vérifié"
+                            domain="[('is_verified', '=', False)]"/>
+                    <filter name="verified_filter"
+                            string="Vérifié"
+                            domain="[('is_verified', '=', True)]"/>
+                </xpath>
+
+                <xpath expr="//filter[@name='current_step_groupby']" position="replace">
+                    <filter name="current_step_groupby"
+                            string="Étape actuelle"
+                            context="{'group_by': 'x_new_stage_id'}"/>
+                </xpath>
+
+                <xpath expr="//filter[@name='next_step_groupby']" position="replace">
+                    <filter name="next_step_groupby"
+                            string="Étape suivante"
+                            context="{'group_by': 'x_new_next_stage_id'}"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="action_set_paid_server" model="ir.actions.server">
+            <field name="name">Payé</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_account_payment"/>
+            <field name="binding_model_id" ref="model_account_payment"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">records.with_context(skip_account_move_synchronization=True).action_set_all_paid()
+            </field>
+        </record>
+
+    </data>
+</odoo>

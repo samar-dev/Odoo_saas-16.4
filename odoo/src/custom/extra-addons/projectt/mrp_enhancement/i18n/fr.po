@@ -1,0 +1,252 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mrp_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-12 14:03+0000\n"
+"PO-Revision-Date: 2025-11-12 14:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+
+#. module: mrp_enhancement
+#: model:ir.actions.report,print_report_name:mrp_enhancement.action_production_planning
+msgid "'PP - %s' % (object.name)"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model:ir.actions.report,print_report_name:mrp_enhancement.action_simulation_order
+msgid "'SO - %s' % (object.name)"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid ""
+"<br/>\n"
+"                                <strong>Imprimé par :</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid ""
+"<span style=\"font-size: 12px;margin-bottom:5px;background-color: #db0456;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);\">\n"
+"                                                                Non\n"
+"                                                            </span>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid ""
+"<span style=\"marging-right:10px;font-size: 12px;margin-bottom:5px;background-color: #04db6c;color: #ffffff;padding: 5px 5px;border-radius: 10px;width: auto;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);\">\n"
+"                                                                Oui\n"
+"                                                            </span>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid ""
+"<strong>CLT et DOC Origine :</strong>\n"
+"                                <br/>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>DLC</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid ""
+"<strong>Date Planification :</strong>\n"
+"                                <br/>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid "<strong>Date d'impression :</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Date de production</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Ligne</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Lot/Série</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid ""
+"<strong>Marque :</strong>\n"
+"                                <br/>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Nb Palette</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Planification</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Produit</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Qté à produire</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "<strong>Réf OF</strong>"
+msgstr ""
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid "Acheter"
+msgstr "Acheter"
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid "BON DE SIMULATION"
+msgstr "BON DE SIMULATION"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__name
+msgid "Category Name"
+msgstr "Nom de catégorie"
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid "Catégorie"
+msgstr "Catégorie"
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid "Composant"
+msgstr "Composant"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_production_planning
+msgid "DATE CREATION :"
+msgstr "DATE CRÉATION :"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__description
+msgid "Description"
+msgstr "Description"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__id
+msgid "ID"
+msgstr "ID"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__write_uid
+msgid "Last Updated by"
+msgstr "Mis à jour par"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap_categ__write_date
+msgid "Last Updated on"
+msgstr "Mis à jour le"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap__note
+msgid "Note"
+msgstr "Note"
+
+#. module: mrp_enhancement
+#: model:ir.model,name:mrp_enhancement.model_stock_scrap
+msgid "Scrap"
+msgstr "Rebut"
+
+#. module: mrp_enhancement
+#: model:ir.actions.act_window,name:mrp_enhancement.action_stock_scrap_categ
+#: model:ir.ui.menu,name:mrp_enhancement.menu_stock_scrap_categ_root
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.view_stock_scrap_categ_tree
+msgid "Scrap Categories"
+msgstr "Catégories de rebut"
+
+#. module: mrp_enhancement
+#: model:ir.model,name:mrp_enhancement.model_stock_scrap_categ
+#: model:ir.model.fields,field_description:mrp_enhancement.field_stock_scrap__categ_id
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.view_stock_scrap_categ_form
+msgid "Scrap Category"
+msgstr "Catégorie de rebut"
+
+#. module: mrp_enhancement
+#: model:ir.model,name:mrp_enhancement.model_mrp_production
+msgid "Production Order"
+msgstr "Ordre de production"
+
+#. module: mrp_enhancement
+#: model:ir.actions.report,name:mrp_enhancement.action_production_planning
+msgid "Production Planning"
+msgstr "Planning de production"
+
+#. module: mrp_enhancement
+#: model:ir.actions.report,name:mrp_enhancement.action_simulation_order
+msgid "Simulation Order"
+msgstr "Bon de simulation"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_mrp_production__mrp_production_id
+msgid "Mix order"
+msgstr "Ordre de mélange"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,field_description:mrp_enhancement.field_mrp_production__parent_workcenter_id
+#: model:ir.model.fields,field_description:mrp_enhancement.field_mrp_workcenter__workcenter_id
+msgid "Parent Work Center"
+msgstr "Poste de travail parent"
+
+#. module: mrp_enhancement
+#: model:ir.model.fields,help:mrp_enhancement.field_mrp_production__parent_workcenter_id
+#: model:ir.model.fields,help:mrp_enhancement.field_mrp_workcenter__workcenter_id
+msgid "The parent work center that includes this work center"
+msgstr "Le poste de travail parent qui inclut ce poste de travail"
+
+#. module: mrp_enhancement
+#: model:ir.model,name:mrp_enhancement.model_mrp_workcenter
+msgid "Work Center"
+msgstr "Poste de travail"
+
+#. module: mrp_enhancement
+#: model_terms:ir.ui.view,arch_db:mrp_enhancement.template_simulation_order
+msgid "Virtuellement disponible"
+msgstr "Virtuellement disponible"

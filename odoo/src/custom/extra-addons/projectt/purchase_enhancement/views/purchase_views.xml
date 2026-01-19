@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='products']" position="after">
+                    <page string="Import" name="import"
+                          attrs="{'invisible':[('customer_type','!=','import_supplier')]}">
+                        <group>
+                            <group string="Transport">
+                                <field name="customer_type" invisible="1"/>
+                                <field name="discharge_port"/>
+                                <field name="loading_port"/>
+                                <field name="shipping_date"/>
+                                <field name="free_detention_days"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="orginal_print"/>
+                </xpath>
+                <header position="inside">
+                    <button name="recompute_price" type="object" string="Refaire le calcul" icon="fa-refresh"
+                            class="btn-danger" attrs="{'invisible': [('orginal_print', '=', False)]}"/>
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>

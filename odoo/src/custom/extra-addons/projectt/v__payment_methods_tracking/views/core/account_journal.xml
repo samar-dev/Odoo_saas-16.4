@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_journal_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_journal_form_inherit</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='inbound_payment_method_line_ids']/tree"
+                       position="inside">
+                    <field name="payment_method_line_stage_id"
+                           invisible="1"
+                           force_save="1" />
+                    <button name="open_payment_method_line_stage"
+                            type="object"
+                            string="Configurer"
+                            attrs="{'invisible': [('payment_method_line_stage_id', '!=', False)]}" />
+                    <button name="open_payment_method_line_stage"
+                            type="object"
+                            string="Modifier"
+                            attrs="{'invisible': [('payment_method_line_stage_id', '=', False)]}" />
+                </xpath>
+
+                <xpath expr="//field[@name='outbound_payment_method_line_ids']/tree"
+                       position="inside">
+                    <field name="payment_method_line_stage_id"
+                           invisible="1"
+                           force_save="1" />
+                    <button name="open_payment_method_line_stage"
+                            type="object"
+                            string="Configurer"
+                            attrs="{'invisible': [('payment_method_line_stage_id', '!=', False)]}" />
+                    <button name="open_payment_method_line_stage"
+                            type="object"
+                            string="Modifier"
+                            attrs="{'invisible': [('payment_method_line_stage_id', '=', False)]}" />
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

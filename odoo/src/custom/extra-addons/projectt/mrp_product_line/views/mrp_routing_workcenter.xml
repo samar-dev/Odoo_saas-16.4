@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mrp_routing_workcenter_form_view_inherit" model="ir.ui.view">
+            <field name="name">mrp_routing_workcenter_form_view_inherit</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[hasclass('oe_button_box')]" position="after">
+                    <div class="options">
+                        <span class="d-inline-block">
+                            <field name="is_template"/>
+                            <label for="is_template"/>
+                        </span>
+                    </div>
+                </xpath>
+
+                <div class="oe_button_box" position="inside">
+                    <field name="is_template" invisible="1"/>
+                    <button name="action_toggle_is_template" attrs="{'invisible': [('is_template', '=', False)]}" class="oe_stat_button text-success" type="object" icon="fa-files-o">
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-success">Template</span>
+                        </div>
+                    </button>
+                    <button name="action_toggle_is_template" attrs="{'invisible': [('is_template', '=', True)]}" class="oe_stat_button text-info" type="object" icon="fa-bars">
+                        <div class="o_stat_info o_field_widget">
+                            <span class="text-info">Normal</span>
+                        </div>
+                    </button>
+                </div>
+
+                <xpath expr="//field[@name='bom_id']" position="attributes">
+                    <attribute name="domain">[('is_template', '=', is_template)]</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="mrp_routing_workcenter_filter_inherit" model="ir.ui.view">
+            <field name="name">mrp_routing_workcenter_filter_inherit</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_filter" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='workcenter_id']" position="after">
+                    <filter name="template_filter" string="Operation" domain="[('is_template', '=', False)]" />
+                    <separator />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="mrp.mrp_routing_action" model="ir.actions.act_window">
+            <field name="domain">[('is_template', '=', True)]</field>
+        </record>
+
+    </data>
+</odoo>

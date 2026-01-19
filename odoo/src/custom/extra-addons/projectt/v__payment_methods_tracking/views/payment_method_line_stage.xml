@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_method_line_stage_view_form" model="ir.ui.view">
+            <field name="name">payment_method_line_stage_view_form</field>
+            <field name="model">payment.method.line.stage</field>
+            <field name="arch" type="xml">
+                <form string="payment_method_line_stage_form">
+                    <sheet>
+                        <field name="hide_banknote_type" invisible="1" />
+                        <field name="payment_method_line_stage_line_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle" />
+                                <field name="name" />
+                                <field name="type" />
+                                <field name="with_bank_statement"
+                                       widget="boolean_toggle"
+                                       attrs="{'invisible': [('type', '!=', 'in_bank')]}" />
+                                <field name="with_journal_entry"
+                                       widget="boolean_toggle" />
+                                <field name="account_id"
+                                       attrs="{'required': [('with_journal_entry', '=', True)], 'invisible': [('with_journal_entry', '=', False)]}"
+                                       options="{'no_create': 1, 'no_edit': 1}" />
+                                <field name="banknote_type"
+                                       attrs="{'column_invisible': [('parent.hide_banknote_type', '=', True)]}" />
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button string="Appliquer"
+                                special="save"
+                                type="object"
+                                class="btn-primary" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

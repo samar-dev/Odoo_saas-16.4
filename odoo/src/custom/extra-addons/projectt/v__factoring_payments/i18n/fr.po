@@ -1,0 +1,575 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* v__factoring_payments
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-08 13:33+0000\n"
+"PO-Revision-Date: 2024-04-08 13:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "<span class=\"o_stat_text\">Factoring Checks</span>"
+msgstr "<span class=\"o_stat_text\">Chèques de factoring</span>"
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "<span class=\"o_stat_text\">Factoring JE</span>"
+msgstr "<span class=\"o_stat_text\">Factoring EC</span>"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__account_id
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__account_id
+#, python-format
+msgid "Account"
+msgstr "Compte"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__account_factoring_id
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_payment__account_factoring_id
+msgid "Account Factoring"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__account_factoring_commission_ids
+msgid "Account Factoring Commission"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.view_account_payment_form_without_header_inherit
+msgid "Add"
+msgstr "Ajouter"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_factoring_commission__value_type__amount
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_journal_factoring_line__value_type__amount
+#, python-format
+msgid "Amount"
+msgstr "Montant"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "Commissions"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__company_id
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__company_id
+#, python-format
+msgid "Company"
+msgstr "Société"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_journal_factoring_line__company_id
+msgid "Company related to this journal"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__create_uid
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__create_uid
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__create_date
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__create_date
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "Customer"
+msgstr "Client"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__date
+#, python-format
+msgid "Date"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__display_name
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__display_name
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_factoring__state__done
+#, python-format
+msgid "Done"
+msgstr "Validé"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_factoring__state__draft
+#, python-format
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/core/account_journal.py:0
+#: model:ir.actions.act_window,name:v__factoring_payments.account_factoring_action
+#: model:ir.model,name:v__factoring_payments.model_account_factoring
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_bank_statement_import_journal_creation__is_factoring
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal__is_factoring
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_payment__factoring_id
+#: model:ir.ui.menu,name:v__factoring_payments.account_factoring_menu
+#, python-format
+msgid "Factoring"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+#, python-format
+msgid "Factoring Check"
+msgstr "Chèque de factoring"
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.view_account_journal_form_inherit
+msgid "Factoring Commissions"
+msgstr "Commissions de factoring"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__partner_id
+#, python-format
+msgid "Factoring Company"
+msgstr "Société de factoring "
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__factoring_move_id
+msgid "Factoring Move"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__factoring_payment_ids
+msgid "Factoring Payment"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__factoring_payments_count
+msgid "Factoring Payments Count"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__id
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__id
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__id
+msgid "ID"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_needaction
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_has_error
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model,name:v__factoring_payments.model_account_journal
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__journal_id
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__journal_id
+#, python-format
+msgid "Journal"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_bank_statement_import_journal_creation__journal_factoring_line_ids
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal__journal_factoring_line_ids
+msgid "Journal Factoring Line"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__label
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__label
+#, python-format
+msgid "Label"
+msgstr "Libellé"
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.view_account_journal_form_inherit
+msgid "Label to appear in the journal item"
+msgstr "Libellé à afficher dans l'élément de journal"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring____last_update
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission____last_update
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__write_uid
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__write_uid
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__write_date
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__write_date
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__name
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__name
+#, python-format
+msgid "Name"
+msgstr "Nom"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__new_amount
+#, python-format
+msgid "New Amount"
+msgstr "Nouveau Montant"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__name
+#, python-format
+msgid "Number"
+msgstr "Numéro"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "Once you send there is no going back, Do you confirm?"
+msgstr "Une fois envoyé, il n'y a plus de retour possible. Confirmez-vous?"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#, python-format
+msgid "Only customer payments are allowed."
+msgstr "Seuls les paiements clients sont autorisés."
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__payment_ids
+msgid "Payment"
+msgstr "Paiement"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#, python-format
+msgid "Payment method is not check, only check is allowed."
+msgstr "Le mode de paiement n'est pas chèque, seul le chèque est autorisé."
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#, python-format
+msgid "Payment must be in the chest journal."
+msgstr "Le paiement doit être dans le journal de coffre."
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#, python-format
+msgid "Payment must be posted before sending it to factoring company."
+msgstr ""
+"Le paiement doit être validé avant de l'envoyer à la société de factoring."
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model,name:v__factoring_payments.model_account_payment
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+#, python-format
+msgid "Payments"
+msgstr "Paiements"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_factoring__state__pending
+#, python-format
+msgid "Pending"
+msgstr "En cours"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_factoring_commission__value_type__percentage
+#: model:ir.model.fields.selection,name:v__factoring_payments.selection__account_journal_factoring_line__value_type__percentage
+#, python-format
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "Send"
+msgstr "Envoyer"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__state
+msgid "State"
+msgstr "Statut"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/core/account_payment.py:0
+#, python-format
+msgid "This payment belongs to a factoring document %s"
+msgstr "Ce paiement appartient à un document de factoring %s"
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "Total"
+msgstr "Total"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__value
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__value
+#, python-format
+msgid "Value"
+msgstr "Valeur"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring_commission.py:0
+#: code:addons/v__factoring_payments/models/account_journal_factoring_line.py:0
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring_commission__value_type
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_journal_factoring_line__value_type
+#, python-format
+msgid "Value Type"
+msgstr "Type de valeur"
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,field_description:v__factoring_payments.field_account_factoring__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model.fields,help:v__factoring_payments.field_account_factoring__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#, python-format
+msgid "You can't delete this document because it is not in draft state"
+msgstr ""
+"Vous ne pouvez pas supprimer ce document car il n'est pas à l'état de "
+"brouillon"
+
+#. module: v__factoring_payments
+#: code:addons/v__factoring_payments/models/account_factoring.py:0
+#, python-format
+msgid "You must select at least one single payment to proceed"
+msgstr "Vous devez sélectionner au moins un seul paiement pour continuer"
+
+#. module: v__factoring_payments
+#: model:ir.model,name:v__factoring_payments.model_account_factoring_commission
+msgid "account.factoring.commission"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model:ir.model,name:v__factoring_payments.model_account_journal_factoring_line
+msgid "account.journal.factoring.line"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_form
+msgid "account_factoring_form"
+msgstr ""
+
+#. module: v__factoring_payments
+#: model_terms:ir.ui.view,arch_db:v__factoring_payments.account_factoring_view_tree
+msgid "account_factoring_tree"
+msgstr ""

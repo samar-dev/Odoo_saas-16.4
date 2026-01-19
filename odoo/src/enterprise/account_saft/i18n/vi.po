@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_saft
+# 
+# Translators:
+# Wil Odoo, 2023
+# Thi Huong Nguyen, 2023
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~16.4+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-25 11:49+0000\n"
+"PO-Revision-Date: 2023-07-25 12:23+0000\n"
+"Last-Translator: Thi Huong Nguyen, 2023\n"
+"Language-Team: Vietnamese (https://app.transifex.com/odoo/teams/41243/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: account_saft
+#: model:ir.model,name:account_saft.model_account_report
+msgid "Accounting Report"
+msgstr "Báo cáo kế toán"
+
+#. module: account_saft
+#: model:ir.model,name:account_saft.model_account_general_ledger_report_handler
+msgid "General Ledger Custom Handler"
+msgstr "Trình xử lý tuỳ chỉnh sổ cái"
+
+#. module: account_saft
+#. odoo-python
+#: code:addons/account_saft/models/account_general_ledger.py:0
+#, python-format
+msgid "Missing company details."
+msgstr "Thiếu thông tin công ty."
+
+#. module: account_saft
+#: model_terms:ir.ui.view,arch_db:account_saft.saft_template
+msgid "Odoo"
+msgstr "Odoo"
+
+#. module: account_saft
+#: model_terms:ir.ui.view,arch_db:account_saft.saft_template
+msgid "Odoo SA"
+msgstr "Odoo SA"
+
+#. module: account_saft
+#. odoo-javascript
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#, python-format
+msgid "Please define"
+msgstr "Vui lòng xác định"
+
+#. module: account_saft
+#. odoo-javascript
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#, python-format
+msgid "Please define at least a"
+msgstr "Vui lòng xác định ít nhất một"
+
+#. module: account_saft
+#. odoo-python
+#: code:addons/account_saft/models/account_general_ledger.py:0
+#, python-format
+msgid ""
+"Please define at least one address (Zip/City) for the following partners: "
+"%s."
+msgstr ""
+"Vui lòng xác định ít nhất một địa chỉ (Zip/Thành phố) cho các đối tác sau: "
+"%s."
+
+#. module: account_saft
+#: code:addons/account_saft/models/account_general_ledger.py:0
+#, python-format
+msgid "Please define one or more Contacts belonging to your company."
+msgstr "Vui lòng xác định một hoặc nhiều Liên hệ thuộc về công ty của bạn."
+
+#. module: account_saft
+#. odoo-python
+#: code:addons/account_saft/models/account_general_ledger.py:0
+#, python-format
+msgid "SAFT is only compatible with one column group."
+msgstr "SAFT chỉ tương thích với một nhóm cột."
+
+#. module: account_saft
+#. odoo-javascript
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#, python-format
+msgid "`Company ID`"
+msgstr "`ID công ty`"
+
+#. module: account_saft
+#. odoo-javascript
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#, python-format
+msgid "city or ZIP code"
+msgstr "mã thành phố hoặc ZIP"
+
+#. module: account_saft
+#. odoo-javascript
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#, python-format
+msgid "for your company."
+msgstr "cho công ty bạn."
+
+#. module: account_saft
+#. odoo-javascript
+#: code:addons/account_saft/static/src/components/general_ledger/filters/warnings.xml:0
+#, python-format
+msgid "phone or mobile number"
+msgstr "số điện thoại hoặc di động"

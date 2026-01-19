@@ -1,0 +1,9 @@
+id,name,code,payment_type
+v_check_inbound,Chèque,v-check,inbound
+v_check_outbound,Chèque,v-check,outbound
+v_cash_inbound,Espèces,v-cash,inbound
+v_cash_outbound,Espèces,v-cash,outbound
+v_banknote_inbound,Effet,v-banknote,inbound
+v_banknote_outbound,Effet,v-banknote,outbound
+v_transfer_inbound,Virement,v-transfer,inbound
+v_transfer_outbound,Virement,v-transfer,outbound

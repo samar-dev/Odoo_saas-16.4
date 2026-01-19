@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_quality_checklist_form" model="ir.ui.view">
+            <field name="name">quality.checklist.emballage.form</field>
+            <field name="model">quality.checklist.emballage</field>
+            <field name="arch" type="xml">
+                <form string="Checklist Réception Emballage">
+                    <sheet>
+
+                        <!-- General Info -->
+                        <group string="Informations generale">
+                            <group>
+                                <field name="name"/>
+                                <field name="quality_check_id"/>
+                                <field name="reception_date"/>
+                                <field name="document_number"/>
+                            </group>
+                            <group>
+                                <field name="quantity"/>
+                                <field name="supplier"/>
+                                <field name="articles"/>
+                            </group>
+
+
+                        </group>
+
+                        <notebook>
+                            <page string="Emballage / MP">
+                                <!-- Contrôle Magasin (with custom class) -->
+                                <group string="Contrôle Magasin" invisible="1" class="group-magasin">
+                                    <group>
+                                        <field name="cmd_delivery_match"/>
+                                        <field name="packaging_marking_correct"/>
+                                        <field name="delivered_on_time"/>
+                                        <field name="proper_transport"/>
+                                    </group>
+                                    <group>
+                                        <field name="unopened_clean_packaging"/>
+                                        <field name="protected_merchandise"/>
+                                        <field name="no_dust_or_humidity"/>
+                                        <field name="no_smell_or_soiling"/>
+                                    </group>
+                                </group>
+                                <!-- Three Groups in a Row -->
+                                <group col="3">
+                                    <group string="Étiquette" class="group-etiquette">
+                                        <field name="label_print_quality"/>
+                                        <field name="label_dimensions"/>
+                                        <field name="label_bat"/>
+                                        <field name="label_bobine"/>
+                                    </group>
+
+                                    <group string="Carton / Séparation" class="group-carton">
+                                        <field name="carton_print_quality"/>
+                                        <field name="carton_dimensions"/>
+                                        <field name="carton_shape"/>
+                                        <field name="carton_material_state"/>
+                                    </group>
+
+                                    <group string="Bidon / Bouteille" class="group-bouteille">
+                                        <field name="bottle_material_state"/>
+                                        <field name="bottle_sealing"/>
+                                        <field name="bottle_color"/>
+                                        <field name="bottle_volume"/>
+                                        <field name="bottle_repair"/>
+                                    </group>
+                                </group>
+                                <!-- More grouped sections -->
+                                <group col="3">
+                                    <group string="Manchon" class="group-manchon">
+                                        <field name="sleeve_print"/>
+                                        <field name="sleeve_perforation"/>
+                                        <field name="sleeve_shrink"/>
+                                        <field name="sleeve_dimensions"/>
+                                    </group>
+
+                                    <group string="Arome / Vinaigre " class="group-details">
+                                        <field name="aroma" invisible="1"/>
+                                        <field name="dlc"/>
+                                        <field name="color"/>
+                                        <field name="odor"/>
+                                        <field name="solubility"/>
+                                        <field name="certificate_present" invisible="1"/>
+                                    </group>
+
+                                    <!-- Bouchon Group -->
+                                    <group string="Bouchon">
+                                        <field name="bouchon_couleur"/>
+                                        <field name="compatibilite_bouchon"/>
+                                        <field name="fermeture"/>
+                                        <field name="fissures"/>
+                                    </group>
+                                </group>
+                                <group col="3">
+                                    <!-- Préforme Group -->
+                                    <group string="Préforme">
+                                        <field name="uniformity_color"/>
+                                        <field name="grammage"/>
+                                        <field name="diametre"/>
+                                        <field name="uniformite"/>
+                                    </group>
+
+                                    <!-- Poignée Group -->
+                                    <group string="Poignée">
+                                        <field name="fixation_serrage"/>
+                                        <field name="orientation_correcte"/>
+                                        <field name="compatibilite_bouteille"/>
+                                    </group>
+                                    <group string="Décision" class="group-decision">
+                                        <field name="conformity"/>
+                                        <field name="decision"/>
+                                        <field name="comments"/>
+                                    </group>
+                                </group>
+                                <!-- Hidden Signatures Group -->
+                                <group string="Signatures" invisible="1">
+                                    <field name="visa_stock"/>
+                                    <field name="visa_quality"/>
+                                </group>
+                            </page>
+                            <page string="Fiche Réception Huile">
+                                <!-- Group: Informations Générales -->
+                                <group>
+                                    <group string="Informations Générales">
+                                        <field name="reception_date"/>
+                                        <field name="producteur"/>
+                                        <field name="quantity"/>
+                                        <field name="numero_lot"/>
+                                        <field name="matricule_camion"/>
+                                        <field name="numero_facture"/>
+                                        <field name="numero_bon_pesage"/>
+                                        <field name="emplacement"/>
+                                    </group>
+
+                                    <!-- Group: Contrôle à la Réception -->
+                                    <group string="Contrôle à la Réception">
+                                        <field name="numero_admin"/>
+                                        <field name="numero_rapport_analyse"/>
+                                        <field name="proprete_citerne"/>
+                                        <field name="citerne_vide"/>
+                                        <field name="citerne_sans_odeur"/>
+                                        <field name="citerne_humide"/>
+                                        <field name="proprete_conduites"/>
+                                        <field name="proprete_camion"/>
+                                        <field name="remarque"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Laboratoire - Échantillon de Référence">
+                                        <field name="reference_sample_ids" nolabel="1" colspan="2">
+                                            <tree editable="bottom">
+                                                <field name="checklist_id" invisible="1"/>
+                                                <field name="reference_admin"/>
+                                                <field name="reference"/>
+                                                <field name="acidite"/>
+                                                <field name="k232"/>
+                                                <field name="k270"/>
+                                                <field name="pesticides"/>
+                                                <field name="degustation"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <!-- Group: Contrôle au Laboratoire - Échantillon Réception -->
+                                    <group string="Laboratoire - Échantillon Réception">
+                                        <field name="reception_sample_ids" nolabel="1" colspan="2">
+                                            <tree editable="bottom">
+
+                                                <field name="checklist_id" invisible="1"/>
+                                                <field name="acidite"/>
+                                                <field name="k232"/>
+                                                <field name="k270"/>
+                                                <field name="pesticides"/>
+                                                <field name="aspect"/>
+                                                <field name="degustation"/>
+                                            </tree>
+                                        </field>
+
+                                    </group>
+                                    <field name="visa_responsable" invisible="1"/>
+                                </group>
+
+                            </page>
+                            <page string="Retour marchandise">
+                                <group col="3">
+                                    <group string="Infromation Generale">
+                                        <field name="date_ret"/>
+                                        <field name="client"/>
+                                        <field name="resp_acc"/>
+                                        <field name="article"/>
+                                        <field name="qty"/>
+                                        <field name="lot"/>
+                                        <field name="storage"/>
+                                        <field name="resp_treat"/>
+                                    </group>
+                                    <group string="Exigences isolement">
+                                        <field name="iso_etiquette"/>
+                                        <field name="iso_capsule"/>
+                                        <field name="iso_etui"/>
+                                        <field name="iso_propre"/>
+                                        <field name="iso_bosselure"/>
+                                        <field name="iso_date"/>
+                                    </group>
+                                    <group string="Décision et destination">
+                                        <field name="dec_all_ok"/>
+                                        <field name="dec_reten_return"/>
+                                        <field name="dec_sign"/>
+                                        <field name="dec_else_isol"/>
+                                    </group>
+                                </group>
+                                <group string="Opération destruction">
+                                    <group>
+                                        <field name="destr_op"/>
+                                        <field name="destr_step_c"/>
+                                        <field name="destr_step_nc"/>
+                                        <field name="destr_sep_c"/>
+                                        <field name="destr_sep_nc"/>
+                                        <field name="destr_hyg_c"/>
+                                    </group>
+                                    <group>
+                                        <field name="destr_hyg_nc"/>
+                                        <field name="destr_tank_clean"/>
+                                        <field name="destr_tank_nc"/>
+                                        <field name="destr_tank_id_c"/>
+                                        <field name="destr_tank_id_nc"/>
+                                    </group>
+                                </group>
+                                <group string="Traitement emballages" col="3">
+                                    <group>
+                                        <field name="treat_destr"/>
+                                        <field name="treat_pack_type"/>
+                                        <field name="treat_disposal"/>
+                                        <field name="treat_reuse_glass"/>
+                                        <field name="treat_wash_date"/>
+                                        <field name="treat_wash_resp"/>
+                                        <field name="treat_prod_used"/>
+                                    </group>
+                                    <group>
+                                        <field name="treat_bottles_clean"/>
+                                        <field name="treat_bottles_nc"/>
+                                    </group>
+                                    <group>
+                                        <field name="treat_prot_c"/>
+                                        <field name="treat_prot_nc"/>
+                                    </group>
+                                </group>
+
+
+                            </page>
+                        </notebook>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_quality_checklist" model="ir.actions.act_window">
+            <field name="name">Check liste Réception</field>
+            <field name="res_model">quality.checklist.emballage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_quality_checklist" name="Checklists Réception" parent="quality_control.menu_quality_control"
+                  action="action_quality_checklist" sequence="20"/>
+
+    </data>
+</odoo>

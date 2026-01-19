@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <!-- Stock Container Form View -->
+        <record id="view_stock_container_form" model="ir.ui.view">
+            <field name="name">stock.container.form</field>
+            <field name="model">stock.container</field>
+            <field name="arch" type="xml">
+                <form string="Stock Container">
+                    <header>
+                        <button name="action_validate_container" string="Valider" type="object"
+                                class="btn-primary"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="reference"/>
+                                <field name="description"/>
+                                <field name="picking_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                <field name="type_of_container"/>
+
+                            </group>
+                            <group>
+                                <field name="capacity"/>
+                                <field name="container_weight" readonly="1"/>
+                                <field name="container_nbr_pallet" readonly="1"/>
+                                <field name="picking_product_ids" invisible="1"/>
+                                <field name="product_name"/>
+                            </group>
+
+                        </group>
+                        <!-- Notebook (Tabs) -->
+                        <notebook>
+                            <!-- Tab for Product Lines -->
+                            <page string="Produits dans le conteneur">
+                                <field name="container_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="product_id" domain="[('id', 'in', parent.picking_product_ids)]"
+                                               options="{'no_create': True}"/>
+                                        <field name="product_packaging_qty"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'flexitank')]}"/>
+                                        <field name="quantity"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'flexitank')]}"/>
+                                        <field name="product_packaging_id"/>
+                                        <field name="citerne_number"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'container')]}"/>
+                                        <field name="flexitank_number"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'container')]}"/>
+                                        <field name="plombs_number"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'container')]}"/>
+                                        <field name="container_number"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'container')]}"/>
+                                        <field name="net_weight"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'container')]}"/>
+                                        <field name="gross_weight"
+                                               attrs="{'invisible': [('parent.type_of_container', '=', 'container')]}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View for Stock Container -->
+        <record id="view_stock_container_tree" model="ir.ui.view">
+            <field name="name">stock.container.tree</field>
+            <field name="model">stock.container</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="reference"/>
+                    <field name="capacity"/>
+                    <field name="container_weight"/>
+                    <field name="container_nbr_pallet"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action for Stock Container -->
+        <record id="action_stock_container" model="ir.actions.act_window">
+            <field name="name">Conteneurs de stock</field>
+            <field name="res_model">stock.container</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- Add the stock container menu item -->
+        <menuitem id="menu_stock_container"
+                  name="Conteneurs"
+                  parent="sale.sale_menu_root"
+                  action="action_stock_container"/>
+    </data>
+</odoo>

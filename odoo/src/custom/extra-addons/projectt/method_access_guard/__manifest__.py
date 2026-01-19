@@ -1,0 +1,20 @@
+{
+    "name": "Method Access Guard",
+    "version": "saas~16.4.1.0.0",
+    "description": "Method Access Guard",
+    "summary": "Add the possibility to block certain users from executing methods",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "web", "v__access_guard"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/method_access_guard.xml",
+        "views/menuitems.xml",
+    ],
+    "application": True,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

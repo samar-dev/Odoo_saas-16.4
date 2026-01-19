@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_purchase_report_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.report.wizard.form</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Assistant de rapport Achat">
+                <group>
+                    <group>
+                        <field name="report_name"/>
+                        <field name="vendor_ids" widget="many2many_tags"
+                               options="{'no_open': True, 'no_create': True}"/>
+                        <field name="state"/>
+                        <field name="category_id" widget="many2many_tags"/>
+                        <field name="detailed_type"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="report_template"/>
+                    </group>
+
+                </group>
+                <footer>
+                    <button string="Print Report" type="object" name="action_print_report" class="btn-primary"/>
+                    <button string="Cancel" type="object" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="purchase_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Purchase Report Wizard</field>
+        <field name="res_model">purchase.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="purchase_custom_reports_menu"
+              name="Rapports de suivi"
+              parent="purchase.purchase_report_main"
+              action="purchase_custom_reports.purchase_report_wizard_action"
+              sequence="10"/>
+</odoo>
+

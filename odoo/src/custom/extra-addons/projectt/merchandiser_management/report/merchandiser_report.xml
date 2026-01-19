@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_merchandiser" model="ir.actions.report">
+            <field name="name">Assortment Report</field>
+            <field name="model">merchandiser.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">merchandiser_management.report_merchandiser</field>
+            <field name="report_file">merchandiser_management.report_merchandiser</field>
+            <field name="binding_model_id" ref="model_merchandiser_report_wizard"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'Assortment Report_%s' % (object.date_assortment)</field>
+        </record>
+
+        <template id="report_merchandiser">
+            <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+
+            <!-- Centralized CSS -->
+            <style>
+                /* General text and layout */
+                .merchandiser-report {
+                    font-family: "Lato", sans-serif;
+                    font-size: 13px;
+                    color: #333;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .merchandiser-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    border-bottom: 2px solid #4a4a4a;
+                    padding-bottom: 6px;
+                }
+
+                .merchandiser-header h2 {
+                    margin: 0;
+                    font-size: 18px;
+                    color: #2c3e50;
+                }
+
+                .merchandiser-header h2 span {
+                    color: #2980b9;
+                }
+
+                .merchandiser-header h3 {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #555;
+                    text-align: right;
+                }
+
+                /* Table styling */
+                .merchandiser-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 10px;
+                }
+
+                .merchandiser-table th {
+                    background-color: #F3F4F9;
+                    color: #fff;
+                    border: 1px solid #bbb;
+                    padding: 6px 8px;
+                    text-align: center;
+                    font-weight: 600;
+                }
+
+                .merchandiser-table td {
+                    border: 1px solid #ddd;
+                    padding: 6px 8px;
+                    text-align: center;
+                }
+
+                .merchandiser-table td:first-child,
+                .merchandiser-table th:first-child {
+                    text-align: left;
+                }
+
+                /* Footer */
+                .merchandiser-footer {
+                    margin-top: 15px;
+                    text-align: right;
+                    font-size: 11px;
+                    color: #888;
+                }
+            </style>
+
+            <!-- Report Body -->
+            <div class="page merchandiser-report">
+                <t t-foreach="docs" t-as="o">
+
+                    <!-- Header -->
+                    <div class="merchandiser-header">
+                        <div>
+                            <h2>
+                                Assortment:
+                                <span t-field="o.assortment_id.name"/>
+                            </h2>
+                        </div>
+                        <div>
+                            <h3>
+                                Date:
+                                <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"
+                                      t-options="{'widget': 'date'}"/>
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <table class="merchandiser-table">
+                        <thead>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>Label</th>
+                                <th>Rupture Rate</th>
+                                <th>Rupture %</th>
+                                <th>Average Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.compute_report()" t-as="l">
+                                <tr>
+                                    <td><t t-esc="l['barcode'] or ''"/></td>
+                                    <td style="text-align:left;"><t t-esc="l['product_name'] or ''"/></td>
+                                    <td><t t-esc="l['rupture_rate'] or 0.0"/></td>
+                                    <td><t t-esc="l['rupture_percentage'] or 0.0"/>%</td>
+                                    <td><t t-esc="l['average_quantity'] or 0.0"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <!-- Footer -->
+                    <div class="merchandiser-footer">
+                        <em>Generated by Odoo Merchandise Planning</em>
+                    </div>
+
+                </t>
+            </div>
+
+        </t>
+    </t>
+        </template>
+    </data>
+</odoo>

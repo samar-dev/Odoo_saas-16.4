@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="next_stage_payment_wiz_view_form" model="ir.ui.view">
+            <field name="name">next_stage_payment_wiz_view_form</field>
+            <field name="model">next.stage.payment.wiz</field>
+            <field name="arch" type="xml">
+                <form string="next_stage_payment_wiz_form">
+                    <sheet>
+                        <group>
+                            <field name="date"
+                                   options="{'datepicker': {'warn_future': true}}" />
+
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Appliquer"
+                                name="button_call_next_stage"
+                                type="object"
+                                class="btn-primary" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="regularize_by_certificate_wiz_view_form" model="ir.ui.view">
+            <field name="name">regularize_by_certificate_wiz_view_form</field>
+            <field name="model">regularize.by.certificate.wiz</field>
+            <field name="arch" type="xml">
+                <form string="regularize_by_certificate_wiz_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date"
+                                       options="{'datepicker': {'warn_future': true}}" />
+                            </group>
+                            <group>
+                                <field name="certificate_name" invisible="1" />
+                                <field name="certificate_file" filename="certificate_name" />
+                            </group>
+
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Appliquer" name="button_call_regularize" type="object" class="btn-primary" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

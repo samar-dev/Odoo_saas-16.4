@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_payment_method_view_form_inherit" model="ir.ui.view">
+            <field name="name">account_payment_method_view_form_inherit</field>
+            <field name="model">account.payment.method</field>
+            <field name="inherit_id" ref="v__payment_methods.account_payment_method_view_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='stage_ids']/tree" position="inside">
+                    <field name="account_id" options="{'no_create': 1, 'no_edit': 1}" />
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

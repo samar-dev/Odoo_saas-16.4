@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ir_cron_compute_target_price" model="ir.cron">
+            <field name="name">Compute Target Price for Sale Products</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_compute_target_price_for_sale_products()</field>
+            <field name="interval_number">1</field> <!-- every 1 hour -->
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field> <!-- unlimited -->
+            <field name="active">True</field>
+            <field name="doall" eval="False"/>
+        </record>
+        <record id="notify_overdue_purchases_cron" forcecreate="True" model="ir.cron">
+            <field name="name">Notify Overdue Purchases</field>
+            <field eval="True" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="model_purchase_notify"/>
+            <field name="nextcall"
+                   eval="(DateTime.now().replace(hour=7, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">code</field>
+            <field name="code">model.notify_overdue()</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_merchandiser_report_wizard_form" model="ir.ui.view">
+            <field name="name">view.merchandiser.report.wizard.form</field>
+            <field name="model">merchandiser.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Assortment">
+                    <sheet>
+                        <group>
+                            <!-- Group for general information -->
+                            <group string="Information">
+                                <field name="assortment_id" type="many2one"
+                                       options="{'no_open': True, 'no_create': True}"/>
+                                <field name="partner_id" type="many2one"/>
+                                <field name="store_ids" type="many2many" widget="many2many_tags"/>
+                            </group>
+
+                            <!-- Group for dates -->
+                            <group string="Dates">
+                                <field name="date_assortment" type="date"/>
+                                <field name="date_end" type="date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="print_report" type="object"
+                                string="Print Report" class="btn-primary" data-hotkey="q"/>
+                        <button special="cancel" data-hotkey="x" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="merchandiser_report_wizard_action" model="ir.actions.act_window">
+            <field name="name">Assortment Report</field>
+            <field name="res_model">merchandiser.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_merchandiser_report_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_merchandiser_analysis"
+                  name="Merchandise Analysis"
+                  parent="planning.planning_menu_reporting"
+                  groups="merchandise_group_user"
+                  sequence="20"/>
+        <menuitem id="menu_merchandiser_report"
+                  parent="menu_merchandiser_analysis"
+                  action="merchandiser_report_wizard_action"
+                  sequence="10"/>
+
+    </data>
+</odoo>

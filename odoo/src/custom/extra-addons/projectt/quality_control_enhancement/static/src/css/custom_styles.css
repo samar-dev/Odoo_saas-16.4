@@ -1,0 +1,21 @@
+/* Common style for all group headers */
+.o_form_group > legend {
+    background-color: #4A90E2;  /* Blue background */
+    color: white;               /* White text */
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Example: different color for a specific group by class */
+.group-contrôle-magasin > legend {
+    background-color: #1E90FF;
+}
+
+.group-contrôle-étiquette > legend {
+    background-color: #27AE60;
+}
+
+.group-carton > legend {
+    background-color: #E67E22;
+}

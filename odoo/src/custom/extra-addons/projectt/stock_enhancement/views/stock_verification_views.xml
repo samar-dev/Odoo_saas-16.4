@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_verification_form" model="ir.ui.view">
+            <field name="name">stock.verification.form</field>
+            <field name="model">stock.verification</field>
+            <field name="arch" type="xml">
+                <form string="Stock Verification">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="stock_initial"/>
+                                <field name="date_from"/>
+                            </group>
+                            <group string="Mouvements">
+                                <field name="total_entree" readonly="1"/>
+                                <field name="total_livree" readonly="1"/>
+                                <field name="total_utilise" readonly="1"/>
+                                <field name="stock_declare" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Calculs">
+                                <field name="stock_logique" readonly="1"/>
+                                <field name="ecart" readonly="1"/>
+                                <field name="coherence" readonly="1"/>
+                            </group>
+                            <group name="note_group" col="6" class="mt-2 mt-md-0" string="Motifs">
+                                <group colspan="4">
+                                    <field colspan="2" name="diagnostic" nolabel="1"
+                                           placeholder="Terms and conditions..."/>
+                                </group>
+                                <div class="clearfix"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_stock_verification_tree" model="ir.ui.view">
+            <field name="name">stock.verification.tree</field>
+            <field name="model">stock.verification</field>
+            <field name="arch" type="xml">
+                <tree string="Stock Verifications">
+                    <field name="product_id"/>
+                    <field name="stock_initial"/>
+                    <field name="total_entree"/>
+                    <field name="total_livree"/>
+                    <field name="total_utilise"/>
+                    <field name="stock_declare"/>
+                    <field name="stock_logique"/>
+                    <field name="ecart"/>
+                    <field name="coherence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_stock_verification" model="ir.actions.act_window">
+            <field name="name">Stock Verifications</field>
+            <field name="res_model">stock.verification</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_stock_verification" name="Verifications" parent="stock.menu_warehouse_report"
+                  action="action_stock_verification"/>
+
+    </data>
+</odoo>

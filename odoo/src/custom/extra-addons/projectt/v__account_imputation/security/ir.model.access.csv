@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_imputation,access_account_imputation,model_account_imputation,account.group_account_manager,1,1,1,1
+access_account_imputation_line,access_account_imputation_line,model_account_imputation_line,account.group_account_manager,1,1,1,1
+access_product_recalculate_valuation,access.product.recalculate.valuation,model_product_recalculate_valuation,account.group_account_manager,1,1,1,1
+access_product_recalculate_backup_user,access_product_recalculate_backup_user,model_product_recalculate_backup,account.group_account_manager,1,1,1,1
+access_product_recalculate_backup_line_user,access product.recalculate.backup.line user,model_product_recalculate_backup_line,account.group_account_manager,1,1,1,1

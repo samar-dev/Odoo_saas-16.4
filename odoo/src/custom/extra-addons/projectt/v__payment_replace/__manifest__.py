@@ -1,0 +1,16 @@
+{
+    "name": "Payment Replacement",
+    "version": "saas~16.4.1.8.0",
+    "description": "Payment Replacement",
+    "summary": "Set payment as unpaid, and add the possibility to replace it",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "account", "v__payment_methods"],
+    "data": ["views/core/account_payment.xml"],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

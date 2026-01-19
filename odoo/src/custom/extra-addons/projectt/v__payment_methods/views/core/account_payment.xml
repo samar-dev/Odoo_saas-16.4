@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_form_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+
+                <header position="inside">
+                    <field name="hide_next_step_button" invisible="1" />
+                    <field name="create_date" invisible="1" />
+                    <button name="action_move_to_next_stage"
+                            type="object"
+                            class="btn btn-primary"
+                            context="{'skip_account_move_synchronization': True}"
+                            attrs="{'invisible': ['|', ('hide_next_step_button', '=', True), ('create_date', '=', False)]}"
+                            string="Étape suivante" />
+                </header>
+
+                <header position="after">
+                    <header>
+                        <field name="payment_method_id" invisible="1" />
+                        <field name="x_stage_id"
+                               widget="statusbar"
+                               options="{'clickable': 0}"
+                               attrs="{'invisible': ['|', ('payment_method_id', '=', False), ('state', '!=', 'posted')]}"
+                               domain="[('payment_method_id', '=', payment_method_id)]" />
+                    </header>
+                </header>
+
+                <xpath expr="//button[@name='action_draft']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', '!=', 'posted')]}
+                    </attribute>
+                </xpath>
+
+                <xpath expr="//group[1]" position="after">
+                    <group name="v-check-group"
+                           string="Informations du chèque"
+                           attrs="{'invisible': [('payment_method_code', '!=', 'v-check')]}">
+                        <group>
+                            <field name="customer_bank_id"
+                                   context="{'default_partner_id': partner_id}"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote')), ('payment_type', '=', 'inbound')], 'readonly': [('state', '!=', 'draft')], 'invisible': [('payment_type', '=', 'outbound')]}" />
+                            <field name="due_date"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))], 'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="confirmation_number"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-check'), ('check_certified', '=', True)], 'invisible': [('check_certified', '=', False)]}" />
+                        </group>
+                        <group>
+                            <field name="transaction_number"
+                                   string="Numéro du chèque"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))], 'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="check_certified"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-check')], 'readonly': [('state', '!=', 'draft')]}"
+                                   widget="boolean_toggle" />
+                        </group>
+                    </group>
+                    <group name="v-banknote-group"
+                           string="Informations du effet"
+                           attrs="{'invisible': [('payment_method_code', '!=', 'v-banknote')]}">
+                        <group>
+                            <field name="customer_bank_id"
+                                   context="{'default_partner_id': partner_id}"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote')), ('payment_type', '=', 'inbound')], 'readonly': [('state', '!=', 'draft')], 'invisible': [('payment_type', '=', 'outbound')]}" />
+                            <field name="due_date"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))], 'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="transaction_number"
+                                   string="Numéro du effet"
+                                   attrs="{'required': [('payment_method_code', 'in', ('v-check', 'v-banknote'))], 'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="operation_type" readonly="1" />
+                        </group>
+                    </group>
+                    <group name="v-transfer-group"
+                           string="Informations du virement"
+                           attrs="{'invisible': [('payment_method_code', '!=', 'v-transfer')]}">
+                        <group>
+                            <field name="from_account_id"
+                                   options="{'no_create': 1, 'no_edit': 1}"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-transfer')], 'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="to_account_id"
+                                   options="{'no_create': 1, 'no_edit': 1}"
+                                   attrs="{'required': [('payment_method_code', '=', 'v-transfer')], 'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                    </group>
+
+                </xpath>
+
+                <xpath expr="//field[@name='payment_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id'][1]" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='is_internal_transfer']" position="replace">
+                    <field name="is_internal_transfer"
+                           readonly="1"
+                           force_save="1"
+                           attrs="{'invisible': [('is_internal_transfer', '=', False)]}" />
+                </xpath>
+
+                <xpath expr="//label[@for='is_internal_transfer']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_internal_transfer', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='group1']/div[1]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_internal_transfer', '=', False)]}</attribute>
+                </xpath>
+
+                <xpath expr="//div[@name='amount_div']" position="after">
+                    <xpath expr="//field[@name='journal_id']" position="move"/>
+                    <xpath expr="//field[@name='payment_method_line_id']" position="move"/>
+                </xpath>
+
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="related_payment_id" readonly="1" attrs="{'invisible': [('related_payment_id', '=', False)]}" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_tree_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_tree_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_method_line_id']" position="after">
+                    <field name="due_date" />
+                    <field name="transaction_number" optional="show" />
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="x_stage_id"
+                           widget="badge"
+                           optional="show"
+                           decoration-success="1" />
+                    <field name="x_next_stage_id"
+                           widget="badge"
+                           optional="show"
+                           decoration-info="1" />
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="customer_bank_id" optional="show"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_account_payment_form_without_header" model="ir.ui.view">
+            <field name="name">view_account_payment_form_without_header</field>
+            <field name="model">account.payment</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='is_internal_transfer']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id'][1]" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id'][2]" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+                <header position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </header>
+
+                <xpath expr="//div[@name='button_box']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='operation_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <sheet position="after">
+                    <footer>
+                    </footer>
+                </sheet>
+
+            </field>
+        </record>
+
+
+        <record id="account.action_account_payments" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="context">{'default_payment_type': 'inbound',
+                'default_partner_type': 'customer', 'search_default_inbound_filter': 1,
+                'default_move_journal_types': ('bank', 'cash'),
+                'default_is_internal_transfer': False}
+            </field>
+            <field name="domain">[('is_internal_transfer', '=', False)]</field>
+        </record>
+
+        <record id="account.action_account_payments_payable"
+                model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="context">{ 'default_payment_type': 'outbound',
+                'default_partner_type': 'supplier', 'search_default_outbound_filter': 1,
+                'default_move_journal_types': ('bank', 'cash'),
+                'default_is_internal_transfer': False}
+            </field>
+            <field name="domain">[('is_internal_transfer', '=', False)]</field>
+        </record>
+
+        <record id="account_payment_view_pivot" model="ir.ui.view">
+            <field name="name">account_payment_view_pivot</field>
+            <field name="model">account.payment</field>
+            <field name="arch" type="xml">
+                <pivot string="Liste des paiments">
+                    <field name="x_stage_id" type="col" />
+                    <field name="payment_method_line_id" type="row" />
+                    <field name="amount" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_account_payment_search_inherit" model="ir.ui.view">
+            <field name="name">view_account_payment_search_inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="transaction_number" />
+                </xpath>
+
+                <xpath expr="//filter[@name='company']" position="after">
+                    <filter name="current_step_groupby"
+                            string="Étape actuelle"
+                            context="{'group_by': 'x_stage_id'}" />
+                    <filter name="next_step_groupby"
+                            string="Étape suivante"
+                            context="{'group_by': 'x_next_stage_id'}" />
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="action_next_stage_action_server" model="ir.actions.server">
+            <field name="name">Étape suivante</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_account_payment" />
+            <field name="binding_model_id" ref="model_account_payment" />
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">action = records.with_context(skip_account_move_synchronization=True).action_move_to_next_stage()</field>
+        </record>
+
+        <record id="account_payment_receivable_internal_action"
+                model="ir.actions.act_window">
+            <field name="name">Virements Internes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.payment</field>
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="context">{'default_payment_type': 'inbound',
+                'default_partner_type': 'customer', 'search_default_transfers_filter': 1,
+                'default_move_journal_types': ('bank', 'cash'),
+                'default_is_internal_transfer': True}
+            </field>
+            <field name="domain">[('is_internal_transfer', '=', True)]</field>
+        </record>
+
+        <record id="account_payment_payable_internal_action"
+                model="ir.actions.act_window">
+            <field name="name">Virements Internes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.payment</field>
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+            <field name="context">{ 'default_payment_type': 'outbound',
+                'default_partner_type': 'supplier', 'search_default_transfers_filter': 1,
+                'default_move_journal_types': ('bank', 'cash'),
+                'default_is_internal_transfer': True}
+            </field>
+            <field name="domain">[('is_internal_transfer', '=', True)]</field>
+        </record>
+
+        <menuitem id="account_payment_receivable_internal_menu"
+                  name="Virements Internes"
+                  parent="account.menu_finance_receivables"
+                  action="account_payment_receivable_internal_action"
+                  sequence="16" />
+
+        <menuitem id="account_payment_payable_internal_menu"
+                  name="Virements Internes"
+                  parent="account.menu_finance_payables"
+                  action="account_payment_payable_internal_action"
+                  sequence="20" />
+    </data>
+</odoo>

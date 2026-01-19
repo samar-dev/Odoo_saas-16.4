@@ -1,0 +1,21 @@
+.o_spreadsheet_name {
+    --o-input-border-color: transparent;
+
+    display: inline-block;
+    max-width: 95%;
+
+    input {
+        max-width: 100%;
+        text-overflow: clip;
+        overflow: hidden;
+        padding: 0px 5px 0px 2px;
+
+        &:hover, &:focus {
+            --o-input-border-color: #{$o-action};
+        }
+
+        &:disabled {
+            background-color: inherit;
+        }
+    }
+}

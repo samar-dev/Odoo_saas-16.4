@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <odoo>
+        <record id="view_helpdesk_ticket_form_inherit_sequence" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit.sequence</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                <!-- Ici on place le champ après 'name' -->
+
+                <xpath expr="//field[@name='team_id']" position="before">
+                    <field name="sequence" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='is_partner_phone_update']" position="before">
+                    <field name="employee_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="replace"/>
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="partner_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('employee_id', '!=', False)]}</attribute>
+                </xpath>
+
+
+            </field>
+        </record>
+        <record id="view_helpdesk_ticket_tree_inherit_sequence" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.tree.inherit.sequence</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+                <!-- Ajouter sequence comme première colonne -->
+                <xpath expr="//field[@name='priority']" position="before">
+                    <field name="sequence"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_view_search_inherit_vitouzk" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.search.vitouzk</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/filter[@name='my_ticket']" position="before">
+
+                    <!-- Ajouter le filtre "My Tickets" pour l'employé connecté -->
+                    <filter string="Mes Tickets" name="mytickets_custom"
+                            domain="[('employee_id.user_id','=', uid)]"/>
+                    <!-- Ajouter le champ employee_id pour filtrer / recherche rapide -->
+                    <field name="employee_id" string="Employee" enable_counters="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="helpdesk_ticket_filter_my_tickets" model="ir.filters">
+            <field name="name">My Default Tickets</field>
+            <field name="model_id">helpdesk.ticket</field>
+            <field name="domain">[('employee_id.user_id','=', uid)]</field>
+            <field name="context">{}</field>
+            <field name="is_default">True</field> <!-- optionnel : actif par défaut -->
+            <field name="user_id" eval="False"/> <!-- disponible pour tous -->
+            <field name="active" eval="True"/>
+        </record>
+
+
+        <menuitem
+                id="menu_equipment_dashboard"
+                name="Machines &amp; Tools"
+                parent="helpdesk.menu_helpdesk_root"
+                groups="helpdesk.group_helpdesk_manager"
+                action="maintenance.hr_equipment_action"
+                sequence="5"/>
+
+
+    </odoo>
+
+</odoo>

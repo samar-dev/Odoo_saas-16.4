@@ -1,0 +1,23 @@
+{
+    "name": "Account Imputation",
+    "version": "saas~16.4.1.0.1",
+    "description": "Account Imputation",
+    "summary": "Add the ability to perform imputation on account_move_line",
+    "category": "External",
+    "author": "VEGANET",
+    "website": "https://www.vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "account", "v__tunisian_accounting"],
+    "data": [
+        "security/ir.model.access.csv",
+        "security/record_rules.xml",
+        "data/ir_sequence.xml",
+        "views/account_imputation.xml",
+        "views/account_imputation_line.xml",
+        "views/product_recalculate_valuation.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_hr_convention" model="ir.ui.view">
+            <field name="name">Liste des Conventions</field>
+            <field name="model">hr.convention</field>
+            <field name="arch" type="xml">
+                <tree string="Liste des Conventions">
+                    <field name="name"/>
+                    <field name="regime"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_convention_form" model="ir.ui.view">
+            <field name="name">Nouvelle Convention</field>
+            <field name="model">hr.convention</field>
+            <field name="arch" type="xml">
+                <form string="Convention" js_class="hr_employee_form" class='o_employee_form'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="regime"/>
+                        </group>
+                        <notebook>
+                            <page string="Catégories">
+                                <field name="category_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="target"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Salaires de base">
+                                <field name="base_salary_line_ids" nolabel="1" widget="section_and_note_one2many">
+                                    <tree editable="bottom">
+                                        <field name="category_id"/>
+                                        <field name="ech_1"/>
+                                        <field name="ech_2"/>
+                                        <field name="ech_3"/>
+                                        <field name="ech_4"/>
+                                        <field name="ech_5"/>
+                                        <field name="ech_6"/>
+                                        <field name="ech_7"/>
+                                        <field name="ech_8"/>
+                                        <field name="ech_9"/>
+                                        <field name="ech_10"/>
+                                        <field name="ech_11"/>
+                                        <field name="ech_12"/>
+                                        <field name="ech_13"/>
+                                        <field name="ech_14"/>
+                                        <field name="ech_15"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_convention" model="ir.actions.act_window">
+            <field name="name">Liste des Conventions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.convention</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ajouter une nouvelle Convention
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_hr_convention"
+                  parent="hr.menu_config_plan"
+                  action="action_hr_convention"
+                  sequence="140"
+                  groups="hr.group_hr_manager"/>
+    </data>
+</odoo>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_imputation_view_form" model="ir.ui.view">
+            <field name="name">account_imputation_view_form</field>
+            <field name="model">account.imputation</field>
+            <field name="arch" type="xml">
+                <form string="account_imputation_form">
+                    <field name="company_id" invisible="1"/>
+                    <field name="forced" invisible="1"/>
+                    <header>
+                        <button name="action_reset_to_draft"
+                                class="btn-secondary"
+                                states="pending"
+                                icon="fa-backward"
+                                type="object"
+                                string="Reset to draft"/>
+                        <button name="action_start_imputation"
+                                states="draft"
+                                class="btn-primary"
+                                icon="fa-play"
+                                type="object"
+                                string="Start Imputation"/>
+                        <button name="action_confirm"
+                                type="object"
+                                states="pending"
+                                class="btn-success"
+                                icon="fa-check"
+                                string="Confirm"/>
+                        <button name="action_confirm"
+                                type="object"
+                                states="pending"
+                                class="btn-warning"
+                                icon="fa-warning"
+                                context="{'force_confirm': True}"
+                                confirm="WARNING! You are about to bypass the Object-Relational Mapper (ORM) to directly modify data.
+                                This action may lead to unexpected behavior and data inconsistencies. We are not responsible for any issues arising from bypassing the ORM. PROCEED WITH CAUTION"
+                                string="Force Confirm"/>
+                        <button name="action_rollback"
+                                type="object"
+                                states="done"
+                                class="btn-danger"
+                                icon="fa-times"
+                                string="Rollback"/>
+                        <field name="state"
+                               widget="statusbar"
+                               statusbar_visible="draft,pending,done"/>
+                    </header>
+                    <sheet>
+                        <div class="button_box" name="button_box">
+                            <button states="pending,done,canceled"
+                                    name="action_open_imputation_line"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-credit-card">
+                                <div class="o_stat_info">
+                                    <field name="account_imputation_line_count"
+                                           class="o_stat_value"/>
+                                    <span class="o_stat_text">Lines</span>
+                                </div>
+                            </button>
+                            <button states="done,canceled"
+                                    name="action_open_real_move_lines"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-bars">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Journal Items</span>
+                                </div>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon"
+                                text="Forced"
+                                bg_color="bg-danger"
+                                attrs="{'invisible': ['|', ('forced', '=', False), ('state', '!=', 'done')]}"/>
+                        <widget name="web_ribbon"
+                                text="Canceled"
+                                bg_color="bg-warning"
+                                attrs="{'invisible': [('state', '!=', 'canceled')]}"/>
+
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Date filters">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group string="Amount filters">
+                                <field name="minimum_amount"/>
+                                <field name="maximum_amount"/>
+                            </group>
+                            <group string="Other">
+                                <field name="journal_ids"
+                                       force_save="1"
+                                       widget="many2many_tags"
+                                       domain="[('company_id', 'in', [False, company_id])]"
+                                       options="{'no_create': 1, 'no_edit': 1}"/>
+                                <field name="include_reconciled"/>
+                                <field name="balance_type"/>
+                            </group>
+                            <group string="Imputation">
+                                <field name="old_account_id"
+                                       domain="[('company_id', 'in', [False, company_id])]"
+                                       options="{'no_create': 1, 'no_edit': 1}"/>
+                                <field name="new_account_id"
+                                       domain="[('company_id', 'in', [False, company_id])]"
+                                       options="{'no_create': 1, 'no_edit': 1}"/>
+                                <field name="reference"/>
+                                <field name="libelle"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_imputation_view_tree" model="ir.ui.view">
+            <field name="name">account_imputation_view_tree</field>
+            <field name="model">account.imputation</field>
+            <field name="arch" type="xml">
+                <tree string="account_imputation_tree" sample="1">
+                    <field name="name"/>
+                    <field name="journal_ids" widget="many2many_tags"/>
+                    <field name="old_account_id" optional="show"/>
+                    <field name="new_account_id" optional="show"/>
+                    <field name="date_from" optional="show"/>
+                    <field name="date_to" optional="show"/>
+                    <field name="minimum_amount" optional="show"/>
+                    <field name="maximum_amount" optional="show"/>
+                    <field name="balance_type"
+                           widget="badge"
+                           decoration-success="balance_type == 'debit'"
+                           decoration-danger="balance_type == 'credit'"
+                           decoration-info="balance_type == 'both'"/>
+                    <field name="state"
+                           widget="badge"
+                           decoration-success="state == 'done'"
+                           decoration-info="state == 'pending'"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_imputation_search_view" model="ir.ui.view">
+            <field name="name">account_imputation_search_view</field>
+            <field name="model">account.imputation</field>
+            <field name="arch" type="xml">
+                <search string="Search...">
+                    <field name="name"/>
+                    <field name="journal_ids"/>
+                    <field name="old_account_id"/>
+                    <field name="new_account_id"/>
+                    <filter name="archived"
+                            string="Archived"
+                            domain="[('active', '=', False)]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="User"
+                                name="create_uid"
+                                context="{'group_by':'create_uid'}"/>
+                        <filter name="state"
+                                string="State"
+                                context="{'group_by':'state'}"/>
+                        <filter name="state"
+                                string="Balance"
+                                context="{'group_by':'balance_type'}"/>
+                        <filter string="Company"
+                                name="company"
+                                context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company"/>
+                        <separator orientation="vertical"/>
+                        <filter name="old_account_id"
+                                string="Old account"
+                                context="{'group_by':'old_account_id'}"/>
+                        <filter name="new_account_id"
+                                string="New account"
+                                context="{'group_by':'new_account_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Start date"
+                                name="date_from_group"
+                                context="{'group_by':'date_from:month'}"/>
+                        <filter string="End date"
+                                name="date_to_group"
+                                context="{'group_by': 'date_to:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="account_imputation_action" model="ir.actions.act_window">
+            <field name="name">Account Imputation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.imputation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="UNIQUE_ID_categ"
+                  name="Account Imputation"
+                  parent="account.menu_finance_entries_actions"
+                  groups="account.group_account_manager"
+                  action="account_imputation_action"/>
+
+    </data>
+</odoo>

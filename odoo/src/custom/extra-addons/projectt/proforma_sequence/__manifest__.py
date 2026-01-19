@@ -1,0 +1,20 @@
+{
+    "name": "Pro-forma Invoice Sequence",
+    "version": "saas~16.4.1.3.0",
+    "description": "Pro-forma Invoice Sequence",
+    "category": "External",
+    "author": "VegaNET",
+    "website": "https://vegagroup.com.tn",
+    "license": "Other proprietary",
+    "depends": ["base", "sale", "sale_enhancement"],
+    "data": [
+        "data/ir_sequence_data.xml",
+        "views/core/sale_order.xml",
+        "report/ir_actions_report.xml",
+        "report/ir_actions_report_template.xml",
+    ],
+    "application": False,
+    "auto_install": False,
+    "installable": True,
+    "sequence": 1,
+}
